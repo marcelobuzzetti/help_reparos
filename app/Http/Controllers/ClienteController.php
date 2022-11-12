@@ -14,7 +14,17 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        return view('cliente.index', [
+            'clientes' => Cliente::all()
+        ]);
+
+        /*
+        Com paginação
+
+        $clientes = Cliente::latest()->paginate(5);
+
+        return view('cliente.index',compact('clientes'))
+            ->with('i', (request()->input('page', 1) - 1) * 5); */
     }
 
     /**

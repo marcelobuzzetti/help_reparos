@@ -33,19 +33,19 @@
                             <td>{{ $cliente->email }}</td>
                             <td>{{ $cliente->endereco }}</td>
                             <td>
-                                <div class="d-flex flex-wrap">
+                                <div class="d-flex flex-wrap justify-content-around">
                                     <div class="p-2">
-                                        <a class="btn btn-info flex-grow-1"
-                                            href="{{ route('clientes.show', $cliente->id) }}">Motrar</a>
+                                        <a class="btn btn-info flex-inline flex-grow-1"
+                                            href="{{ route('clientes.show', $cliente->id) }}"><i class="icofont-search-1"></i> Motrar</a>
                                     </div>
                                     <div class="p-2">
-                                        <a class="btn btn-primary flex-grow-1"
-                                            href="{{ route('clientes.edit', $cliente->id) }}">Editar</a>
+                                        <a class="btn btn-primary flex-inline flex-grow-1"
+                                            href="{{ route('clientes.edit', $cliente->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
                                     </div>
                                     <div class="p-2">
-                                        <button class="btn btn-danger flex-grow-1" data-bs-toggle="modal"
+                                        <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" data-bs-nome="{{ $cliente->nome }}"
-                                            data-bs-id="{{ $cliente->id }}">Apagar</button>
+                                            data-bs-id="{{ $cliente->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
                                     </div>
                                 </div>
                             </td>
@@ -84,8 +84,8 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-danger">Apagar</button>
+                    <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i class="icofont-close"></i> Fechar</button>
+                    <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i> Apagar</button>
                     </form>
                 </div>
             </div>

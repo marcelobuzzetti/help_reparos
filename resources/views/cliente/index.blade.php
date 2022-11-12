@@ -4,7 +4,7 @@
 
 @if ($message = Session::get('success'))
     <script>
-        toastr.success('Cliente <?php echo $message; ?> apagado com sucesso!!!');
+        toastr.success('<?php echo $message; ?>');
     </script>
 @endif
 

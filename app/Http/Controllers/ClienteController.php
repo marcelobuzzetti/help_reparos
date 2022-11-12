@@ -88,7 +88,7 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('cliente.edit',compact('cliente'));
     }
 
     /**
@@ -100,7 +100,28 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+
+        $request->validate([
+            'nome' => 'required|max:255|min:3',
+            'telefone' => 'required|numeric',
+            'rg' => 'required|numeric',
+            'cpf' => 'required|cpf',
+            'email' => 'required|email',
+            'endereco' => 'required|min:10',
+        ]);
+
+        $nome = $request->old('nome');
+        $telefone = $request->old('telefone');
+        $rg = $request->old('rg');
+        $cpf = $request->old('cpf');
+        $email = $request->old('email');
+        $endereco = $request->old('endereco');
+
+        $nome = $request->nome;
+        $cliente->update($request->all());
+
+        return redirect()->route('clientes.index')
+                        ->with('success',"Cliente $nome atualizado com sucesso!!!");
     }
 
     /**
@@ -115,6 +136,6 @@ class ClienteController extends Controller
         $cliente->delete();
 
         return redirect()->route('clientes.index')
-                        ->with('success', $nome);
+                        ->with('success', "Cliente $nome apagado com sucesso!!!");
     }
 }

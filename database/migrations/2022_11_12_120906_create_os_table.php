@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('os', function (Blueprint $table) {
+        Schema::create('ordens', function (Blueprint $table) {
             $table->id();
             $table->timestamp('entrada')->useCurrent();
             $table->string('tipo_aparelho');
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('os');
+        Schema::dropIfExists('ordens');
     }
 };

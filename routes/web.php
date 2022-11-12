@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\OsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,5 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('clientes', ClienteController::class);
 
 Route::resource('marcas', MarcaController::class);
+
+Route::resource('ordens', OsController::class);
 
 

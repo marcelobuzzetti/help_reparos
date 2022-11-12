@@ -75,13 +75,14 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/ordens') active @endif @if (Request::url() === env('APP_URL') . '/ordens/create') active @endif" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 OS
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Lista</a></li>
-                                <li><a class="dropdown-item" href="#">Criar</a></li>
+                                <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/ordens') active @endif"
+                                    href="/ordens">Lista</a></li>
+                                <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/ordens/create') active @endif" href="/ordens/create">Criar</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

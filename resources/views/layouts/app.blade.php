@@ -23,6 +23,11 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <style>
+        body{
+            background-color: whitesmoke;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -38,15 +43,15 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
                         {{-- Criar link ativo --}}
-                        <a class="nav-link active" aria-current="page" href="#">Nova OS?</a>
+                        <a class="nav-link" aria-current="page" href="#">Nova OS?</a>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle @if(Request::url() === env('APP_URL') . '/clientes') active @endif" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Clientes
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="/clientes">Lista</a></li>
-                          <li><a class="dropdown-item" href="/clientes/create">Criar</a></li>
+                          <li><a class="dropdown-item @if(Request::url() === env('APP_URL') . '/clientes') active @endif" href="/clientes">Lista</a></li>
+                          <li><a class="dropdown-item @if(Request::url() === env('APP_URL') . '/clientes/create') active @endif" href="/clientes/create">Criar</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="#">Último Serviço</a></li>
                         </ul>

@@ -13,39 +13,29 @@
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Telefon</th>
-                    <th>RG</th>
-                    <th>CPF</th>
-                    <th>Email</th>
-                    <th>Endereço</th>
+                    <th>Descrição</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @if ($clientes)
-                    @foreach ($clientes as $cliente)
+                @if ($marcas)
+                    @foreach ($marcas as $marca)
                         <tr>
-                            <td>{{ $cliente->nome }}</td>
-                            <td>{{ $cliente->telefone }}</td>
-                            <td>{{ $cliente->rg }}</td>
-                            <td>{{ $cliente->cpf }}</td>
-                            <td>{{ $cliente->email }}</td>
-                            <td>{{ $cliente->endereco }}</td>
+                            <td>{{ $marca->descricao }}</td>
                             <td>
                                 <div class="d-flex flex-wrap justify-content-around">
                                     <div class="p-2">
                                         <a class="btn btn-info flex-inline flex-grow-1"
-                                            href="{{ route('clientes.show', $cliente->id) }}"><i class="icofont-search-1"></i> Motrar</a>
+                                            href="{{ route('marcas.show', $marca->id) }}"><i class="icofont-search-1"></i> Motrar</a>
                                     </div>
                                     <div class="p-2">
                                         <a class="btn btn-primary flex-inline flex-grow-1"
-                                            href="{{ route('clientes.edit', $cliente->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
+                                            href="{{ route('marcas.edit', $marca->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
                                     </div>
                                     <div class="p-2">
                                         <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" data-bs-nome="{{ $cliente->nome }}"
-                                            data-bs-id="{{ $cliente->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
+                                            data-bs-target="#exampleModal" data-bs-nome="{{ $marca->descricao }}"
+                                            data-bs-id="{{ $marca->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
                                     </div>
                                 </div>
                             </td>
@@ -55,12 +45,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Nome</th>
-                    <th>Telefon</th>
-                    <th>RG</th>
-                    <th>CPF</th>
-                    <th>Email</th>
-                    <th>Endereço</th>
+                    <th>Descrição</th>
                     <th>Ações</th>
                 </tr>
             </tfoot>
@@ -180,9 +165,9 @@
                 const modalBodyForm = document.getElementById('apagarCliente')
                 const modalBodyNomeCliente = document.getElementById('nomeClienteModal')
 
-                modalTitle.textContent = `Apagar Cliente ${nome}`
+                modalTitle.textContent = `Apagar Marca ${nome}`
                 modalBodyNomeCliente.textContent = nome
-                modalBodyForm.action = `<?php echo env('APP_URL'); ?>/clientes/${id}`
+                modalBodyForm.action = `<?php echo env('APP_URL'); ?>/marcas/${id}`
             })
         });
     </script>

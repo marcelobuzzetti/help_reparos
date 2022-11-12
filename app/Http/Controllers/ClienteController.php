@@ -45,7 +45,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $nome = $request->nome;
+        $nomePOST = $request->nome;
 
         $request->validate([
             'nome' => 'required|max:255|min:3',
@@ -66,7 +66,7 @@ class ClienteController extends Controller
         Cliente::create($request->all());
 
         return redirect()->route('clientes.index')
-                        ->with('success','Cliente $nome criado com sucesso!!!.');
+                        ->with('success',"Cliente $nomePOST criado com sucesso!!!.");
     }
 
     /**
@@ -117,11 +117,11 @@ class ClienteController extends Controller
         $email = $request->old('email');
         $endereco = $request->old('endereco');
 
-        $nome = $request->nome;
+        $nomePOST = $request->nome;
         $cliente->update($request->all());
 
         return redirect()->route('clientes.index')
-                        ->with('success',"Cliente $nome atualizado com sucesso!!!");
+                        ->with('success',"Cliente $nomePOST atualizado com sucesso!!!");
     }
 
     /**

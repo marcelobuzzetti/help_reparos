@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,31 +9,37 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     {{-- JQuery --}}
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
     {{-- Datatables --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.2/b-colvis-2.3.2/b-html5-2.3.2/b-print-2.3.2/cr-1.6.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sl-1.5.0/sr-1.2.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.2/b-colvis-2.3.2/b-html5-2.3.2/b-print-2.3.2/cr-1.6.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sl-1.5.0/sr-1.2.0/datatables.min.css" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.2/b-colvis-2.3.2/b-html5-2.3.2/b-print-2.3.2/cr-1.6.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sl-1.5.0/sr-1.2.0/datatables.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.2/b-colvis-2.3.2/b-html5-2.3.2/b-print-2.3.2/cr-1.6.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sl-1.5.0/sr-1.2.0/datatables.min.js">
+    </script>
 
 
     {{-- Toastr --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     {{-- IcoFonts --}}
-    <link rel="stylesheet" href="{{ asset('assets/icofont/icofont.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/icofont/icofont.min.css') }}" />
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{ asset('assets/css/template.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/template.css') }}" />
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top card mx-5 mt-1">
@@ -40,48 +47,61 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                        {{-- Criar link ativo --}}
-                        <a class="nav-link" aria-current="page" href="#">Nova OS?</a>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle @if(Request::url() === env('APP_URL') . '/clientes') active @endif" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Clientes
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item @if(Request::url() === env('APP_URL') . '/clientes') active @endif" href="/clientes">Lista</a></li>
-                          <li><a class="dropdown-item @if(Request::url() === env('APP_URL') . '/clientes/create') active @endif" href="/clientes/create">Criar</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Último Serviço</a></li>
-                        </ul>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          OS
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Lista</a></li>
-                          <li><a class="dropdown-item" href="#">Criar</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Última OS</a></li>
-                        </ul>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Marcas
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Lista</a></li>
-                          <li><a class="dropdown-item" href="#">Criar</a></li>
-                        </ul>
-                      </li>
+                        <li class="nav-item">
+                            {{-- Criar link ativo --}}
+                            <a class="nav-link" aria-current="page" href="#">Nova OS?</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/clientes') active @endif @if (Request::url() === env('APP_URL') . '/clientes/create') active @endif"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Clientes
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/clientes') active @endif"
+                                        href="/clientes">Lista</a></li>
+                                <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/clientes/create') active @endif"
+                                        href="/clientes/create">Criar</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Último Serviço</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                OS
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Lista</a></li>
+                                <li><a class="dropdown-item" href="#">Criar</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Última OS</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/marcas') active @endif @if (Request::url() === env('APP_URL') . '/marcas/create') active @endif" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Marcas
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/marcas') active @endif"
+                                    href="/marcas">Lista</a></li>
+                            <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/marcas/create') active @endif"
+                                    href="/marcas/create">Criar</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                  </div>
+                </div>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -106,13 +126,14 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
@@ -134,5 +155,27 @@
     </div>
     {{-- Toastr --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <script>
+        $(document).ready(function() {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        });
+    </script>
 </body>
+
 </html>

@@ -7,14 +7,24 @@ use Illuminate\Http\Request;
 
 class MarcaController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('marca.index', [
+            'marcas' => Marca::all()
+        ]);
+
+        /*
+        Com paginação
+
+        $clientes = Cliente::latest()->paginate(5);
+
+        return view('cliente.index',compact('clientes'))
+            ->with('i', (request()->input('page', 1) - 1) * 5); */
     }
 
     /**
@@ -24,7 +34,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('marca.create');
     }
 
     /**
@@ -35,7 +45,18 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $descricaoPOST = $request->descricao;
+
+        $request->validate([
+            'descricao' => 'required|max:255|min:3'
+        ]);
+
+        $descricao = $request->old('descricao');
+
+        Marca::create($request->all());
+
+        return redirect()->route('marcas.index')
+                        ->with('success',"Marca $descricaoPOST criada com sucesso!!!.");
     }
 
     /**
@@ -46,7 +67,7 @@ class MarcaController extends Controller
      */
     public function show(Marca $marca)
     {
-        //
+        return view('marca.show',compact('marca'));
     }
 
     /**
@@ -57,7 +78,7 @@ class MarcaController extends Controller
      */
     public function edit(Marca $marca)
     {
-        //
+        return view('marca.edit',compact('marca'));
     }
 
     /**
@@ -69,7 +90,18 @@ class MarcaController extends Controller
      */
     public function update(Request $request, Marca $marca)
     {
-        //
+
+        $request->validate([
+            'descricao' => 'required|max:255|min:3'
+        ]);
+
+        $descricao = $request->old('descricao');
+
+        $descricaoPOST = $request->descricao;
+        $marca->update($request->all());
+
+        return redirect()->route('marcas.index')
+                        ->with('success',"Cliente $descricaoPOST atualizado com sucesso!!!");
     }
 
     /**
@@ -80,6 +112,10 @@ class MarcaController extends Controller
      */
     public function destroy(Marca $marca)
     {
-        //
+        $descricao = $marca->descricao;
+        $marca->delete();
+
+        return redirect()->route('marcas.index')
+                        ->with('success', "Marca $descricao apagada com sucesso!!!");
     }
 }

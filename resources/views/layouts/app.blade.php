@@ -30,16 +30,11 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <style>
-        body{
-            background-color: whitesmoke;
-            padding: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/template.css') }}"/>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top card mx-5 mt-1">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -132,7 +127,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 card-example">
             @yield('content')
         </main>
     </div>

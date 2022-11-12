@@ -97,59 +97,72 @@
             $('#example').DataTable({
                 responsive: true,
                 dom: 'Bfrtip',
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    ['10 linhas', '25 linhas', '50 linhas', 'Mostrar tudo']
+                ],
+                language: {
+                    buttons: {
+                        pageLength: {
+                            _: "Mostrar %d linhas",
+                            '-1': "Mostrar todos"
+                        }
+                    }
+                },
                 buttons: [
-            {
-                extend: 'copyHtml5',
-                text: 'Cópia',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5 ]
-                }
-            },
-            {
-                extend: 'excelHtml5',
-                text: 'Excel',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5 ]
-                }
-            },
-            {
-                extend: 'pdfHtml5',
-                text: 'PDF',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5 ]
-                }
-            },
-            {
-                extend: 'print',
-                text: 'Imprimir',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5 ]
-                }
-            },
-            {
-                extend: 'colvis',
-                text: 'Colunas Visíveis',
+                    "pageLength",
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Cópia',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Imprimir',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'colvis',
+                        text: 'Colunas Visíveis',
 
-            }
-        ],
+                    }
+                ],
                 /* buttons: [
                     'copy', 'excel', 'pdf', 'print'
                 ], */
                 "oLanguage": {
-                "sSearch": "Buscar: ",
-                "sProcessing": "Aguarde enquanto os dados são carregados ...",
-                "sLengthMenu": "Mostrar _MENU_ registros por pagina",
-                "sZeroRecords": "Nenhum registro encontrado",
-                "sInfoEmtpy": "Exibindo 0 a 0 de 0 registros",
-                "sInfo": "Exibindo de _START_ a _END_ de _TOTAL_ registros",
-                "sInfoFiltered": "",
-                "oPaginate": {
-                    "sFirst": "Primeiro",
-                    "sPrevious": "Anterior",
-                    "sNext": "Próximo",
-                    "sLast": "Último"
+                    "sSearch": "Buscar: ",
+                    "sProcessing": "Aguarde enquanto os dados são carregados ...",
+                    "sLengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sInfoEmtpy": "Exibindo 0 a 0 de 0 registros",
+                    "sInfo": "Exibindo de _START_ a _END_ de _TOTAL_ registros",
+                    "sInfoFiltered": "",
+                    "oPaginate": {
+                        "sFirst": "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext": "Próximo",
+                        "sLast": "Último"
+                    }
                 }
-            }
             });
 
             toastr.options = {

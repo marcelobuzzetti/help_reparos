@@ -34,7 +34,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('cliente.create');
     }
 
     /**
@@ -45,7 +45,28 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nome = $request->nome;
+
+        $request->validate([
+            'nome' => 'required|max:255|min:3',
+            'telefone' => 'required|numeric',
+            'rg' => 'required|numeric',
+            'cpf' => 'required|cpf',
+            'email' => 'required|email',
+            'endereco' => 'required|min:10',
+        ]);
+
+        $nome = $request->old('nome');
+        $telefone = $request->old('telefone');
+        $rg = $request->old('rg');
+        $cpf = $request->old('cpf');
+        $email = $request->old('email');
+        $endereco = $request->old('endereco');
+
+        Cliente::create($request->all());
+
+        return redirect()->route('clientes.index')
+                        ->with('success','Cliente $nome criado com sucesso!!!.');
     }
 
     /**
@@ -56,7 +77,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+        return view('cliente.show',compact('cliente'));
     }
 
     /**
@@ -90,9 +111,10 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
+        $nome = $cliente->nome;
         $cliente->delete();
 
         return redirect()->route('clientes.index')
-                        ->with('apagado',"Cliente apagado com sucesso!!!");
+                        ->with('success', $nome);
     }
 }

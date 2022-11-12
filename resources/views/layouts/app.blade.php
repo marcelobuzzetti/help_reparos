@@ -46,7 +46,7 @@
                         </a>
                         <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="/clientes">Lista</a></li>
-                          <li><a class="dropdown-item" href="#">Criar</a></li>
+                          <li><a class="dropdown-item" href="/clientes/create">Criar</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="#">Último Serviço</a></li>
                         </ul>

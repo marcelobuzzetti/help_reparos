@@ -15,6 +15,16 @@ return new class extends Migration
     {
         Schema::create('os', function (Blueprint $table) {
             $table->id();
+            $table->timestamp('entrada')->useCurrent();
+            $table->string('tipo_aparelho');
+            $table->integer('marca');
+            $table->string('modelo');
+            $table->string('estado_aparelho');
+            $table->string('defeito_alegado');
+            $table->string('observação');
+            $table->float('valor_servico')->nullable();
+            $table->timestamp('retirada')->useCurrent()->nullable();
+            $table->string('entregue_para')->nullable();
             $table->timestamps();
         });
     }

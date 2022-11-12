@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Os;
+use App\Models\Cliente;
+use App\Models\Marca;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class OsController extends Controller
@@ -34,7 +37,11 @@ class OsController extends Controller
      */
     public function create()
     {
-        return view('ordem.create');
+
+        return view('ordem.create', [
+            'marcas' => Marca::all(),
+            'clientes' => Cliente::all()
+        ]);
     }
 
     /**
@@ -45,18 +52,30 @@ class OsController extends Controller
      */
     public function store(Request $request)
     {
-        $descricaoPOST = $request->descricao;
 
         $request->validate([
-            'descricao' => 'required|max:255|min:3'
+            'cliente_id' => 'required|exists:clientes,id',
+            'tipo_aparelho' => 'required|min:3',
+            'marca_id' => 'required|exists:marcas,id',
+            'modelo' => 'required|min:3',
+            'estado_aparelho' => 'required|min:3',
+            'defeito_alegado' => 'required|min:10',
+            'observacao' => 'required',
         ]);
 
-        $descricao = $request->old('descricao');
+        $cliente_id = $request->old('cliente_id');
+        $tipo_aparelho = $request->old('tipo_aparelho');
+        $marca_id = $request->old('marca_id');
+        $modelo = $request->old('modelo');
+        $estado_aparelho = $request->old('estado_aparelho');
+        $defeito_alegado = $request->old('defeito_alegado');
+        $observacao = $request->old('observacao');
 
-        Marca::create($request->all());
+        $os = Os::create($request->all());
+        $osId = $os->id;
 
-        return redirect()->route('marcas.index')
-                        ->with('success',"Marca $descricaoPOST criada com sucesso!!!.");
+        return redirect()->route('ordens.index')
+                        ->with('success',"Ordem de Serviço nº $osId foi criada com sucesso!!!.");
     }
 
     /**

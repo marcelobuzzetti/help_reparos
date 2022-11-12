@@ -13,29 +13,49 @@
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>Descrição</th>
+                    <th>Nº OS</th>
+                    <th>Entrada</th>
+                    <th>Cliente</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Tipo de Aparelho</th>
+                    <th>Estado do Aparelho</th>
+                    <th>Defeito Alegado</th>
+                    <th>Observação</th>
+                    <th>Valor do Serviço</th>
+                    <th>Entregue Para</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @if ($marcas)
-                    @foreach ($marcas as $marca)
+                @if ($ordens)
+                    @foreach ($ordens as $ordem)
                         <tr>
-                            <td>{{ $marca->descricao }}</td>
+                            <td>{{ $ordem->id }}</td>
+                            <td>{{ $ordem->entrada }}</td>
+                            <td>{{ $ordem->cliente_id }}</td>
+                            <td>{{ $ordem->marca_id }}</td>
+                            <td>{{ $ordem->modelo }}</td>
+                            <td>{{ $ordem->tipo_aparelho }}</td>
+                            <td>{{ $ordem->estado_aparelho }}</td>
+                            <td>{{ $ordem->defeito_alegado }}</td>
+                            <td>{{ $ordem->observacao }}</td>
+                            <td>{{ $ordem->valor_servico }}</td>
+                            <td>{{ $ordem->entregue_para }}</td>
                             <td>
                                 <div class="d-flex flex-wrap justify-content-around">
                                     <div class="p-2">
                                         <a class="btn btn-info flex-inline flex-grow-1"
-                                            href="{{ route('marcas.show', $marca->id) }}"><i class="icofont-search-1"></i> Motrar</a>
+                                            href="{{ route('ordens.show', $ordem->id) }}"><i class="icofont-search-1"></i> Motrar</a>
                                     </div>
                                     <div class="p-2">
                                         <a class="btn btn-primary flex-inline flex-grow-1"
-                                            href="{{ route('marcas.edit', $marca->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
+                                            href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
                                     </div>
                                     <div class="p-2">
                                         <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" data-bs-nome="{{ $marca->descricao }}"
-                                            data-bs-id="{{ $marca->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
+                                            data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
+                                            data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
                                     </div>
                                 </div>
                             </td>
@@ -45,7 +65,17 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Descrição</th>
+                    <th>Nº OS</th>
+                    <th>Entrada</th>
+                    <th>Cliente</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Tipo de Aparelho</th>
+                    <th>Estado do Aparelho</th>
+                    <th>Defeito Alegado</th>
+                    <th>Observação</th>
+                    <th>Valor do Serviço</th>
+                    <th>Entregue Para</th>
                     <th>Ações</th>
                 </tr>
             </tfoot>
@@ -81,6 +111,7 @@
         $(document).ready(function() {
             $('#example').DataTable({
                 responsive: true,
+                "order": [ 0, 'desc' ],
                 dom: 'Bfrtip',
                 lengthMenu: [
                     [10, 25, 50, -1],
@@ -100,28 +131,28 @@
                         extend: 'copyHtml5',
                         text: 'Cópia',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                         }
                     },
                     {
                         extend: 'excelHtml5',
                         text: 'Excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                         }
                     },
                     {
                         extend: 'pdfHtml5',
                         text: 'PDF',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                         }
                     },
                     {
                         extend: 'print',
                         text: 'Imprimir',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                         }
                     },
                     {
@@ -167,7 +198,7 @@
 
                 modalTitle.textContent = `Apagar Marca ${nome}`
                 modalBodyNomeCliente.textContent = nome
-                modalBodyForm.action = `<?php echo env('APP_URL'); ?>/marcas/${id}`
+                modalBodyForm.action = `<?php echo env('APP_URL'); ?>/ordens/${id}`
             })
         });
     </script>

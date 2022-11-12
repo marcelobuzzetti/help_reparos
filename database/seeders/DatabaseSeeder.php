@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
 
             ClienteTableSeeder::class,
 
-            MarcaTableSeeder::class
+            MarcaTableSeeder::class,
+
+            UserSeeder::class
 
         ]);
     }

@@ -10,8 +10,9 @@ class Os extends Model
     use HasFactory;
 
     protected $fillable = [
+        'cliente_id',
         'tipo_aparelho',
-        'marca',
+        'marca_id',
         'modelo',
         'estado_aparelho',
         'defeito_alegado',

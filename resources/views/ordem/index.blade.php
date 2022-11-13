@@ -33,7 +33,7 @@
                     @foreach ($ordens as $ordem)
                         <tr>
                             <td>{{ $ordem->id }}</td>
-                            <td>{{ date( 'd M y H:m' , strtotime($ordem->entrada)) }}</td>
+                            <td>{{ date( 'd/m/Y H:m' , strtotime($ordem->entrada)) }}</td>
                             <td>{{ $ordem->nome }}</td>
                             <td>{{ $ordem->marca }}</td>
                             <td>{{ $ordem->modelo }}</td>
@@ -114,6 +114,9 @@
         $(document).ready(function() {
             $('#example').DataTable({
                 responsive: true,
+                columnDefs: [
+                    { type: 'date-euro', targets: 1 }
+                ],
                 fixedHeader: {
                     headerOffset: 60
                 },

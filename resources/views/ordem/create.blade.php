@@ -116,9 +116,15 @@
         <div class="row mt-2">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right d-flex">
-                    <a class="btn btn-primary d-flex-inline" href="{{ route('marcas.index') }}"><i class="icofont-arrow-left"></i> Voltar</a>
+                    <a class="btn btn-primary d-flex-inline" href="{{ route('ordens.index') }}"><i class="icofont-arrow-left"></i> Voltar</a>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+         $(document).ready(function() {
+            $("[name='cliente_id']").select2();
+            $("[name='marca_id']").select2();
+         });
+    </script>
 @endsection

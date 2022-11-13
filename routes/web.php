@@ -28,7 +28,7 @@ Route::resource('clientes', ClienteController::class);
 Route::resource('marcas', MarcaController::class);
 
 Route::resource('ordens', OsController::class)->except([
-   'show'
+   'show', 'edit', 'destroy'
 ]);;
 
 Route::get('/ordemservico/{id}', [OsController::class, 'showTeste']);

@@ -4,13 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="pull-left">
-                <h2>Mostrar OS</h2>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Nº OS:</strong>
-                    {{ $ordem[0]['id'] }}
-                </div>
+                <h2>OS Nº {{ $ordem[0]['id'] }}</h2>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
@@ -63,13 +57,13 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Valor do Serviço:</strong>
-                    {{ $ordem[0]['valor_servico'] }}
+                    {{ $ordem[0]['valor_servico'] ? $ordem[0]['valor_servico'] : "Não orçado"}}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entregue para:</strong>
-                    {{ $ordem[0]['entregue_para'] }}
+                    {{ $ordem[0]['entregue_para'] ? $ordem[0]['entregue_para'] : "Não entregue"}}
                 </div>
             </div>
         </div>

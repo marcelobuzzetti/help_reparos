@@ -19,7 +19,8 @@ class Os extends Model
         'defeito_alegado',
         'observacao',
         'valor_servico',
-        'entregue_para'
+        'entregue_para',
+        'status'
     ];
 
     protected $table = 'ordens';
@@ -32,25 +33,6 @@ class Os extends Model
     public function marca()
     {
         return $this->hasMany(Marca::class, 'id', 'marca_id');
-    }
-
-    public static function osMarcaCliente(){
-        return DB::table('ordens')
-            ->join('marcas', 'ordens.marca_id', '=', 'marcas.id')
-            ->join('clientes', 'ordens.cliente_id', '=', 'clientes.id')
-            ->select('ordens.*', 'clientes.nome AS nome', 'marcas.descricao AS marca')
-            ->get();
-    }
-
-    public static function osId($id){
-        $ordemId = $id;
-        $res = DB::table('ordens')
-            ->join('marcas', 'ordens.marca_id', '=', 'marcas.id')
-            ->join('clientes', 'ordens.cliente_id', '=', 'clientes.id')
-            ->select('ordens.*', 'clientes.nome AS nome', 'marcas.descricao AS marca')
-            ->where('ordens.id', '=', $ordemId)
-            ->get()->toArray();
-        return $res;
     }
 
     public static function osUpdate($request){

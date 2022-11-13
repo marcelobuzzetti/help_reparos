@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     @if ($message = Session::get('success'))
         <script>
             toastr.success('<?php echo $message; ?>');
@@ -34,8 +33,8 @@
                         <tr>
                             <td>{{ $ordem->id }}</td>
                             <td>{{ date( 'd/m/Y H:m' , strtotime($ordem->entrada)) }}</td>
-                            <td>{{ $ordem->nome }}</td>
-                            <td>{{ $ordem->marca }}</td>
+                            <td>{{ $ordem->cliente->first()->nome }}</td>
+                            <td>{{ $ordem->marca->first()->descricao }}</td>
                             <td>{{ $ordem->modelo }}</td>
                             <td>{{ $ordem->tipo_aparelho }}</td>
                             <td>{{ $ordem->estado_aparelho }}</td>
@@ -48,11 +47,11 @@
                                 <div class="d-flex flex-wrap justify-content-around">
                                     <div class="p-2">
                                         <a class="btn btn-info flex-inline flex-grow-1"
-                                            href="/ordemservico/{{ $ordem->id }}"><i class="icofont-search-1"></i> Motrar</a>
+                                            href="{{ route('ordens.show', $ordem->id) }}"><i class="icofont-search-1"></i> Motrar</a>
                                     </div>
                                     <div class="p-2">
                                         <a class="btn btn-primary flex-inline flex-grow-1"
-                                            href="/ordemservico/{{ $ordem->id }}/edit"><i class="icofont-ui-edit"></i> Editar</a>
+                                            href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
                                     </div>
                                     <div class="p-2">
                                         <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
@@ -207,7 +206,7 @@
 
                 modalTitle.textContent = `Apagar OS nº ${nome}`
                 modalBodyNomeCliente.textContent = nome
-                modalBodyForm.action = `<?php echo env('APP_URL'); ?>/ordemservico/${id}/delete`
+                modalBodyForm.action = `<?php echo env('APP_URL'); ?>/ordens/${id}`
             })
         });
     </script>

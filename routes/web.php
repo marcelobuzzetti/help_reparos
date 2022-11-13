@@ -27,14 +27,12 @@ Route::resource('clientes', ClienteController::class);
 
 Route::resource('marcas', MarcaController::class);
 
-Route::resource('ordens', OsController::class)->except([
-   'show', 'edit', 'destroy'
-]);;
+Route::resource('ordens', OsController::class);
 
-Route::get('/ordemservico/{id}', [OsController::class, 'showTeste']);
+/* Route::get('/ordemservico/{id}', [OsController::class, 'showTeste']);
 
 Route::get('/ordemservico/{id}/edit', [OsController::class, 'editTeste']);
 
-Route::delete('/ordemservico/{id}/delete', [OsController::class, 'destroyTeste']);
+Route::delete('/ordemservico/{id}/delete', [OsController::class, 'destroyTeste']); */
 
 

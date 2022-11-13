@@ -16,7 +16,9 @@ class OsController extends Controller
      */
     public function index()
     {
-        $ordens = Os::osMarcaCliente();
+        /* $ordens = Os::osMarcaCliente(); */
+        $ordem = new Os;
+        $ordens = $ordem->with(['Cliente','Marca'])->get();
 
         return view('ordem.index', [
             'ordens' => $ordens
@@ -85,10 +87,12 @@ class OsController extends Controller
      * @param  \App\Models\Os  $ordem
      * @return \Illuminate\Http\Response
      */
-    /* public function show(Os $ordem)
+    public function show($os)
     {
+        $ordem = new Os;
+        $ordem = $ordem->with(['Cliente','Marca'])->findOrFail($os);
         return view('ordem.show',compact('ordem'));
-    } */
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -96,10 +100,17 @@ class OsController extends Controller
      * @param  \App\Models\Os  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Os $ordem)
+    public function edit($os)
     {
-        dd($ordem);
-        return view('ordem.edit',compact('ordem'));
+        $ordem = new Os;
+        $ordem = $ordem->with(['Cliente','Marca'])->findOrFail($os);
+        $clientes = Cliente::all();
+        $marcas = Marca::all();
+        return view('ordem.edit',[
+            'ordem' => $ordem,
+            'clientes' => $clientes,
+            'marcas' => $marcas
+        ]);
     }
 
     /**
@@ -130,7 +141,6 @@ class OsController extends Controller
         $defeito_alegado = $request->old('defeito_alegado');
         $observacao = $request->old('observacao');
 
-        /* dd($request->all()); */
         Os::osUpdate($request->all());
 
         return redirect()->route('ordens.index')
@@ -143,17 +153,16 @@ class OsController extends Controller
      * @param  \App\Models\Os  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Os $ordem)
+    public function destroy($id)
     {
-        dd($ordem);
-        $id = $ordem->id;
-        $ordem->delete();
+        $ordem = new Os;
+        $ordem::where('id', $id)->delete();
 
         return redirect()->route('ordens.index')
                         ->with('success', "Ordem Nº $id foi apagada com sucesso!!!");
     }
 
-    public function showTeste($id)
+    /* public function showTeste($id)
     {
         $ordem = json_decode(json_encode(Os::osId($id)), true);
         return view('ordem.show',[
@@ -181,5 +190,5 @@ class OsController extends Controller
 
         return redirect()->route('ordens.index')
         ->with('success',"OS Nº $id apagada com sucesso!!!");
-    }
+    } */
 }

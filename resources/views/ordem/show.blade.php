@@ -4,72 +4,72 @@
     <div class="container">
         <div class="row">
             <div class="pull-left d-flex justify-content-center">
-                <h2>OS Nº {{ $ordem[0]['id'] }}</h2>
+                <h2>OS Nº {{ $ordem->id }}</h2>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entrada:</strong>
-                    {{ date( 'd M y H:m' , strtotime($ordem[0]['entrada'])) }}
+                    {{ date( 'd M y H:m' , strtotime($ordem->entrada)) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Cliente:</strong>
-                    {{ $ordem[0]['nome'] }}
+                    {{ $ordem->cliente->first()->nome }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Marca:</strong>
-                    {{ $ordem[0]['marca'] }}
+                    {{ $ordem->marca->first()->descricao }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Modelo:</strong>
-                    {{ $ordem[0]['modelo'] }}
+                    {{ $ordem->modelo }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Tipo do Aparelho:</strong>
-                    {{ $ordem[0]['tipo_aparelho'] }}
+                    {{ $ordem->tipo_aparelho }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Estado do Aparelho:</strong>
-                    {{ $ordem[0]['estado_aparelho'] }}
+                    {{ $ordem->estado_aparelho }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Defeito Alegado:</strong>
-                    {{ $ordem[0]['defeito_alegado'] }}
+                    {{ $ordem->defeito_alegado }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Observação:</strong>
-                    {{ $ordem[0]['observacao'] }}
+                    {{ $ordem->observacao }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Valor do Serviço:</strong>
-                    {{ $ordem[0]['valor_servico'] ? $ordem[0]['valor_servico'] : "Não orçado"}}
+                    {{ $ordem->valor_servico ? $ordem->valor_servico : "Não orçado"}}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entregue para:</strong>
-                    {{ $ordem[0]['entregue_para'] ? $ordem[0]['entregue_para'] : "Não entregue"}}
+                    {{ $ordem->entregue_para ? $ordem->entregue_para : "Não entregue"}}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Retirada:</strong>
-                    {{ $ordem[0]['retirada'] ? $ordem[0]['retirada'] : "Não retirado"}}
+                    {{ $ordem->retirada ? $ordem->retirada : "Não retirado"}}
                 </div>
             </div>
         </div>

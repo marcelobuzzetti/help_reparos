@@ -3,13 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="pull-left">
+            <div class="pull-left d-flex justify-content-center">
                 <h2>OS Nº {{ $ordem[0]['id'] }}</h2>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entrada:</strong>
-                    {{ $ordem[0]['entrada'] }}
+                    {{ date( 'd M y H:m' , strtotime($ordem[0]['entrada'])) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -64,6 +64,12 @@
                 <div class="form-group">
                     <strong>Entregue para:</strong>
                     {{ $ordem[0]['entregue_para'] ? $ordem[0]['entregue_para'] : "Não entregue"}}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Retirada:</strong>
+                    {{ $ordem[0]['retirada'] ? $ordem[0]['retirada'] : "Não retirado"}}
                 </div>
             </div>
         </div>

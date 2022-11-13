@@ -24,6 +24,7 @@
                     <th>Observação</th>
                     <th>Valor do Serviço</th>
                     <th>Entregue Para</th>
+                    <th>Retirada</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -32,7 +33,7 @@
                     @foreach ($ordens as $ordem)
                         <tr>
                             <td>{{ $ordem->id }}</td>
-                            <td>{{ $ordem->entrada }}</td>
+                            <td>{{ date( 'd M y H:m' , strtotime($ordem->entrada)) }}</td>
                             <td>{{ $ordem->nome }}</td>
                             <td>{{ $ordem->marca }}</td>
                             <td>{{ $ordem->modelo }}</td>
@@ -41,7 +42,8 @@
                             <td>{{ $ordem->defeito_alegado }}</td>
                             <td>{{ $ordem->observacao }}</td>
                             <td>{{ $ordem->valor_servico ? $ordem->valor_servico : "Ainda não orçado" }}</td>
-                            <td>{{ $ordem->entregue_para ? $ordem->entregue_para : "Ainda não retirado" }}</td>
+                            <td>{{ $ordem->entregue_para ? $ordem->entregue_para : "Não entregue" }}</td>
+                            <td>{{ $ordem->retirada ? $ordem->retirada : "Não retirado" }}</td>
                             <td>
                                 <div class="d-flex flex-wrap justify-content-around">
                                     <div class="p-2">
@@ -76,6 +78,7 @@
                     <th>Observação</th>
                     <th>Valor do Serviço</th>
                     <th>Entregue Para</th>
+                    <th>Retirada</th>
                     <th>Ações</th>
                 </tr>
             </tfoot>

@@ -98,6 +98,7 @@ class OsController extends Controller
      */
     public function edit(Os $ordem)
     {
+        dd($ordem);
         return view('ordem.edit',compact('ordem'));
     }
 
@@ -110,18 +111,30 @@ class OsController extends Controller
      */
     public function update(Request $request, Os $ordem)
     {
-
         $request->validate([
-            'descricao' => 'required|max:255|min:3'
+
+            'cliente_id' => 'required|exists:clientes,id',
+            'tipo_aparelho' => 'required|min:3',
+            'marca_id' => 'required|exists:marcas,id',
+            'modelo' => 'required|min:3',
+            'estado_aparelho' => 'required|min:3',
+            'defeito_alegado' => 'required|min:10',
+            'observacao' => 'required',
         ]);
 
-        $descricao = $request->old('descricao');
+        $cliente_id = $request->old('cliente_id');
+        $tipo_aparelho = $request->old('tipo_aparelho');
+        $marca_id = $request->old('marca_id');
+        $modelo = $request->old('modelo');
+        $estado_aparelho = $request->old('estado_aparelho');
+        $defeito_alegado = $request->old('defeito_alegado');
+        $observacao = $request->old('observacao');
 
-        $descricaoPOST = $request->descricao;
-        $ordem->update($request->all());
+        /* dd($request->all()); */
+        Os::osUpdate($request->all());
 
         return redirect()->route('ordens.index')
-                        ->with('success',"Cliente $descricaoPOST atualizado com sucesso!!!");
+                        ->with('success',"OS Nº $request->id atualizada com sucesso!!!");
     }
 
     /**
@@ -144,6 +157,18 @@ class OsController extends Controller
         $ordem = json_decode(json_encode(Os::osId($id)), true);
         return view('ordem.show',[
             'ordem' => $ordem
+        ]);
+    }
+
+    public function editTeste($id)
+    {
+        $ordem = json_decode(json_encode(Os::osId($id)), true);
+        $clientes = Cliente::all();
+        $marcas = Marca::all();
+        return view('ordem.edit',[
+            'ordem' => $ordem,
+            'clientes' => $clientes,
+            'marcas' => $marcas
         ]);
     }
 }

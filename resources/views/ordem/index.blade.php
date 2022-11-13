@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="p-2">
                                         <a class="btn btn-primary flex-inline flex-grow-1"
-                                            href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
+                                            href="/ordemservico/{{ $ordem->id }}/edit"><i class="icofont-ui-edit"></i> Editar</a>
                                     </div>
                                     <div class="p-2">
                                         <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"

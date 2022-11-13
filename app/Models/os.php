@@ -52,4 +52,19 @@ class Os extends Model
             ->get()->toArray();
         return $res;
     }
+
+    public static function osUpdate($request){
+        DB::table('ordens')
+        ->where('id', $request['id'])
+        ->update([
+            'cliente_id' => $request['cliente_id'],
+            'tipo_aparelho' => $request['tipo_aparelho'],
+            'marca_id' => $request['marca_id'],
+            'modelo' => $request['modelo'],
+            'estado_aparelho' => $request['estado_aparelho'],
+            'defeito_alegado' => $request['defeito_alegado'],
+            'observacao' => $request['observacao'],
+            'valor_servico' => $request['valor_servico']
+        ]);
+    }
 }

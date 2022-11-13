@@ -33,4 +33,6 @@ Route::resource('ordens', OsController::class)->except([
 
 Route::get('/ordemservico/{id}', [OsController::class, 'showTeste']);
 
+Route::get('/ordemservico/{id}/edit', [OsController::class, 'editTeste']);
+
 

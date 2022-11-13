@@ -145,6 +145,7 @@ class OsController extends Controller
      */
     public function destroy(Os $ordem)
     {
+        dd($ordem);
         $id = $ordem->id;
         $ordem->delete();
 
@@ -170,5 +171,15 @@ class OsController extends Controller
             'clientes' => $clientes,
             'marcas' => $marcas
         ]);
+    }
+
+    public function destroyTeste($id)
+    {
+        $ordem = Os::find($id);
+        $id = $ordem->id;
+        $ordem->delete();
+
+        return redirect()->route('ordens.index')
+        ->with('success',"OS Nº $id apagada com sucesso!!!");
     }
 }

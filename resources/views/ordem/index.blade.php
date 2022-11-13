@@ -97,7 +97,7 @@
                         @csrf
                         @method('DELETE')
                         <div class="mb-3">
-                            <p>Tem certeza que deseja apagar <strong class="fs-3"><span
+                            <p>Tem certeza que deseja apagar a OS nº <strong class="fs-3"><span
                                         id="nomeClienteModal"></span></strong>?</p>
                         </div>
                 </div>
@@ -205,9 +205,9 @@
                 const modalBodyForm = document.getElementById('apagarCliente')
                 const modalBodyNomeCliente = document.getElementById('nomeClienteModal')
 
-                modalTitle.textContent = `Apagar Marca ${nome}`
+                modalTitle.textContent = `Apagar OS nº ${nome}`
                 modalBodyNomeCliente.textContent = nome
-                modalBodyForm.action = `<?php echo env('APP_URL'); ?>/ordens/${id}`
+                modalBodyForm.action = `<?php echo env('APP_URL'); ?>/ordemservico/${id}/delete`
             })
         });
     </script>

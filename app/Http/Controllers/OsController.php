@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Os;
 use App\Models\Cliente;
 use App\Models\Marca;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class OsController extends Controller
@@ -17,8 +16,10 @@ class OsController extends Controller
      */
     public function index()
     {
+        $ordens = Os::osMarcaCliente();
+
         return view('ordem.index', [
-            'ordens' => Os::all()
+            'ordens' => $ordens
         ]);
 
         /*
@@ -81,33 +82,33 @@ class OsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Marca  $marca
+     * @param  \App\Models\Os  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function show(Marca $marca)
+    public function show(Os $ordem)
     {
-        return view('marca.show',compact('marca'));
+        return view('ordem.show',compact('ordem'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Marca  $marca
+     * @param  \App\Models\Os  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Marca $marca)
+    public function edit(Os $ordem)
     {
-        return view('marca.edit',compact('marca'));
+        return view('ordem.edit',compact('ordem'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Marca  $marca
+     * @param  \App\Models\Os  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, Os $ordem)
     {
 
         $request->validate([
@@ -117,24 +118,32 @@ class OsController extends Controller
         $descricao = $request->old('descricao');
 
         $descricaoPOST = $request->descricao;
-        $marca->update($request->all());
+        $ordem->update($request->all());
 
-        return redirect()->route('marcas.index')
+        return redirect()->route('ordens.index')
                         ->with('success',"Cliente $descricaoPOST atualizado com sucesso!!!");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Marca  $marca
+     * @param  \App\Models\Os  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Marca $marca)
+    public function destroy(Os $ordem)
     {
-        $descricao = $marca->descricao;
-        $marca->delete();
+        $id = $ordem->id;
+        $ordem->delete();
 
-        return redirect()->route('marcas.index')
-                        ->with('success', "Marca $descricao apagada com sucesso!!!");
+        return redirect()->route('ordens.index')
+                        ->with('success', "Ordem Nº $id foi apagada com sucesso!!!");
+    }
+
+    public function showTeste($id)
+    {
+        $ordem = json_decode(json_encode(Os::osId($id)), true);
+        return view('ordem.show',[
+            'ordem' => $ordem
+        ]);
     }
 }

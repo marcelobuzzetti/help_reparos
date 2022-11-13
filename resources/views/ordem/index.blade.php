@@ -33,20 +33,20 @@
                         <tr>
                             <td>{{ $ordem->id }}</td>
                             <td>{{ $ordem->entrada }}</td>
-                            <td>{{ $ordem->cliente_id }}</td>
-                            <td>{{ $ordem->marca_id }}</td>
+                            <td>{{ $ordem->nome }}</td>
+                            <td>{{ $ordem->marca }}</td>
                             <td>{{ $ordem->modelo }}</td>
                             <td>{{ $ordem->tipo_aparelho }}</td>
                             <td>{{ $ordem->estado_aparelho }}</td>
                             <td>{{ $ordem->defeito_alegado }}</td>
                             <td>{{ $ordem->observacao }}</td>
-                            <td>{{ $ordem->valor_servico }}</td>
-                            <td>{{ $ordem->entregue_para }}</td>
+                            <td>{{ $ordem->valor_servico ? $ordem->valor_servico : "Ainda não orçado" }}</td>
+                            <td>{{ $ordem->entregue_para ? $ordem->entregue_para : "Ainda não retirado" }}</td>
                             <td>
                                 <div class="d-flex flex-wrap justify-content-around">
                                     <div class="p-2">
                                         <a class="btn btn-info flex-inline flex-grow-1"
-                                            href="{{ route('ordens.show', $ordem->id) }}"><i class="icofont-search-1"></i> Motrar</a>
+                                            href="/ordemservico/{{ $ordem->id }}"><i class="icofont-search-1"></i> Motrar</a>
                                     </div>
                                     <div class="p-2">
                                         <a class="btn btn-primary flex-inline flex-grow-1"
@@ -111,6 +111,9 @@
         $(document).ready(function() {
             $('#example').DataTable({
                 responsive: true,
+                fixedHeader: {
+                    headerOffset: 60
+                },
                 "order": [ 0, 'desc' ],
                 dom: 'Bfrtip',
                 lengthMenu: [

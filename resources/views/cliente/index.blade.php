@@ -96,6 +96,9 @@
         $(document).ready(function() {
             $('#example').DataTable({
                 responsive: true,
+                fixedHeader: {
+                    headerOffset: 60
+                },
                 dom: 'Bfrtip',
                 lengthMenu: [
                     [10, 25, 50, -1],

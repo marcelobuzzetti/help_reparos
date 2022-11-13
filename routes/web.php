@@ -29,4 +29,6 @@ Route::resource('marcas', MarcaController::class);
 
 Route::resource('ordens', OsController::class);
 
+Route::get('/ordemservico/{id}', [OsController::class, 'showTeste']);
+
 

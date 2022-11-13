@@ -82,6 +82,9 @@
             $('#example').DataTable({
                 responsive: true,
                 dom: 'Bfrtip',
+                fixedHeader: {
+                    headerOffset: 60
+                },
                 lengthMenu: [
                     [10, 25, 50, -1],
                     ['10 linhas', '25 linhas', '50 linhas', 'Mostrar tudo']
@@ -100,28 +103,28 @@
                         extend: 'copyHtml5',
                         text: 'Cópia',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0]
                         }
                     },
                     {
                         extend: 'excelHtml5',
                         text: 'Excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0]
                         }
                     },
                     {
                         extend: 'pdfHtml5',
                         text: 'PDF',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0]
                         }
                     },
                     {
                         extend: 'print',
                         text: 'Imprimir',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0]
                         }
                     },
                     {

@@ -24,6 +24,16 @@ class Os extends Model
 
     protected $table = 'ordens';
 
+    public function cliente()
+    {
+        return $this->hasMany(Cliente::class, 'id', 'cliente_id');
+    }
+
+    public function marca()
+    {
+        return $this->hasMany(Marca::class, 'id', 'marca_id');
+    }
+
     public static function osMarcaCliente(){
         return DB::table('ordens')
             ->join('marcas', 'ordens.marca_id', '=', 'marcas.id')

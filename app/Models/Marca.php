@@ -14,4 +14,9 @@ class Marca extends Model
     ];
 
     protected $table = 'marcas';
+
+    public function os()
+    {
+        return $this->belongsTo(Os::class,'marca_id', 'id');
+    }
 }

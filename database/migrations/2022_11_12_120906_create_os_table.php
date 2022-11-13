@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('ordens', function (Blueprint $table) {
             $table->id();
-            $table->integer('cliente_id');
+            $table->unsignedBigInteger('cliente_id');
             $table->timestamp('entrada')->useCurrent();
             $table->string('tipo_aparelho');
-            $table->integer('marca_id');
+            $table->unsignedBigInteger('marca_id');
             $table->string('modelo');
             $table->string('estado_aparelho');
             $table->string('defeito_alegado');

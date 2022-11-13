@@ -19,4 +19,9 @@ class Cliente extends Model
     ];
 
     protected $table = 'clientes';
+
+    public function os()
+    {
+        return $this->belongsTo(Os::class, 'cliente_id', 'id');
+    }
 }

@@ -85,10 +85,10 @@ class OsController extends Controller
      * @param  \App\Models\Os  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function show(Os $ordem)
+    /* public function show(Os $ordem)
     {
         return view('ordem.show',compact('ordem'));
-    }
+    } */
 
     /**
      * Show the form for editing the specified resource.

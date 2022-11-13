@@ -28,7 +28,7 @@ return new class extends Migration
     {
         Schema::table('ordens', function (Blueprint $table) {
             $table->dropForeign('ordens_cliente_id_foreign');
-            $table->dropForeign('marcas_marca_id_foreign');
+            $table->dropForeign('ordens_marca_id_foreign');
         });
     }
 };

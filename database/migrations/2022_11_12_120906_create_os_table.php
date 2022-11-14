@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('observacao');
             $table->unsignedBigInteger('status_id');
             $table->float('valor_servico')->nullable();
-            $table->timestamp('retirada')->nullable();
+            $table->date('retirada')->nullable();
             $table->string('entregue_para')->nullable();
             $table->timestamps();
         });

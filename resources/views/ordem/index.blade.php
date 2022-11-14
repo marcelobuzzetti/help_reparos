@@ -34,7 +34,7 @@
                         <tr>
                             <td>{{ $ordem->id }}</td>
                             <td>{{ $ordem->status->first()->descricao }}</td>
-                            <td>{{ date( 'd/m/Y H:m' , strtotime($ordem->entrada)) }}</td>
+                            <td>{{ date( 'd/m/Y' , strtotime($ordem->entrada)) }}</td>
                             <td>{{ $ordem->cliente->first()->nome }}</td>
                             <td>{{ $ordem->marca->first()->descricao }}</td>
                             {{-- <td>{{ $ordem->modelo }}</td>
@@ -44,7 +44,7 @@
                             <td>{{ $ordem->observacao }}</td> --}}
                             <td>{{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico : "Ainda não orçado" }}</td>
                             <td>{{ $ordem->entregue_para ? $ordem->entregue_para : "Não entregue" }}</td>
-                            <td>{{ date( 'd/m/Y H:m' , strtotime($ordem->retirada)) ? date( 'd/m/Y H:m' , strtotime($ordem->retirada)) : "Não retirado" }}</td>
+                            <td>{{ $ordem->retirada ? date( 'd/m/Y' , strtotime($ordem->retirada)) : "Não retirado" }}</td>
                             <td>
                                 <div class="d-flex flex-wrap justify-content-evenly">
                                     <div class="p-2 w-50">
@@ -131,7 +131,7 @@
             $('#example').DataTable({
                 responsive: true,
                 columnDefs: [
-                    { type: 'date-euro', targets: 1 },
+                    { type: 'date-euro', targets: 2 },
                     {"className": "align-middle", "targets": "_all"}
                 ],
                 fixedHeader: {

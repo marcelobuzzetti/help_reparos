@@ -223,7 +223,7 @@ class OsController extends Controller
         /* $ordem = new Os;
         $ordem = $ordem->findOrFail($request->id); */
 
-        $date = date('Y-m-d H:i:s');
+        $date = date('Y-m-d');
 
         DB::table('ordens')
               ->where('id', $data['id'])

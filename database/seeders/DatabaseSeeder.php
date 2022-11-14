@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
 
             MarcaTableSeeder::class,
 
-            UserSeeder::class
+            UserSeeder::class,
+
+            StatusTableSeeder::class
 
         ]);
     }

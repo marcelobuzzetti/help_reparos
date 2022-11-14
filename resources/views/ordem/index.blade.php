@@ -13,14 +13,15 @@
             <thead>
                 <tr>
                     <th>Nº OS</th>
+                    <th>Status</th>
                     <th>Entrada</th>
                     <th>Cliente</th>
                     <th>Marca</th>
-                    <th>Modelo</th>
+                    {{-- <th>Modelo</th>
                     <th>Tipo de Aparelho</th>
                     <th>Estado do Aparelho</th>
                     <th>Defeito Alegado</th>
-                    <th>Observação</th>
+                    <th>Observação</th> --}}
                     <th>Valor do Serviço</th>
                     <th>Entregue Para</th>
                     <th>Retirada</th>
@@ -32,32 +33,47 @@
                     @foreach ($ordens as $ordem)
                         <tr>
                             <td>{{ $ordem->id }}</td>
+                            <td>{{ $ordem->status->first()->descricao }}</td>
                             <td>{{ date( 'd/m/Y H:m' , strtotime($ordem->entrada)) }}</td>
                             <td>{{ $ordem->cliente->first()->nome }}</td>
                             <td>{{ $ordem->marca->first()->descricao }}</td>
-                            <td>{{ $ordem->modelo }}</td>
+                            {{-- <td>{{ $ordem->modelo }}</td>
                             <td>{{ $ordem->tipo_aparelho }}</td>
                             <td>{{ $ordem->estado_aparelho }}</td>
                             <td>{{ $ordem->defeito_alegado }}</td>
-                            <td>{{ $ordem->observacao }}</td>
-                            <td>{{ $ordem->valor_servico ? $ordem->valor_servico : "Ainda não orçado" }}</td>
+                            <td>{{ $ordem->observacao }}</td> --}}
+                            <td>{{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico : "Ainda não orçado" }}</td>
                             <td>{{ $ordem->entregue_para ? $ordem->entregue_para : "Não entregue" }}</td>
-                            <td>{{ $ordem->retirada ? $ordem->retirada : "Não retirado" }}</td>
+                            <td>{{ date( 'd/m/Y H:m' , strtotime($ordem->retirada)) ? date( 'd/m/Y H:m' , strtotime($ordem->retirada)) : "Não retirado" }}</td>
                             <td>
-                                <div class="d-flex flex-wrap justify-content-around">
-                                    <div class="p-2">
-                                        <a class="btn btn-info flex-inline flex-grow-1"
+                                <div class="d-flex flex-wrap justify-content-evenly">
+                                    <div class="p-2 w-50">
+                                        <a class="btn btn-info flex-inline flex-grow-1 w-100"
                                             href="{{ route('ordens.show', $ordem->id) }}"><i class="icofont-search-1"></i> Motrar</a>
                                     </div>
-                                    <div class="p-2">
-                                        <a class="btn btn-primary flex-inline flex-grow-1"
+{{--                                     <div class="p-2 w-100">
+                                        <a class="btn btn-success flex-inline flex-grow-1 w-100"
+                                            href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-money-bag"></i> Lançar Orçamento</a>
+                                    </div>
+                                    <div class="p-2 w-100">
+                                        <a class="btn btn-warning flex-inline flex-grow-1 w-100"
+                                            href="{{ route('ordens.status', $ordem->id) }}"><i class="icofont-chart-histogram"></i> Alterar Status</a>
+                                    </div> --}}
+                                    <div class="p-2 w-50">
+                                        <a class="btn btn-primary flex-inline flex-grow-1 w-100"
                                             href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
                                     </div>
-                                    <div class="p-2">
-                                        <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
+                                    @if ($ordem->status_id != 5)
+                                    <div class="p-2 w-50">
+                                        <a class="btn btn-success flex-inline flex-grow-1 w-100"
+                                            href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-exit"></i> Registrar Retirada</a>
+                                    </div>
+                                    <div class="p-2 w-50">
+                                        <button class="btn btn-danger flex-inline flex-grow-1 w-100" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
                                             data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
                                     </div>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -67,14 +83,15 @@
             <tfoot>
                 <tr>
                     <th>Nº OS</th>
+                    <th>Status</th>
                     <th>Entrada</th>
                     <th>Cliente</th>
                     <th>Marca</th>
-                    <th>Modelo</th>
+                    {{-- <th>Modelo</th>
                     <th>Tipo de Aparelho</th>
                     <th>Estado do Aparelho</th>
                     <th>Defeito Alegado</th>
-                    <th>Observação</th>
+                    <th>Observação</th> --}}
                     <th>Valor do Serviço</th>
                     <th>Entregue Para</th>
                     <th>Retirada</th>
@@ -114,7 +131,8 @@
             $('#example').DataTable({
                 responsive: true,
                 columnDefs: [
-                    { type: 'date-euro', targets: 1 }
+                    { type: 'date-euro', targets: 1 },
+                    {"className": "align-middle", "targets": "_all"}
                 ],
                 fixedHeader: {
                     headerOffset: 60

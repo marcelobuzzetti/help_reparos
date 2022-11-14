@@ -37,7 +37,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
                     <div class="form-group">
                         <strong>Marca</strong>
-                        <select class="form-select" name="marca_id" class="form-control @error('marca_id') is-invalid @enderror">
+                        <select name="marca_id" class="form-control @error('marca_id') is-invalid @enderror">
                             <option selected disabled>Selecione a Marca</option>
                             @if ($marcas)
 
@@ -95,6 +95,26 @@
                         <strong>Valor do Serviço</strong>
                         <input type="number" step="any" min="0.01" name="valor_servico" class="form-control @error('valor_servico') is-invalid @enderror" placeholder="Valor Servico" value="{{ old('valor_servico') }}">
                         @error('valor_servico')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                    <div class="form-group">
+                        <strong>Status</strong>
+                        <select name="status_id" class="form-control @error('status_id') is-invalid @enderror">
+                            <option selected disabled>Selecione a status</option>
+                            @if ($status)
+
+                            @foreach ( $status as $status)
+
+                            <option value="{{ $status->id }}" @if (old('status_id')  == $status->id) selected @endif>{{ $status->descricao }}</option>
+
+                            @endforeach
+
+                            @endif
+                          </select>
+                        @error('status_id')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

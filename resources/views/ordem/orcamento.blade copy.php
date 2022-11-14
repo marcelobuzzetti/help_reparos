@@ -15,7 +15,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entrada:</strong>
-                    {{ date( 'd M y H:m' , strtotime($ordem->entrada)) }}
+                    {{ date('d M y H:m', strtotime($ordem->entrada)) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -61,28 +61,57 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Valor do Serviço:</strong>
-                    {{ $ordem->valor_servico ? $ordem->valor_servico : "Não orçado"}}
+                <form action="{{ route('ordens.orcamentoStore', $ordem->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="id" value="{{ $ordem->id }}">
+                    <div class="d-flex align-items-center">
+                        <label class="me-2">
+                            <strong>Valor do Serviço</strong>
+                        </label>
+                        <div>
+                            <input type="number" step="any" min="0.01" name="valor_servico"
+                                class="form-control @error('valor_servico') is-invalid @enderror" placeholder="Valor Servico"
+                                value="{{ old('valor_servico') ? old('valor_servico') : $ordem->valor_servico }}">
+                            @error('valor_servico')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 mb-2 mt-2">
+                <div class="d-flex align-items-center">
+                    <label class="me-2">
+                        <strong>Status</strong>
+                    </label>
+                    <div>
+                    <select name="status_id" class="form-control @error('status_id') is-invalid @enderror">
+                        <option selected disabled>Selecione a status</option>
+                        @if ($status)
+
+                        @foreach ( $status as $status)
+
+                        <option value="{{ $status->id }}" @if (old('status_id')  == $status->id) selected @endif @if ($ordem->status_id  == $status->id) selected @endif>{{ $status->descricao }}</option>
+
+                        @endforeach
+
+                        @endif
+                      </select>
+                    @error('status_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Entregue para:</strong>
-                    {{ $ordem->entregue_para ? $ordem->entregue_para : "Não entregue"}}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Retirada:</strong>
-                    {{ $ordem->retirada ? $ordem->retirada : "Não retirado"}}
-                </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 mb-2 text-center d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary d-flex-inline"><i class="icofont-save"></i> Atualizar</button>
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right d-flex">
-                    <a class="btn btn-primary d-flex-inline" href="{{ route('ordens.index') }}"><i class="icofont-arrow-left"></i> Voltar</a>
+                    <a class="btn btn-primary d-flex-inline" href="{{ route('ordens.index') }}"><i
+                            class="icofont-arrow-left"></i> Voltar</a>
                 </div>
             </div>
         </div>

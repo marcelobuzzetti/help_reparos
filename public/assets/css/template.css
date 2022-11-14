@@ -2,3 +2,5 @@ body{
     background-color: whitesmoke;
     padding: 80px;
 }
+
+th.dt-center, td.dt-center { text-align: center; }

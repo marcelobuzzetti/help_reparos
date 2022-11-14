@@ -29,6 +29,14 @@ Route::resource('marcas', MarcaController::class);
 
 Route::resource('ordens', OsController::class);
 
+Route::get('/ordens/{id}/orcamento', [OsController::class, 'orcamento'])->name('ordens.orcamento');
+
+/* Route::put('/ordensOrcamento/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.orcamentoStore'); */
+
+/* Route::put('/status/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.status'); */
+
+Route::put('/entrega/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.entrega');
+
 /* Route::get('/ordemservico/{id}', [OsController::class, 'showTeste']);
 
 Route::get('/ordemservico/{id}/edit', [OsController::class, 'editTeste']);

@@ -50,6 +50,7 @@
 
 <body>
     <div id="app">
+        @auth
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top card mx-5 mt-1">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -63,8 +64,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            {{-- Criar link ativo --}}
-                            <a class="nav-link" aria-current="page" href="#">Nova OS?</a>
+                            <a class="nav-link @if (Request::url() === env('APP_URL') . '/ordens/create') active @endif" href="/ordens/create">Nova OS?</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/clientes') active @endif @if (Request::url() === env('APP_URL') . '/clientes/create') active @endif"
@@ -76,10 +76,6 @@
                                         href="/clientes">Lista</a></li>
                                 <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/clientes/create') active @endif"
                                         href="/clientes/create">Criar</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Último Serviço</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -91,10 +87,6 @@
                                 <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/ordens') active @endif"
                                     href="/ordens">Lista</a></li>
                                 <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/ordens/create') active @endif" href="/ordens/create">Criar</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Última OS</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -111,6 +103,7 @@
                         </li>
                     </ul>
                 </div>
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -157,7 +150,7 @@
                 </div>
             </div>
         </nav>
-
+        @endauth
         <main class="py-4 card">
             @yield('content')
         </main>

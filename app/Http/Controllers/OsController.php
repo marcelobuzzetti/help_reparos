@@ -67,7 +67,7 @@ class OsController extends Controller
             'modelo' => 'required|min:3',
             'estado_aparelho' => 'required|min:3',
             'defeito_alegado' => 'required|min:10',
-            'observacao' => 'required',
+            /* 'observacao' => 'required', */
         ]);
 
         $cliente_id = $request->old('cliente_id');
@@ -139,7 +139,7 @@ class OsController extends Controller
             'modelo' => 'required|min:3',
             'estado_aparelho' => 'required|min:3',
             'defeito_alegado' => 'required|min:10',
-            'observacao' => 'required',
+
             'valor_servico' => 'required',
         ]);
 
@@ -175,14 +175,14 @@ class OsController extends Controller
                         ->with('success', "Ordem Nº $id foi apagada com sucesso!!!");
     }
 
-    public function orcamento($id)
+    public function entregaShow($id)
     {
         $ordem = new Os;
         $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($id);
         $clientes = Cliente::all();
         $marcas = Marca::all();
         $status = Status::all();
-        return view('ordem.orcamento',[
+        return view('ordem.entrega',[
             'ordem' => $ordem,
             'status' => $status
         ]);
@@ -214,7 +214,7 @@ class OsController extends Controller
         $request->validate([
             'id' => 'required|exists:ordens,id',
             'entregue_para' => 'required|min:3',
-            'status_id' => 'required|exists:status,id',
+     /*        'status_id' => 'required|exists:status,id', */
         ]);
 
         $entregue_para = $request->old('entregue_para');
@@ -228,7 +228,7 @@ class OsController extends Controller
         DB::table('ordens')
               ->where('id', $data['id'])
               ->update(['entregue_para' => $data['entregue_para'],
-            'status_id' => $data['status_id'],
+            /* 'status_id' => $data['status_id'], */
             'retirada' => $date,
             'status_id' => 5
         ]);

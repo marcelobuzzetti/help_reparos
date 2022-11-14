@@ -24,7 +24,6 @@
                     <th>Observação</th> --}}
                     <th>Valor do Serviço</th>
                     <th>Entregue Para</th>
-                    <th>Retirada</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -43,8 +42,7 @@
                             <td>{{ $ordem->defeito_alegado }}</td>
                             <td>{{ $ordem->observacao }}</td> --}}
                             <td>{{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico : "Ainda não orçado" }}</td>
-                            <td>{{ $ordem->entregue_para ? $ordem->entregue_para : "Não entregue" }}</td>
-                            <td>{{ $ordem->retirada ? date( 'd/m/Y' , strtotime($ordem->retirada)) : "Não retirado" }}</td>
+                            <td>{{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . " em " . date( 'd/m/Y' , strtotime($ordem->retirada)) : "Não entregue" }}</td>
                             <td>
                                 <div class="d-flex flex-wrap justify-content-evenly">
                                     <div class="p-2 w-50">
@@ -94,7 +92,6 @@
                     <th>Observação</th> --}}
                     <th>Valor do Serviço</th>
                     <th>Entregue Para</th>
-                    <th>Retirada</th>
                     <th>Ações</th>
                 </tr>
             </tfoot>

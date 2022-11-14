@@ -15,13 +15,15 @@ use App\Http\Controllers\OsController;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function() {
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('clientes', ClienteController::class);
 
@@ -29,13 +31,15 @@ Route::resource('marcas', MarcaController::class);
 
 Route::resource('ordens', OsController::class);
 
-Route::get('/ordens/{id}/orcamento', [OsController::class, 'orcamento'])->name('ordens.orcamento');
-
-Route::put('/ordensOrcamento/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.orcamentoStore');
-
-Route::put('/status/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.status');
+Route::get('/ordens/{id}/entrega', [OsController::class, 'entregaShow'])->name('ordens.orcamento');
 
 Route::put('/entrega/{id}', [OsController::class, 'entrega'])->name('ordens.entrega');
+
+});
+
+/* Route::put('/ordensOrcamento/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.orcamentoStore');
+
+Route::put('/status/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.status'); */
 
 /* Route::get('/ordemservico/{id}', [OsController::class, 'showTeste']);
 

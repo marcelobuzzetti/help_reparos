@@ -69,13 +69,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entregue para:</strong>
-                    {{ $ordem->entregue_para ? $ordem->entregue_para : "Não entregue"}}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Retirada:</strong>
-                    {{ $ordem->retirada ? $ordem->retirada : "Não retirado"}}
+                    {{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . " em " . date( 'd/m/Y' , strtotime($ordem->retirada)) : "Não entregue" }}
                 </div>
             </div>
         </div>

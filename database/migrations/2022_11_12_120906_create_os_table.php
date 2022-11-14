@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('modelo');
             $table->string('estado_aparelho');
             $table->string('defeito_alegado');
-            $table->string('observacao');
+            $table->string('observacao')->nullable();
             $table->unsignedBigInteger('status_id');
             $table->float('valor_servico')->nullable();
             $table->date('retirada')->nullable();

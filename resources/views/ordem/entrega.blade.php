@@ -78,7 +78,7 @@
                         </div>
                     </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-2 mt-2">
+            {{-- <div class="col-xs-12 col-sm-12 col-md-12 mb-2 mt-2">
                 <div class="d-flex align-items-center">
                     <label class="me-2">
                         <strong>Status</strong>
@@ -101,9 +101,9 @@
                     @enderror
                 </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-xs-12 col-sm-12 col-md-12 mb-2 text-center d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary d-flex-inline"><i class="icofont-save"></i> Atualizar</button>
+                <button type="submit" class="btn btn-success d-flex-inline"><i class="icofont-exit"></i> Registrar Retirada</button>
             </div>
         </div>
         <div class="row mt-2">

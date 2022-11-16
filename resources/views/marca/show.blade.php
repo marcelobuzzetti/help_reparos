@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="card-glass">
         <div class="row">
             <div class="pull-left">
                 <h2>Mostrar Marca</h2>
@@ -16,7 +16,7 @@
         <div class="row mt-2">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right d-flex">
-                    <a class="btn btn-primary d-flex-inline" href="{{ route('clientes.index') }}"><i class="icofont-arrow-left"></i> Voltar</a>
+                    <a class="btn btn-primary d-flex-inline" href="{{ route('marcas.index') }}"><i class="icofont-arrow-left"></i> Voltar</a>
                 </div>
             </div>
         </div>

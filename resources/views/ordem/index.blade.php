@@ -8,7 +8,7 @@
     @endif
 
 
-    <div class="container">
+    <div class="card-glass">
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
@@ -64,7 +64,7 @@
                                     @if ($ordem->status_id != 5)
                                     <div class="p-2 w-50">
                                         <a class="btn btn-success flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-exit"></i> Registrar Retirada</a>
+                                            href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-exit"></i> Retirada</a>
                                     </div>
                                     <div class="p-2 w-50">
                                         <button class="btn btn-danger flex-inline flex-grow-1 w-100" data-bs-toggle="modal"

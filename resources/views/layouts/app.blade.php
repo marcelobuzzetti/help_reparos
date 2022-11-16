@@ -51,7 +51,7 @@
 <body>
     <div id="app">
         @auth
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top card mx-5 mt-1">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top card mx-2 mt-1">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -151,7 +151,7 @@
             </div>
         </nav>
         @endauth
-        <main class="py-4 card">
+        <main class="py-4 container-fluid">
             @yield('content')
         </main>
     </div>

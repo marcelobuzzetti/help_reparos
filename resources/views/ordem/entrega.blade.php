@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="card-glass">
+        <div class="container">
         <div class="row">
             <div class="pull-left d-flex justify-content-center">
                 <h2>OS Nº {{ $ordem->id }}</h2>
@@ -115,4 +116,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

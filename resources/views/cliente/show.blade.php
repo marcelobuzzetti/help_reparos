@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="card-glass">
         <div class="row">
             <div class="pull-left">
                 <h2>Mostrar Cliente</h2>

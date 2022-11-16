@@ -9,7 +9,7 @@
     @endif
 
 
-    <div class="container">
+    <div class="card-glass">
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
                 <tr>

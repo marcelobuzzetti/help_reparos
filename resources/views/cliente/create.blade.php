@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="card-glass">
         <div class="row">
             <div class="col-lg-12 margin-tb d-flex justify-content-center">
                 <div class="pull-left">

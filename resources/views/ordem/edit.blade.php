@@ -15,7 +15,7 @@
             @method('PUT')
             <input type="hidden" name="id" value="{{ $ordem->id }}">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Cliente</strong>
                         <select name="cliente_id" class="form-control @error('cliente_id') is-invalid @enderror">
@@ -35,7 +35,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Marca</strong>
                         <select name="marca_id" class="form-control @error('marca_id') is-invalid @enderror">
@@ -55,7 +55,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                     <div class="form-group">
                         <strong>Tipo de Aparelho</strong>
                         <input type="text" name="tipo_aparelho" class="form-control @error('tipo_aparelho') is-invalid @enderror"
@@ -65,7 +65,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                     <div class="form-group">
                         <strong>Modelo</strong>
                         <input type="text" name="modelo" class="form-control @error('modelo') is-invalid @enderror"
@@ -75,7 +75,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                     <div class="form-group">
                         <strong>Estado do Aparelho</strong>
                         <input type="text" name="estado_aparelho" class="form-control @error('estado_aparelho') is-invalid @enderror"
@@ -85,7 +85,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                {{-- <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
                     <div class="form-group">
                         <strong>Defeito Alegado</strong>
                         <input type="text" name="defeito_alegado" class="form-control @error('defeito_alegado') is-invalid @enderror"
@@ -94,8 +94,17 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                    <div class="form-group">
+                        <strong>Defeito Alegado</strong>
+                        <textarea name="defeito_alegado" class="form-control @error('defeito_alegado') is-invalid @enderror">{{ old('defeito_alegado') ? old('defeito_alegado') : $ordem->defeito_alegado }}</textarea>
+                        @error('defeito_alegado')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Valor do Serviço</strong>
                         <input type="number" step="any" min="0.01" name="valor_servico" class="form-control @error('valor_servico') is-invalid @enderror" placeholder="Valor Servico" value="{{ old('valor_servico') ? old('valor_servico') : $ordem->valor_servico }}">
@@ -104,7 +113,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Status</strong>
                         <select name="status_id" class="form-control @error('status_id') is-invalid @enderror">

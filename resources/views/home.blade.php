@@ -8,7 +8,7 @@
             @csrf
             <div class="input-group">
                     <span class="input-group-text" id="basic-addon1"><i class="icofont-ui-search"></i></span>
-                    <input type="text" class="form-control @error('buscaOS') is-invalid @enderror" name="buscaOS" placeholder="Buscar OS" value="{{ old('$buscaos') }}">
+                    <input type="text" class="form-control @error('buscaOS') is-invalid @enderror" name="buscaOS" placeholder="Buscar OS" value="{{ old('buscaOS') }}">
                 </form>
                 @error('buscaOS')
                     <div class="invalid-feedback">O número de OS digitado não existe!!!</div>

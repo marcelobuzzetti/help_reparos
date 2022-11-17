@@ -345,7 +345,7 @@ class OsController extends Controller
             'buscaOS' => 'required|exists:ordens,id',
         ]);
 
-        $buscaos = $request->old('buscaOS');
+        $buscaOS = $request->old('buscaOS');
 
         return redirect()->route('ordens.show', $request->buscaOS);
     }

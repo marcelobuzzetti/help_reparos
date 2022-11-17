@@ -160,7 +160,7 @@
                 },
                 buttons: [
                     "pageLength",
-                    {
+/*                     {
                         extend: 'copyHtml5',
                         text: 'Cópia',
                         exportOptions: {
@@ -192,7 +192,7 @@
                         extend: 'colvis',
                         text: 'Colunas Visíveis',
 
-                    }
+                    } */
                 ],
                 /* buttons: [
                     'copy', 'excel', 'pdf', 'print'

@@ -18,39 +18,25 @@
                 <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Cliente</strong>
-                        <select name="cliente_id" class="form-control @error('cliente_id') is-invalid @enderror">
-                            <option selected disabled>Selecione o Cliente</option>
-                            @if ($clientes)
-
-                            @foreach ( $clientes as $cliente)
-
-                            <option value="{{ $cliente->id }}" @if (old('cliente_id')  == $cliente->id) selected @endif @if ($ordem->cliente_id  == $cliente->id) selected @endif>{{ $cliente->nome }}</option>
-
-                            @endforeach
-
-                            @endif
-                          </select>
+                        <input class="form-control @error('cliente_id') is-invalid @enderror @error('clienteNome') is-invalid @enderror" name="clienteNome" id="clienteAutoComplete" type="text" value="{{ old('clienteNome') ? old('clienteNome') : $ordem->cliente->first()->nome }}" placeholder="Digite o Nome ou o CPF do Cliente">
+                        <input type="hidden" name="cliente_id" id="cliente_id" value="{{ old('cliente_id') ? old('cliente_id') : $ordem->cliente_id }}">
                         @error('cliente_id')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                        @error('clienteNome')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Marca</strong>
-                        <select name="marca_id" class="form-control @error('marca_id') is-invalid @enderror">
-                            <option selected disabled>Selecione a Marca</option>
-                            @if ($marcas)
-
-                            @foreach ( $marcas as $marca)
-
-                            <option value="{{ $marca->id }}" @if (old('marca_id')  == $marca->id) selected @endif @if ($ordem->marca_id  == $marca->id) selected @endif>{{ $marca->descricao }}</option>
-
-                            @endforeach
-
-                            @endif
-                          </select>
+                        <input class="form-control @error('marca_id') is-invalid @enderror @error('marcaDescricao') is-invalid @enderror" name="marcaDescricao" id="marcaAutoComplete" type="text" value="{{ old('marcaDescricao') ? old('marcaDescricao') : $ordem->marca->first()->descricao }}" placeholder="Digite o Nome da Marca">
+                        <input type="hidden" name="marca_id" id="marca_id" value="{{ old('marca_id') ? old('marca_id') : $ordem->marca_id }}">
                         @error('marca_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        @error('marcaDescricao')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -154,10 +140,51 @@
                 </div>
             </div>
     </div>
-    <script>
-        $(document).ready(function() {
-           $("[name='cliente_id']").select2();
-           $("[name='marca_id']").select2();
-        });
-   </script>
+    <script type="text/javascript">
+        var path = "{{ route('autocompletecliente') }}";
+        $( "#clienteAutoComplete" ).autocomplete({
+            source: function( request, response ) {
+              $.ajax({
+                url: path,
+                type: 'GET',
+                dataType: "json",
+                data: {
+                   search: request.term
+                },
+                success: function( data ) {
+                   response( data );
+                }
+              });
+            },
+            select: function (event, ui) {
+               $('#clienteAutoComplete').val(ui.item.label);
+               $("#cliente_id").val(ui.item.id);
+
+               return false;
+            }
+          });
+
+          var path1 = "{{ route('autocompletemarca') }}";
+        $( "#marcaAutoComplete" ).autocomplete({
+            source: function( request, response ) {
+              $.ajax({
+                url: path1,
+                type: 'GET',
+                dataType: "json",
+                data: {
+                   search: request.term
+                },
+                success: function( data ) {
+                   response( data );
+                }
+              });
+            },
+            select: function (event, ui) {
+               $('#marcaAutoComplete').val(ui.item.label);
+               $("#marca_id").val(ui.item.id);
+
+               return false;
+            }
+          });
+    </script>
 @endsection

@@ -147,9 +147,10 @@ class OsController extends Controller
     {
 
         $request->validate([
-
+            'clienteNome' => 'required|exists:clientes,nome',
             'cliente_id' => 'required|exists:clientes,id',
             'tipo_aparelho' => 'required|min:3',
+            'marcaDescricao' => 'required|exists:marcas,descricao',
             'marca_id' => 'required|exists:marcas,id',
             'status_id' => 'required|exists:status,id',
             'modelo' => 'required|min:3',

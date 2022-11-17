@@ -338,4 +338,15 @@ class OsController extends Controller
         return redirect()->route('ordens.index')
         ->with('success',"OS Nº $id apagada com sucesso!!!");
     } */
+
+    public function buscarOs(Request $request)
+    {
+        $request->validate([
+            'buscaOS' => 'required|exists:ordens,id',
+        ]);
+
+        $buscaos = $request->old('buscaOS');
+
+        return redirect()->route('ordens.show', $request->buscaOS);
+    }
 }

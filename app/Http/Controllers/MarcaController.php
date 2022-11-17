@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
+use Exception;
 use Illuminate\Http\Request;
 
 class MarcaController extends Controller
@@ -53,10 +54,21 @@ class MarcaController extends Controller
 
         $descricao = $request->old('descricao');
 
-        Marca::create($request->all());
+        try {
+            Marca::create($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "Marca $descricaoPOST criada com sucesso!!!."
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => "$e"
+            ];
+        }
 
         return redirect()->route('marcas.index')
-                        ->with('success',"Marca $descricaoPOST criada com sucesso!!!.");
+                        ->with('message',$message);
     }
 
     /**
@@ -98,10 +110,22 @@ class MarcaController extends Controller
         $descricao = $request->old('descricao');
 
         $descricaoPOST = $request->descricao;
-        $marca->update($request->all());
+
+        try {
+            $marca->update($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "Cliente $descricaoPOST atualizado com sucesso!!!"
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => "$e"
+            ];
+        }
 
         return redirect()->route('marcas.index')
-                        ->with('success',"Cliente $descricaoPOST atualizado com sucesso!!!");
+                        ->with('message',$message);
     }
 
     /**
@@ -113,9 +137,28 @@ class MarcaController extends Controller
     public function destroy(Marca $marca)
     {
         $descricao = $marca->descricao;
-        $marca->delete();
+
+        try{
+            $marca->delete();
+            $message = [
+                "type" => "success",
+                "message" => "Marca $descricao apagada com sucesso!!!"
+            ];
+         } catch (Exception $e) {
+            if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+                $message = [
+                    "type" => "error",
+                    "message" => "Não é possível excluir marca usada em Ordens de Serviço!!!"
+                ];
+            } else {
+                $message = [
+                    "type" => "error",
+                    "message" => "$e"
+                ];
+            }
+        }
 
         return redirect()->route('marcas.index')
-                        ->with('success', "Marca $descricao apagada com sucesso!!!");
+                        ->with('message', $message);
     }
 }

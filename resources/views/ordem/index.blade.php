@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    @if ($message = Session::get('success'))
-        <script>
-            toastr.success('<?php echo $message; ?>');
-        </script>
-    @endif
 
+@if ($message = Session::get('message'))
+        @if ($message['type'] == 'success')
+            <script>
+                toastr.success("<?php echo $message['message']; ?>");
+            </script>
+        @else
+            <script>
+                toastr.error("<?php echo $message['message']; ?>");
+            </script>
+        @endif
+    @endif
 
     <div class="card-glass">
         <table id="example" class="table table-striped" style="width:100%">

@@ -6,6 +6,7 @@ use App\Models\Os;
 use App\Models\Cliente;
 use App\Models\Marca;
 use App\Models\Status;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -79,11 +80,22 @@ class OsController extends Controller
         $defeito_alegado = $request->old('defeito_alegado');
         $observacao = $request->old('observacao');
 
-        $os = Os::create($request->all());
-        $osId = $os->id;
+        try {
+            $os = Os::create($request->all());
+            $osId = $os->id;
+            $message = [
+                "type" => "success",
+                "message" => "Ordem de Serviço nº $osId foi criada com sucesso!!!."
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => "$e"
+            ];
+        }
 
         return redirect()->route('ordens.index')
-                        ->with('success',"Ordem de Serviço nº $osId foi criada com sucesso!!!.");
+                        ->with('message', $message);
     }
 
     /**
@@ -154,10 +166,21 @@ class OsController extends Controller
         $observacao = $request->old('observacao');
         $valor_servico = $request->old('valor_servico');
 
-        Os::osUpdate($request->all());
+        try {
+            Os::osUpdate($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "OS Nº $request->id atualizada com sucesso!!!"
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => "$e"
+            ];
+        }
 
         return redirect()->route('ordens.index')
-                        ->with('success',"OS Nº $request->id atualizada com sucesso!!!");
+                        ->with('message',$message);
     }
 
     /**
@@ -169,10 +192,29 @@ class OsController extends Controller
     public function destroy($id)
     {
         $ordem = new Os;
-        $ordem::where('id', $id)->delete();
+
+        try{
+            $ordem::where('id', $id)->delete();
+            $message = [
+                "type" => "success",
+                "message" => "Ordem Nº $id foi apagada com sucesso!!!"
+            ];
+         } catch (Exception $e) {
+            if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+                $message = [
+                    "type" => "error",
+                    "message" => "Não é possível excluir a Ordem de Serviço!!!"
+                ];
+            } else {
+                $message = [
+                    "type" => "error",
+                    "message" => "$e"
+                ];
+            }
+        }
 
         return redirect()->route('ordens.index')
-                        ->with('success', "Ordem Nº $id foi apagada com sucesso!!!");
+                        ->with('message', $message);
     }
 
     public function entregaShow($id)
@@ -201,10 +243,22 @@ class OsController extends Controller
 
         $ordem = new Os;
         $ordem = $ordem->findOrFail($request->id);
-        $ordem->update($request->all());
+
+        try {
+            $ordem->update($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "Ordem de Serviço nº $request->id foi Orçada!!!."
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => "$e"
+            ];
+        }
 
         return redirect()->route('ordens.index')
-                        ->with('success',"Ordem de Serviço nº $request->id foi Orçada!!!.");
+                        ->with('message', $message);
     }
 
     public function entrega(Request $request)
@@ -225,18 +279,29 @@ class OsController extends Controller
 
         $date = date('Y-m-d');
 
-        DB::table('ordens')
+        /* $ordem->update($data); */
+
+        try {
+            DB::table('ordens')
               ->where('id', $data['id'])
               ->update(['entregue_para' => $data['entregue_para'],
             /* 'status_id' => $data['status_id'], */
             'retirada' => $date,
             'status_id' => 5
-        ]);
-
-        /* $ordem->update($data); */
+        ]   );
+            $message = [
+                "type" => "success",
+                "message" => "Ordem de Serviço nº $request->id entregue para $request->entregue_para!!!."
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => "$e"
+            ];
+        }
 
         return redirect()->route('ordens.index')
-                        ->with('success',"Ordem de Serviço nº $request->id entregue para $request->entregue_para!!!.");
+                        ->with('message', $message);
     }
 
     /* public function showTeste($id)

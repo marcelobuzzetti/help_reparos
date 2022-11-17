@@ -64,21 +64,21 @@ class ClienteController extends Controller
         $email = $request->old('email');
         $endereco = $request->old('endereco');
 
-        try{
+        try {
             Cliente::create($request->all());
             $message = [
                 "type" => "success",
                 "message" => "Cliente $nomePOST criado com sucesso!!!."
             ];
-         } catch (Exception $e) {
-                $message = [
-                    "type" => "error",
-                    "message" => "$e"
-                ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => "$e"
+            ];
         }
 
         return redirect()->route('clientes.index')
-                        ->with('message',$message);
+            ->with('message', $message);
     }
 
     /**
@@ -89,7 +89,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        return view('cliente.show',compact('cliente'));
+        return view('cliente.show', compact('cliente'));
     }
 
     /**
@@ -100,7 +100,7 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        return view('cliente.edit',compact('cliente'));
+        return view('cliente.edit', compact('cliente'));
     }
 
     /**
@@ -132,21 +132,21 @@ class ClienteController extends Controller
         $nomePOST = $request->nome;
 
 
-        try{
+        try {
             $cliente->update($request->all());
             $message = [
                 "type" => "success",
                 "message" => "Cliente $nomePOST atualizado com sucesso!!!"
             ];
-         } catch (Exception $e) {
-                $message = [
-                    "type" => "error",
-                    "message" => "$e"
-                ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => "$e"
+            ];
         }
 
         return redirect()->route('clientes.index')
-                        ->with('message',$message);
+            ->with('message', $message);
     }
 
     /**
@@ -159,17 +159,17 @@ class ClienteController extends Controller
     {
         $nome = $cliente->nome;
         $message = [];
-        try{
+        try {
             $cliente->delete();
             $message = [
                 "type" => "success",
                 "message" => "Cliente $nome apagado com sucesso!!!"
             ];
-         } catch (Exception $e) {
-            if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+        } catch (Exception $e) {
+            if (stripos($e->getMessage(), 'FOREIGN KEY')) {
                 $message = [
                     "type" => "error",
-                    "message" => "Não é possível excluir o usuário com Ordens de Serviço!!!"
+                    "message" => "Não é possível excluir cliente usado em Ordens de Serviço!!!"
                 ];
             } else {
                 $message = [
@@ -180,7 +180,6 @@ class ClienteController extends Controller
         }
 
         return redirect()->route('clientes.index')
-                            ->with('message', $message);
-
+            ->with('message', $message);
     }
 }

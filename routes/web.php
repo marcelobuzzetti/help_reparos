@@ -41,6 +41,8 @@ Route::get('autocompletemarca', [MarcaController::class, 'autocomplete'])->name(
 
 Route::post('buscarOs', [OsController::class, 'buscarOs'])->name('buscarOs');
 
+Route::get('imprimirOs', [OsController::class, 'imprimirOs'])->name('imprimirOs');
+
 });
 
 /* Route::put('/ordensOrcamento/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.orcamentoStore');

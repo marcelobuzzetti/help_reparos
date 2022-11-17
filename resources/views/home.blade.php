@@ -3,7 +3,7 @@
 @section('content')
 <div class="card-glass">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
             <form action="{{ route('buscarOs') }}" method="post">
             @csrf
             <div class="input-group">

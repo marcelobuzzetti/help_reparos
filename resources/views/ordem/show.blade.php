@@ -81,4 +81,10 @@
             </div>
         </div>
     </div>
+    @if (isset($print))
+    <script type="text/javascript">
+        window.print();
+    </script>
+    @endif
+
 @endsection

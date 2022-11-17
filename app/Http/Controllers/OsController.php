@@ -349,4 +349,11 @@ class OsController extends Controller
 
         return redirect()->route('ordens.show', $request->buscaOS);
     }
+
+    public function imprimirOs(Request $request)
+    {
+        $ordem = new Os;
+        $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($request->id);
+        return view('ordem.show',compact('ordem'))->with('print', TRUE);
+    }
 }

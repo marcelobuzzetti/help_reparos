@@ -67,6 +67,10 @@
                                         <a class="btn btn-primary flex-inline flex-grow-1 w-100"
                                             href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
                                     </div>
+                                    <div class="p-2 w-100  d-flex justify-content-center">
+                                        <a class="btn btn-secondary flex-inline w-50"
+                                            href="{{ route('imprimirOs', ['id' =>$ordem->id]) }}"><i class="icofont-printer"></i> Imprimir</a>
+                                    </div>
                                     @if ($ordem->status_id != 5)
                                     <div class="p-2 w-50">
                                         <a class="btn btn-success flex-inline flex-grow-1 w-100"

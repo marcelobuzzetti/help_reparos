@@ -24,31 +24,34 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                     <div class="form-group">
                         <strong>Telefone</strong>
                         <input type="tel" class="form-control @error('telefone') is-invalid @enderror" name="telefone"
                             placeholder="Telefone" value="{{ old('telefone') ? old('telefone') : $cliente->telefone }}">
+                        <div class="form-text">Digite somente números</div>
                         @error('telefone')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                     <div class="form-group">
                         <strong>RG</strong>
                         <input type="text" class="form-control @error('rg') is-invalid @enderror" name="rg"
                             placeholder="RG" value="{{ old('rg') ? old('rg') : $cliente->rg }}">
+                        <div class="form-text">Digite somente números</div>
                         @error('rg')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                     <div class="form-group">
                         <strong>CPF</strong>
                         <input type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf"
                             placeholder="CPF" value="{{ old('cpf') ? old('cpf') : $cliente->cpf }}">
+                        <div class="form-text">Digite somente números</div>
                         @error('cpf')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

@@ -74,6 +74,7 @@ class OsController extends Controller
         ]);
 
         $clienteNome = $request->old('clienteNome');
+        $marcaDescricao = $request->old('marcaDescricao');
         $cliente_id = $request->old('cliente_id');
         $tipo_aparelho = $request->old('tipo_aparelho');
         $marca_id = $request->old('marca_id');

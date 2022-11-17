@@ -18,7 +18,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Cliente</strong>
-                        <input class="form-control @error('cliente_id') is-invalid @enderror @error('clienteNome') is-invalid @enderror" name="clienteNome" id="clienteAutoComplete" type="text" value="{{ old('clienteNome') }}">
+                        <input class="form-control @error('cliente_id') is-invalid @enderror @error('clienteNome') is-invalid @enderror" name="clienteNome" id="clienteAutoComplete" type="text" value="{{ old('clienteNome') }}" placeholder="Digite o Nome ou o CPF do Cliente">
                         <input type="hidden" name="cliente_id" id="cliente_id" value="{{ old('cliente_id') }}">
                         @error('cliente_id')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -31,7 +31,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Marca</strong>
-                        <input class="form-control @error('cliente_id') is-invalid @enderror @error('clienteNome') is-invalid @enderror" name="marcaDescricao" id="marcaAutoComplete" type="text" value="{{ old('marcaDescricao') }}">
+                        <input class="form-control @error('marca_id') is-invalid @enderror @error('marcaDescricao') is-invalid @enderror" name="marcaDescricao" id="marcaAutoComplete" type="text" value="{{ old('marcaDescricao') }}" placeholder="Digite o Nome da Marca">
                         <input type="hidden" name="marca_id" id="marca_id" value="{{ old('marca_id') }}">
                         @error('marca_id')
                             <div class="invalid-feedback">{{ $message }}</div>

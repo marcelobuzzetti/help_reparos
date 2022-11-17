@@ -35,6 +35,10 @@ Route::get('/ordens/{id}/entrega', [OsController::class, 'entregaShow'])->name('
 
 Route::put('/entrega/{id}', [OsController::class, 'entrega'])->name('ordens.entrega');
 
+Route::get('autocompletecliente', [ClienteController::class, 'autocomplete'])->name('autocompletecliente');
+
+Route::get('autocompletemarca', [MarcaController::class, 'autocomplete'])->name('autocompletemarca');
+
 });
 
 /* Route::put('/ordensOrcamento/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.orcamentoStore');

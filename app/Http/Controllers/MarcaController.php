@@ -49,7 +49,7 @@ class MarcaController extends Controller
         $descricaoPOST = $request->descricao;
 
         $request->validate([
-            'descricao' => 'required|max:255|min:3'
+            'descricao' => 'required|max:255|min:3|unique:marcas'
         ]);
 
         $descricao = $request->old('descricao');
@@ -63,7 +63,7 @@ class MarcaController extends Controller
         } catch (Exception $e) {
             $message = [
                 "type" => "error",
-                "message" => "$e"
+                "message" => $e->getMessage()
             ];
         }
 
@@ -115,12 +115,12 @@ class MarcaController extends Controller
             $marca->update($request->all());
             $message = [
                 "type" => "success",
-                "message" => "Cliente $descricaoPOST atualizado com sucesso!!!"
+                "message" => "Marca $descricaoPOST atualizada com sucesso!!!"
             ];
         } catch (Exception $e) {
             $message = [
                 "type" => "error",
-                "message" => "$e"
+                "message" => $e->getMessage()
             ];
         }
 
@@ -153,12 +153,21 @@ class MarcaController extends Controller
             } else {
                 $message = [
                     "type" => "error",
-                    "message" => "$e"
+                    "message" => $e->getMessage()
                 ];
             }
         }
 
         return redirect()->route('marcas.index')
                         ->with('message', $message);
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $data = Marca::select("descricao as value", "id")
+                ->where('descricao', 'LIKE', '%'. $request->get('search'). '%')
+                ->get();
+
+        return response()->json($data);
     }
 }

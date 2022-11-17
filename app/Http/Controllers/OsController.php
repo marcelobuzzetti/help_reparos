@@ -61,6 +61,8 @@ class OsController extends Controller
     {
 
         $request->validate([
+            'clienteNome' => 'required|exists:clientes,nome',
+            'marcaDescricao' => 'required|exists:marcas,descricao',
             'cliente_id' => 'required|exists:clientes,id',
             'tipo_aparelho' => 'required|min:3',
             'marca_id' => 'required|exists:marcas,id',
@@ -71,6 +73,7 @@ class OsController extends Controller
             /* 'observacao' => 'required', */
         ]);
 
+        $clienteNome = $request->old('clienteNome');
         $cliente_id = $request->old('cliente_id');
         $tipo_aparelho = $request->old('tipo_aparelho');
         $marca_id = $request->old('marca_id');
@@ -90,7 +93,7 @@ class OsController extends Controller
         } catch (Exception $e) {
             $message = [
                 "type" => "error",
-                "message" => "$e"
+                "message" => $e->getMessage()
             ];
         }
 
@@ -175,7 +178,7 @@ class OsController extends Controller
         } catch (Exception $e) {
             $message = [
                 "type" => "error",
-                "message" => "$e"
+                "message" => $e->getMessage()
             ];
         }
 
@@ -208,7 +211,7 @@ class OsController extends Controller
             } else {
                 $message = [
                     "type" => "error",
-                    "message" => "$e"
+                    "message" => $e->getMessage()
                 ];
             }
         }
@@ -253,7 +256,7 @@ class OsController extends Controller
         } catch (Exception $e) {
             $message = [
                 "type" => "error",
-                "message" => "$e"
+                "message" => $e->getMessage()
             ];
         }
 
@@ -296,7 +299,7 @@ class OsController extends Controller
         } catch (Exception $e) {
             $message = [
                 "type" => "error",
-                "message" => "$e"
+                "message" => $e->getMessage()
             ];
         }
 

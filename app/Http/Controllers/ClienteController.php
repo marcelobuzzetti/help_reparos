@@ -52,8 +52,8 @@ class ClienteController extends Controller
             'nome' => 'required|max:255|min:3',
             'telefone' => 'required|numeric',
             'rg' => 'required|numeric',
-            'cpf' => 'required|cpf',
-            'email' => 'required|email',
+            'cpf' => 'required|cpf|unique:clientes',
+            'email' => 'required|email|unique:clientes',
             'endereco' => 'required|min:10',
         ]);
 
@@ -73,7 +73,7 @@ class ClienteController extends Controller
         } catch (Exception $e) {
             $message = [
                 "type" => "error",
-                "message" => "$e"
+                "message" => $e->getMessage()
             ];
         }
 
@@ -141,7 +141,7 @@ class ClienteController extends Controller
         } catch (Exception $e) {
             $message = [
                 "type" => "error",
-                "message" => "$e"
+                "message" => $e->getMessage()
             ];
         }
 
@@ -174,12 +174,22 @@ class ClienteController extends Controller
             } else {
                 $message = [
                     "type" => "error",
-                    "message" => "$e"
+                    "message" => $e->getMessage()
                 ];
             }
         }
 
         return redirect()->route('clientes.index')
             ->with('message', $message);
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $data = Cliente::select("nome as value", "id")
+                ->where('nome', 'LIKE', '%'. $request->get('search'). '%')
+                ->orWhere('CPF', 'LIKE', '%'. $request->get('search'). '%')
+                ->get();
+
+        return response()->json($data);
     }
 }

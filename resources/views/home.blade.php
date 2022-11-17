@@ -3,7 +3,7 @@
 @section('content')
 <div class="card-glass">
     <div class="row justify-content-center">
-        <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
+        <div class="col-xs-12 col-sm-12 col-md-6 my-2">
             <form action="{{ route('buscarOs') }}" method="post">
             @csrf
             <div class="input-group">
@@ -14,6 +14,7 @@
                     <div class="invalid-feedback">O número de OS digitado não existe!!!</div>
                 @enderror
               </div>
+              <div class="form-text">Aperte ENTER após digitar o número da OS</div>
         </div>
     </div>
 </div>

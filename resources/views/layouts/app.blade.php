@@ -68,6 +68,11 @@
                             <a class="nav-link @if (Request::url() === env('APP_URL') . '/ordens/create') active @endif" href="/ordens/create">Nova OS?</a>
                         </li>
                         <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{ url('/') }}">
+                                Buscar OS?
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/clientes') active @endif @if (Request::url() === env('APP_URL') . '/clientes/create') active @endif"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Clientes

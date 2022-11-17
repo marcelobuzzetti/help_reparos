@@ -81,10 +81,77 @@
             </div>
         </div>
     </div>
+    <div class="d-flex flex-wrap justify-content-center">
+        <div class="p-2">
+            <a class="btn btn-primary flex-inline flex-grow-1"
+                href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
+        </div>
+        <div class="p-2">
+            <a class="btn btn-secondary flex-inline"
+                href="{{ route('imprimirOs', ['id' =>$ordem->id]) }}"><i class="icofont-printer"></i> Imprimir</a>
+        </div>
+        @if ($ordem->status_id != 5)
+        <div class="p-2">
+            <a class="btn btn-success flex-inline flex-grow-1"
+                href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-exit"></i> Retirada</a>
+        </div>
+        <div class="p-2">
+            <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
+                data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
+                data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
+        </div>
+        @endif
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="apagarCliente" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="mb-3">
+                            <p>Tem certeza que deseja apagar a OS nº <strong class="fs-3"><span
+                                        id="nomeClienteModal"></span></strong>?</p>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i class="icofont-close"></i> Fechar</button>
+                    <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i> Apagar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     @if (isset($print))
     <script type="text/javascript">
         window.print();
     </script>
     @endif
+    <script>
+        $(document).ready(function() {
+            const exampleModal = document.getElementById('exampleModal')
+            exampleModal.addEventListener('show.bs.modal', event => {
+                // Button that triggered the modal
+                const button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                const nome = button.getAttribute('data-bs-nome')
+                const id = button.getAttribute('data-bs-id')
+                // If necessary, you could initiate an AJAX request here
+                // and then do the updating in a callback.
+                //
+                // Update the modal's content.
+                const modalTitle = exampleModal.querySelector('.modal-title')
+                const modalBodyForm = document.getElementById('apagarCliente')
+                const modalBodyNomeCliente = document.getElementById('nomeClienteModal')
 
+                modalTitle.textContent = `Apagar OS nº ${nome}`
+                modalBodyNomeCliente.textContent = nome
+                modalBodyForm.action = `<?php echo env('APP_URL'); ?>/ordens/${id}`
+            })
+        });
+    </script>
 @endsection

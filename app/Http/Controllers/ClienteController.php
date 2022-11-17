@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use Exception;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -63,10 +64,21 @@ class ClienteController extends Controller
         $email = $request->old('email');
         $endereco = $request->old('endereco');
 
-        Cliente::create($request->all());
+        try{
+            Cliente::create($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "Cliente $nomePOST criado com sucesso!!!."
+            ];
+         } catch (Exception $e) {
+                $message = [
+                    "type" => "error",
+                    "message" => "$e"
+                ];
+        }
 
         return redirect()->route('clientes.index')
-                        ->with('success',"Cliente $nomePOST criado com sucesso!!!.");
+                        ->with('message',$message);
     }
 
     /**
@@ -118,10 +130,23 @@ class ClienteController extends Controller
         $endereco = $request->old('endereco');
 
         $nomePOST = $request->nome;
-        $cliente->update($request->all());
+
+
+        try{
+            $cliente->update($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "Cliente $nomePOST atualizado com sucesso!!!"
+            ];
+         } catch (Exception $e) {
+                $message = [
+                    "type" => "error",
+                    "message" => "$e"
+                ];
+        }
 
         return redirect()->route('clientes.index')
-                        ->with('success',"Cliente $nomePOST atualizado com sucesso!!!");
+                        ->with('message',$message);
     }
 
     /**
@@ -133,9 +158,29 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         $nome = $cliente->nome;
-        $cliente->delete();
+        $message = [];
+        try{
+            $cliente->delete();
+            $message = [
+                "type" => "success",
+                "message" => "Cliente $nome apagado com sucesso!!!"
+            ];
+         } catch (Exception $e) {
+            if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+                $message = [
+                    "type" => "error",
+                    "message" => "Não é possível excluir o usuário com Ordens de Serviço!!!"
+                ];
+            } else {
+                $message = [
+                    "type" => "error",
+                    "message" => "$e"
+                ];
+            }
+        }
 
         return redirect()->route('clientes.index')
-                        ->with('success', "Cliente $nome apagado com sucesso!!!");
+                            ->with('message', $message);
+
     }
 }

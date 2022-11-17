@@ -18,9 +18,10 @@ class Os extends Model
         'estado_aparelho',
         'defeito_alegado',
         'observacao',
+        'laudo_tecnico',
         'valor_servico',
         'entregue_para',
-        'status_id'
+        'status_id',
 
     ];
 

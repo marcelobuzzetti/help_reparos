@@ -83,6 +83,7 @@ class OsController extends Controller
         $estado_aparelho = $request->old('estado_aparelho');
         $defeito_alegado = $request->old('defeito_alegado');
         $observacao = $request->old('observacao');
+        $laudo_tecnico = $request->old('laudo_tecnico');
 
         try {
             $os = Os::create($request->all());
@@ -156,7 +157,6 @@ class OsController extends Controller
             'modelo' => 'required|min:3',
             'estado_aparelho' => 'required|min:3',
             'defeito_alegado' => 'required|min:10',
-
             'valor_servico' => 'required',
         ]);
 
@@ -170,9 +170,13 @@ class OsController extends Controller
         $defeito_alegado = $request->old('defeito_alegado');
         $observacao = $request->old('observacao');
         $valor_servico = $request->old('valor_servico');
+        $laudo_tecnico = $request->old('laudo_tecnico');
+
+        $os = new Os;
+        $os = $os->findOrFail($request->id);
 
         try {
-            Os::osUpdate($request->all());
+            $os->update($request->all());
             $message = [
                 "type" => "success",
                 "message" => "OS Nº $request->id atualizada com sucesso!!!"

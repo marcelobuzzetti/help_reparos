@@ -51,13 +51,19 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Defeito Alegado:</strong>
-                    {{ $ordem->defeito_alegado }}
+                    <div style="white-space: pre-wrap;">{{ $ordem->defeito_alegado }}</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Laudo Técnico:</strong>
+                    <div style="white-space: pre-wrap;">{{ $ordem->laudo_tecnico }}</div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Observação:</strong>
-                    {{ $ordem->observacao }}
+                    <div style="white-space: pre-wrap;">{{ $ordem->observacao }}</div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

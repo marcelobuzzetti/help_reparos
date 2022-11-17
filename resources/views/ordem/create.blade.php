@@ -117,6 +117,15 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
                     <div class="form-group">
+                        <strong>Laudo Técnico</strong>
+                        <textarea name="laudo_tecnico" class="form-control @error('laudo_tecnico') is-invalid @enderror">{{ old('laudo_tecnico') }}</textarea>
+                        @error('laudo_tecnico')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                    <div class="form-group">
                         <strong>Observação</strong>
                         <textarea name="observacao" class="form-control @error('observacao') is-invalid @enderror">Após 30 dias de aprovado e pronto, o aparelho poderá ser vendido para cobrir despesas.</textarea>
                         @error('observacao')

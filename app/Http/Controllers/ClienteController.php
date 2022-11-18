@@ -117,7 +117,7 @@ class ClienteController extends Controller
             'nome' => 'required|max:255|min:3',
             'telefone' => 'required|numeric',
             'rg' => 'required|numeric',
-            'cpf' => 'required|cpf',
+            'cpf' => "required|cpf|unique:clientes,id,$cliente->id",
             'email' => 'required|email',
             'endereco' => 'required|min:10',
         ]);

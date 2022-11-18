@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::all();
+        $data = User::all()->where('id', '!=', Auth::id());
         return view('users.index', compact('data'));
     }
     /**
@@ -43,6 +43,10 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
         ]);
+
+        $name = $request->old('name');
+        $email = $request->old('email');
+
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
@@ -58,7 +62,7 @@ class UserController extends Controller
                 "message" => $e->getMessage()
             ];
         }
-        return redirect()->route('users.index')
+        return redirect()->route('usuarios.index')
             ->with('message', $message);
     }
     /**
@@ -97,6 +101,9 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirma-senha',
         ]);
+
+        $name = $request->old('name');
+        $email = $request->old('email');
 
         $input = $request->all();
 
@@ -153,7 +160,7 @@ class UserController extends Controller
                 ];
             }
         }
-        return redirect()->route('users.index')
+        return redirect()->route('usuarios.index')
                 ->with('message', $message);
     }
 }

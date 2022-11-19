@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="content-title mb-4" style="display: none">
+        <img class="img-print"
+            src="/assets/img/logo.png">
+        <div>
+            <div>{{ $empresa->nome_empresa }}</div>
+            <div><i class="icofont-phone"></i> {{ $empresa->telefone }}</div>
+            <div><i class="icofont-google-map"></i> {{ $empresa->endereco}}</div>
+            <div><i class="icofont-email"></i> {{ $empresa->email}}</div>
+            <div><i class="icofont-facebook"></i> {{ $empresa->facebook}}</div>
+            <div><i class="icofont-brand-whatsapp"></i> {{ $empresa->whatsapp}}</div>
+        </div>
+    </div>
     <div class="card-glass">
         <div class="row">
             <div class="pull-left d-flex justify-content-center">
@@ -15,7 +27,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entrada:</strong>
-                    {{ date( 'd M y H:m' , strtotime($ordem->entrada)) }}
+                    {{ date('d M y H:m', strtotime($ordem->entrada)) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -69,43 +81,44 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Valor do Serviço:</strong>
-                    {{ $ordem->valor_servico ? $ordem->valor_servico : "Não orçado"}}
+                    {{ $ordem->valor_servico ? $ordem->valor_servico : 'Não orçado' }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entregue para:</strong>
-                    {{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . " em " . date( 'd/m/Y' , strtotime($ordem->retirada)) : "Não entregue" }}
+                    {{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . ' em ' . date('d/m/Y', strtotime($ordem->retirada)) : 'Não entregue' }}
                 </div>
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right d-flex">
-                    <a class="btn btn-primary d-flex-inline" href="{{ route('ordens.index') }}"><i class="icofont-arrow-left"></i> Voltar</a>
+                    <a class="btn btn-primary d-flex-inline" href="{{ route('ordens.index') }}"><i
+                            class="icofont-arrow-left"></i> Voltar</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="d-flex flex-wrap justify-content-center">
         <div class="p-2">
-            <a class="btn btn-primary flex-inline flex-grow-1"
-                href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
+            <a class="btn btn-primary flex-inline flex-grow-1" href="{{ route('ordens.edit', $ordem->id) }}"><i
+                    class="icofont-ui-edit"></i> Editar</a>
         </div>
         <div class="p-2">
-            <a class="btn btn-secondary flex-inline"
-                href="{{ route('imprimirOs', ['id' =>$ordem->id]) }}"><i class="icofont-printer"></i> Imprimir</a>
+            <a class="btn btn-secondary flex-inline" href="{{ route('imprimirOs', ['id' => $ordem->id]) }}"><i
+                    class="icofont-printer"></i> Imprimir</a>
         </div>
         @if ($ordem->status_id != 5)
-        <div class="p-2">
-            <a class="btn btn-success flex-inline flex-grow-1"
-                href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-exit"></i> Retirada</a>
-        </div>
-        <div class="p-2">
-            <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
-                data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
-                data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
-        </div>
+            <div class="p-2">
+                <a class="btn btn-success flex-inline flex-grow-1" href="{{ route('ordens.orcamento', $ordem->id) }}"><i
+                        class="icofont-exit"></i> Retirada</a>
+            </div>
+            <div class="p-2">
+                <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-bs-nome="{{ $ordem->id }}" data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i>
+                    Apagar</button>
+            </div>
         @endif
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -125,17 +138,19 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i class="icofont-close"></i> Fechar</button>
-                    <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i> Apagar</button>
+                    <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i
+                            class="icofont-close"></i> Fechar</button>
+                    <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i>
+                        Apagar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     @if (isset($print))
-    <script type="text/javascript">
-        window.print();
-    </script>
+        <script type="text/javascript">
+            window.print();
+        </script>
     @endif
     <script>
         $(document).ready(function() {

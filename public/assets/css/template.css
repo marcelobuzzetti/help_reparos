@@ -1,16 +1,24 @@
 body{
     background-color: whitesmoke;
     padding-top: 60px;
-   /*  background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=100');
-    background-position: center; */
+    background: url('../img/logo.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .card-glass {
     padding: 20px;
-    border-radius: 50px;
+    /* border-radius: 50px;
     background: #ffffff;
     box-shadow:  20px 20px 60px #d9d9d9,
-                 -20px -20px 60px #ffffff;
+                 -20px -20px 60px #ffffff; */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
 }
 
 th.dt-center, td.dt-center { text-align: center; }

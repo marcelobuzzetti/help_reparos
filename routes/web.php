@@ -40,7 +40,7 @@ Route::resource('ordens', OsController::class);
 Route::resource('usuarios', UserController::class);
 
 Route::resource('empresas', EmpresaController::class)->except([
-    'index','create'
+    'index','create', 'destroy', 'store'
 ]);
 
 Route::get('/ordens/{id}/entrega', [OsController::class, 'entregaShow'])->name('ordens.orcamento');

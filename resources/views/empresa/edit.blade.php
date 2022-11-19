@@ -18,8 +18,18 @@
                     <div class="form-group">
                         <strong>Nome</strong>
                         <input type="text" name="nome_empresa" class="form-control @error('nome_empresa') is-invalid @enderror"
-                            placeholder="nome_empresa" value="{{ old('nome_empresa') ? old('nome_empresa') : $empresa->nome_empresa }}">
+                            placeholder="Digite o Nome da Empresa" value="{{ old('nome_empresa') ? old('nome_empresa') : $empresa->nome_empresa }}">
                         @error('nome_empresa')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                    <div class="form-group">
+                        <strong>Nome Abreviado</strong>
+                        <input type="text" name="nome" class="form-control @error('nome') is-invalid @enderror"
+                            placeholder="Digite o Nome da Empresa Abreviado" value="{{ old('nome') ? old('nome') : $empresa->nome }}">
+                        @error('nome')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -28,7 +38,7 @@
                     <div class="form-group">
                         <strong>Endereço</strong>
                         <input type="text" name="endereco" class="form-control @error('endereco') is-invalid @enderror"
-                            placeholder="endereco" value="{{ old('endereco') ? old('endereco') : $empresa->endereco }}">
+                            placeholder="Digite o Endereço da Empresa" value="{{ old('endereco') ? old('endereco') : $empresa->endereco }}">
                         @error('endereco')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -38,7 +48,7 @@
                     <div class="form-group">
                         <strong>Telefone</strong>
                         <input type="text" name="telefone" class="form-control @error('telefone') is-invalid @enderror"
-                            placeholder="telefone" value="{{ old('telefone') ? old('telefone') : $empresa->telefone }}">
+                            placeholder="Digite o Telefone da Empresa" value="{{ old('telefone') ? old('telefone') : $empresa->telefone }}">
                         @error('telefone')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -48,7 +58,7 @@
                     <div class="form-group">
                         <strong>Email</strong>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                            placeholder="email" value="{{ old('email') ? old('email') : $empresa->email }}">
+                            placeholder="Digite o Email da Empresa" value="{{ old('email') ? old('email') : $empresa->email }}">
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -58,7 +68,7 @@
                     <div class="form-group">
                         <strong>Facebook</strong>
                         <input type="text" name="facebook" class="form-control @error('facebook') is-invalid @enderror"
-                            placeholder="facebook" value="{{ old('facebook') ? old('facebook') : $empresa->facebook }}">
+                            placeholder="Digite o Facebook da Empresa" value="{{ old('facebook') ? old('facebook') : $empresa->facebook }}">
                         @error('facebook')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -68,7 +78,7 @@
                     <div class="form-group">
                         <strong>WhatsApp</strong>
                         <input type="text" name="whatsapp" class="form-control @error('whatsapp') is-invalid @enderror"
-                            placeholder="whatsapp" value="{{ old('whatsapp') ? old('whatsapp') : $empresa->whatsapp }}">
+                            placeholder="Digite o WhatsApp da Empresa" value="{{ old('whatsapp') ? old('whatsapp') : $empresa->whatsapp }}">
                         @error('whatsapp')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

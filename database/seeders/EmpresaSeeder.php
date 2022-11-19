@@ -18,6 +18,7 @@ class EmpresaSeeder extends Seeder
     {
         DB::table('empresas')->insert([
             'nome_empresa' => 'Help Reparos e Utilidades LTDA',
+            'nome' => 'Help Reparos',
             'email' => 'helpreparos.utilidades@gmail.com',
             'telefone' => '(27) 3098-2080',
             'endereco' => 'Av. São Paulo, 574 - Santo Antônio, Cariacica, ES, Brasil',

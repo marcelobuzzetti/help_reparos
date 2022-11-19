@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empresa;
+use Exception;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -69,7 +70,39 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
-        //
+        $request->validate([
+            'nome_empresa' => 'required|max:255|min:3',
+            'nome' => 'required|max:255|min:3',
+            'telefone' => 'required',
+            'email' => 'required|email',
+            'endereco' => 'required|min:10',
+            'facebook' => 'required|min:10',
+            'whatsapp' => 'required',
+        ]);
+
+        $nome_empresa = $request->old('nome_empresa');
+        $nome = $request->old('nome');
+        $telefone = $request->old('telefone');
+        $email = $request->old('email');
+        $endereco = $request->old('endereco');
+        $facebook = $request->old('facebook');
+        $whatsapp = $request->old('whatsapp');
+
+        try {
+            $empresa->update($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "Empresa atualizada com sucesso!!!"
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return redirect()->route('home')
+            ->with('message', $message);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Empresa;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+        // Using view composer to set following variables globally
+        view()->composer('*',function($view) {
+            $empresa = Empresa::first();
+            $view->with('empresa', $empresa);
+        });
     }
 }

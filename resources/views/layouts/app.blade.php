@@ -158,6 +158,7 @@
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('usuarios.edit', Auth::user()->id) }}"><i
                                                 class="icofont-ui-edit"></i> Editar</a>
+                                        <a class="dropdown-item" href="{{ route('empresas.show', $empresa->id) }}"><i class="icofont-gears"></i> Config</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

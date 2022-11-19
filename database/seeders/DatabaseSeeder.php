@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
 
             UserSeeder::class,
 
-            StatusTableSeeder::class
+            StatusTableSeeder::class,
+
+            EmpresaSeeder::class
 
         ]);
     }

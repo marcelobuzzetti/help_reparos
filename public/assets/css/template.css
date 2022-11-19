@@ -115,7 +115,7 @@ td.dt-center {
 }
 
 .content-title .img-print {
-    margin-right: 10px;
+    margin: 0 10px;
     height: 140px;
     width: 140px;
 }

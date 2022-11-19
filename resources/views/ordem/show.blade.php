@@ -91,6 +91,27 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="p-2">
+                <a class="btn btn-primary flex-inline flex-grow-1" href="{{ route('ordens.edit', $ordem->id) }}"><i
+                        class="icofont-ui-edit"></i> Editar</a>
+            </div>
+            <div class="p-2">
+                <a class="btn btn-secondary flex-inline" href="{{ route('imprimirOs', ['id' => $ordem->id]) }}"><i
+                        class="icofont-printer"></i> Imprimir</a>
+            </div>
+            @if ($ordem->status_id != 5)
+                <div class="p-2">
+                    <a class="btn btn-success flex-inline flex-grow-1" href="{{ route('ordens.orcamento', $ordem->id) }}"><i
+                            class="icofont-exit"></i> Retirada</a>
+                </div>
+                <div class="p-2">
+                    <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        data-bs-nome="{{ $ordem->id }}" data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i>
+                        Apagar</button>
+                </div>
+            @endif
+        </div>
         <div class="row mt-2">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right d-flex">
@@ -99,27 +120,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="d-flex flex-wrap justify-content-center">
-        <div class="p-2">
-            <a class="btn btn-primary flex-inline flex-grow-1" href="{{ route('ordens.edit', $ordem->id) }}"><i
-                    class="icofont-ui-edit"></i> Editar</a>
-        </div>
-        <div class="p-2">
-            <a class="btn btn-secondary flex-inline" href="{{ route('imprimirOs', ['id' => $ordem->id]) }}"><i
-                    class="icofont-printer"></i> Imprimir</a>
-        </div>
-        @if ($ordem->status_id != 5)
-            <div class="p-2">
-                <a class="btn btn-success flex-inline flex-grow-1" href="{{ route('ordens.orcamento', $ordem->id) }}"><i
-                        class="icofont-exit"></i> Retirada</a>
-            </div>
-            <div class="p-2">
-                <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    data-bs-nome="{{ $ordem->id }}" data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i>
-                    Apagar</button>
-            </div>
-        @endif
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

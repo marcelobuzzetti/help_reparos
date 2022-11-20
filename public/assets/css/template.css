@@ -10,7 +10,7 @@ body {
     /* font-family: 'Oswald', sans-serif; */
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Oswald';
     font-weight: 200;
     src: url('./fonts/Oswald-ExtraLight.ttf') format('truetype');
@@ -44,7 +44,7 @@ body {
     font-family: 'Oswald';
     font-weight: 700;
     src: url('./fonts/Oswald-Bold.ttf') format('truetype');
-}
+} */
 
 @media only screen and (max-width: 600px) {
     body {

@@ -97,7 +97,7 @@
                         class="icofont-ui-edit"></i> Editar</a>
             </div>
             <div class="p-2">
-                <a class="btn btn-secondary flex-inline" href="{{ route('imprimirOs', ['id' => $ordem->id]) }}"><i
+                <a class="btn btn-secondary flex-inline" {{-- href="{{ route('imprimirOs', ['id' => $ordem->id]) }}" --}} onclick="imprimir()"><i
                         class="icofont-printer"></i> Imprimir</a>
             </div>
             @if ($ordem->status_id != 5)
@@ -173,6 +173,10 @@
                 modalBodyNomeCliente.textContent = nome
                 modalBodyForm.action = `<?php echo env('APP_URL'); ?>/ordens/${id}`
             })
+
         });
+        function imprimir() {
+            window.print();
+        }
     </script>
 @endsection

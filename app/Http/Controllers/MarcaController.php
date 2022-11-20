@@ -104,7 +104,7 @@ class MarcaController extends Controller
     {
 
         $request->validate([
-            'descricao' => 'required|max:255|min:3'
+            'descricao' => "required|max:255|min:3|unique:marcas,descricao,$marca->id,id",
         ]);
 
         $descricao = $request->old('descricao');

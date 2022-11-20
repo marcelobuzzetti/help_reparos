@@ -112,13 +112,12 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-
         $request->validate([
             'nome' => 'required|max:255|min:3',
             'telefone' => 'required|numeric',
             'rg' => 'required|numeric',
-            'cpf' => "required|cpf|unique:clientes,id,$cliente->id",
-            'email' => 'required|email',
+            'cpf' => "required|cpf|unique:clientes,cpf,$cliente->id,id",
+            'email' => "required|unique:clientes,email,$cliente->id,id",
             'endereco' => 'required|min:10',
         ]);
 

@@ -27,7 +27,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entrada:</strong>
-                    {{ date('d M y H:m', strtotime($ordem->entrada)) }}
+                    {{ date( 'd/m/Y' , strtotime($ordem->entrada)) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

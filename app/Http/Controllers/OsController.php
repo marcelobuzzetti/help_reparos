@@ -70,11 +70,11 @@ class OsController extends Controller
             'clienteNome' => 'required|exists:clientes,nome',
             'marcaDescricao' => 'required|exists:marcas,descricao',
             'cliente_id' => 'required|exists:clientes,id',
-            'tipo_aparelho' => 'required|min:3',
+            'tipo_aparelho' => 'required',
             'marca_id' => 'required|exists:marcas,id',
             'status_id' => 'required|exists:status,id',
-            'modelo' => 'required|min:3',
-            'estado_aparelho' => 'required|min:3',
+            'modelo' => 'required',
+            'estado_aparelho' => 'required',
             'defeito_alegado' => 'required|min:10',
             /* 'observacao' => 'required', */
         ]);
@@ -159,12 +159,12 @@ class OsController extends Controller
         $request->validate([
             'clienteNome' => 'required|exists:clientes,nome',
             'cliente_id' => 'required|exists:clientes,id',
-            'tipo_aparelho' => 'required|min:3',
+            'tipo_aparelho' => 'required',
             'marcaDescricao' => 'required|exists:marcas,descricao',
             'marca_id' => 'required|exists:marcas,id',
             'status_id' => 'required|exists:status,id',
-            'modelo' => 'required|min:3',
-            'estado_aparelho' => 'required|min:3',
+            'modelo' => 'required',
+            'estado_aparelho' => 'required',
             'defeito_alegado' => 'required|min:10',
         ]);
 
@@ -316,7 +316,7 @@ class OsController extends Controller
 
         $request->validate([
             'id' => 'required|exists:ordens,id',
-            'entregue_para' => 'required|min:3',
+            'entregue_para' => 'required',
      /*        'status_id' => 'required|exists:status,id', */
         ]);
 

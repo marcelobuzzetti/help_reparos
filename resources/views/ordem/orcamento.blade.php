@@ -82,7 +82,7 @@
                             <strong>Valor do Serviço</strong>
                         </label>
                         <div>
-                            <input type="number" step="any" min="0.01" name="valor_servico"
+                            <input type="text" name="valor_servico" id="valor_servico"
                                 class="form-control @error('valor_servico') is-invalid @enderror"
                                 placeholder="Valor Servico"
                                 value="{{ old('valor_servico') ? old('valor_servico') : $ordem->valor_servico }}">

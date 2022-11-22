@@ -89,7 +89,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Valor do Serviço</strong>
-                        <input type="number" step="any" min="0.01" name="valor_servico" class="form-control @error('valor_servico') is-invalid @enderror" placeholder="Valor Servico" value="{{ old('valor_servico') }}">
+                        <input type="text" id="valor_servico" name="valor_servico" class="form-control @error('valor_servico') is-invalid @enderror" placeholder="Valor Servico" value="{{ old('valor_servico') }}">
                         @error('valor_servico')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

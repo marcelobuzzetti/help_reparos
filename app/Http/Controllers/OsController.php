@@ -6,11 +6,12 @@ use App\Models\Os;
 use App\Models\Cliente;
 use App\Models\Marca;
 use App\Models\Status;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
 
 class OsController extends Controller
 {
@@ -257,9 +258,11 @@ class OsController extends Controller
 
     public function orcamentoStore(Request $request)
     {
+        $request['valor_servico'] = floatval(preg_replace('/[^\d\.]/', '', $request->valor_servico));
+
         $request->validate([
             'id' => 'required|exists:ordens,id',
-            'valor_servico' => 'required|numeric',
+            'valor_servico' => 'required',
             'email' => 'required|exists:users,email',
             'password' => 'required',
 
@@ -267,7 +270,13 @@ class OsController extends Controller
 
         $valor_servico = $request->old('valor_servico');
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+        $user = User::where('email', $request['email'])
+        ->where('is_admin', 1)
+        ->first();
+
+        $user ? $validCredentials = Hash::check($request['password'], $user->getAuthPassword()) : $validCredentials = FALSE;
+
+        if ($validCredentials)
         {
 
             $ordem = new Os;

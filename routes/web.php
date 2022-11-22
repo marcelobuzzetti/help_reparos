@@ -61,9 +61,11 @@ Route::get('imprimirOs', [OsController::class, 'imprimirOs'])->name('imprimirOs'
 
 });
 
-/* Route::put('/ordensOrcamento/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.orcamentoStore');
+Route::get('/orcamento/{id}', [OsController::class, 'orcamento'])->name('orcamento');
 
-Route::put('/status/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.status'); */
+Route::put('/orcamento/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.orcamentoStore');
+
+/* Route::put('/status/{id}', [OsController::class, 'orcamentoStore'])->name('ordens.status'); */
 
 /* Route::get('/ordemservico/{id}', [OsController::class, 'showTeste']);
 

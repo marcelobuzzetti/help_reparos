@@ -8,7 +8,9 @@ use App\Models\Marca;
 use App\Models\Status;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class OsController extends Controller
 {
@@ -59,6 +61,7 @@ class OsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
 
         $request->validate([
             'clienteNome' => 'required|exists:clientes,nome',
@@ -146,6 +149,7 @@ class OsController extends Controller
      */
     public function update(Request $request, Os $ordem)
     {
+        $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
 
         $request->validate([
             'clienteNome' => 'required|exists:clientes,nome',
@@ -157,7 +161,6 @@ class OsController extends Controller
             'modelo' => 'required|min:3',
             'estado_aparelho' => 'required|min:3',
             'defeito_alegado' => 'required|min:10',
-            'valor_servico' => 'required',
         ]);
 
 
@@ -239,35 +242,59 @@ class OsController extends Controller
         ]);
     }
 
+    public function orcamento($os)
+    {
+        $ordem = new Os;
+        $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($os);
+        return view('ordem.orcamento',[
+            'ordem' => $ordem,
+        ]);
+    }
+
     public function orcamentoStore(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:ordens,id',
             'valor_servico' => 'required|numeric',
-            'status_id' => 'required|exists:status,id',
+            'email' => 'required|exists:users,email',
+            'password' => 'required',
+
         ]);
 
         $valor_servico = $request->old('valor_servico');
-        $status_id = $request->old('status_id');
 
-        $ordem = new Os;
-        $ordem = $ordem->findOrFail($request->id);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+        {
 
-        try {
-            $ordem->update($request->all());
-            $message = [
-                "type" => "success",
-                "message" => "Ordem de Serviço nº $request->id foi Orçada!!!."
-            ];
-        } catch (Exception $e) {
-            $message = [
-                "type" => "error",
-                "message" => $e->getMessage()
-            ];
+            $ordem = new Os;
+            $ordem = $ordem->findOrFail($request->id);
+
+            try {
+                $ordem->update($request->all());
+                $message = [
+                    "type" => "success",
+                    "message" => "Ordem de Serviço nº $request->id foi Orçada!!!."
+                ];
+            } catch (Exception $e) {
+                $message = [
+                    "type" => "error",
+                    "message" => $e->getMessage()
+                ];
+            }
+
+            return redirect()->route('ordens.index')
+                            ->with('message', $message);
+
+        } else  {
+
+            return back()->withErrors([
+                'email' => 'Usuário e/ou Senha errados',
+                'password' => 'Usuário e/ou Senha errados'
+            ]);
+
         }
 
-        return redirect()->route('ordens.index')
-                        ->with('message', $message);
+
     }
 
     public function entrega(Request $request)

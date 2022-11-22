@@ -22,6 +22,7 @@ class Os extends Model
         'valor_servico',
         'entregue_para',
         'status_id',
+        'is_orcado',
 
     ];
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="card-glass">
         <div class="row">
             <div class="pull-left d-flex justify-content-center">
                 <h2>OS Nº {{ $ordem->id }}</h2>
@@ -15,7 +15,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entrada:</strong>
-                    {{ date('d M y H:m', strtotime($ordem->entrada)) }}
+                    {{ date('d/m/Y', strtotime($ordem->entrada)) }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -51,13 +51,25 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Defeito Alegado:</strong>
-                    {{ $ordem->defeito_alegado }}
+                    <div style="white-space: pre-wrap;">{{ $ordem->defeito_alegado }}</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Laudo Técnico:</strong>
+                    <div style="white-space: pre-wrap;">{{ $ordem->laudo_tecnico }}</div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Observação:</strong>
-                    {{ $ordem->observacao }}
+                    <div style="white-space: pre-wrap;">{{ $ordem->observacao }}</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Status:</strong>
+                    {{ $ordem->status->first()->descricao }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -71,7 +83,8 @@
                         </label>
                         <div>
                             <input type="number" step="any" min="0.01" name="valor_servico"
-                                class="form-control @error('valor_servico') is-invalid @enderror" placeholder="Valor Servico"
+                                class="form-control @error('valor_servico') is-invalid @enderror"
+                                placeholder="Valor Servico"
                                 value="{{ old('valor_servico') ? old('valor_servico') : $ordem->valor_servico }}">
                             @error('valor_servico')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -79,30 +92,40 @@
                         </div>
                     </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 mb-2 mt-2">
-                <div class="d-flex align-items-center">
-                    <label class="me-2">
-                        <strong>Status</strong>
-                    </label>
-                    <div>
-                    <select name="status_id" class="form-control @error('status_id') is-invalid @enderror">
-                        <option selected disabled>Selecione a status</option>
-                        @if ($status)
+            <hr class="mt-2">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="row mb-3">
+                    <label for="email" class="mb-2">{{ __('Email Address') }}</label>
 
-                        @foreach ( $status as $status)
+                    <div class="col-md-6">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                        <option value="{{ $status->id }}" @if (old('status_id')  == $status->id) selected @endif @if ($ordem->status_id  == $status->id) selected @endif>{{ $status->descricao }}</option>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 
-                        @endforeach
-
-                        @endif
-                      </select>
-                    @error('status_id')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    </div>
                 </div>
+
+                <div class="row mb-3">
+                    <label for="password" class="mb-2">{{ __('Password') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                            name="password" required autocomplete="current-password">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
             </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12 mb-2 text-center d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary d-flex-inline"><i class="icofont-save"></i> Atualizar</button>
             </div>

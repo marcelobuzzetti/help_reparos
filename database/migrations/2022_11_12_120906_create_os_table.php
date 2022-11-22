@@ -28,6 +28,7 @@ return new class extends Migration
             $table->float('valor_servico')->nullable();
             $table->date('retirada')->nullable();
             $table->string('entregue_para')->nullable();
+            $table->boolean('is_orcado')->nullable();
             $table->timestamps();
         });
     }

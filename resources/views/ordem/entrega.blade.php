@@ -58,7 +58,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Valor do Servico:</strong>
-                    {{ "R$ " . number_format($ordem->valor_servico,2,',','.') }}
+                    {{ "R$ " . $ordem->valor_servico/* number_format($ordem->valor_servico,2,',','.') */ }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

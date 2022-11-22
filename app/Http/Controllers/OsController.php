@@ -64,7 +64,7 @@ class OsController extends Controller
     {
         $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
 
-        $request->valor_servico ? $request['valor_servico'] = Os::currencyToDecimal($request->valor_servico) : null;
+/*         $request->valor_servico ? $request['valor_servico'] = Os::currencyToDecimal($request->valor_servico) : null; */
 
         $request->validate([
             'clienteNome' => 'required|exists:clientes,nome',
@@ -132,7 +132,7 @@ class OsController extends Controller
     {
         $ordem = new Os;
         $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($os);
-        $ordem->valor_servico ? $ordem->valor_servico = Os::decimalToCurrency($ordem->valor_servico) : null;
+        /* $ordem->valor_servico ? $ordem->valor_servico = Os::decimalToCurrency($ordem->valor_servico) : null; */
 
         $clientes = Cliente::all();
         $marcas = Marca::all();
@@ -161,7 +161,7 @@ class OsController extends Controller
             $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
         }
 
-        $request->valor_servico ? $request['valor_servico'] = Os::currencyToDecimal($request->valor_servico) : null;
+        /* $request->valor_servico ? $request['valor_servico'] = Os::currencyToDecimal($request->valor_servico) : null; */
 
         $request->validate([
             'clienteNome' => 'required|exists:clientes,nome',

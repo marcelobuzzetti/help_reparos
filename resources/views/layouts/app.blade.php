@@ -200,8 +200,8 @@
     <script>
         $("#valor_servico").maskMoney({
             /* "prefix": "R$", */
-            "decimal": ",",
-            "thousands": "."
+            /* "decimal": ",", */
+            "thousands": ""
         });
         $(document).ready(function() {
             toastr.options = {

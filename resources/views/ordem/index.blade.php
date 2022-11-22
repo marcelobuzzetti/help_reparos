@@ -34,7 +34,7 @@
                             <td>{{ $ordem->estado_aparelho }}</td>
                             <td>{{ $ordem->defeito_alegado }}</td>
                             <td>{{ $ordem->observacao }}</td> --}}
-                            <td>{{ $ordem->valor_servico ? "R$ " . number_format($ordem->valor_servico,2,',','.') : "Ainda não orçado" }}</td>
+                            <td>{{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : "Ainda não orçado" }}</td>
                             <td>{{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . " em " . date( 'd/m/Y' , strtotime($ordem->retirada)) : "Não entregue" }}</td>
                             <td>
                                 <div class="d-flex flex-wrap justify-content-evenly">

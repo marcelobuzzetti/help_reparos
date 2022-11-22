@@ -152,7 +152,12 @@ class OsController extends Controller
      */
     public function update(Request $request, Os $ordem)
     {
-        $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
+        $os = new Os;
+        $os = $os->findOrFail($request->id);
+
+        if(!$os->is_orcado){
+            $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
+        }
 
         $request->valor_servico ? $request['valor_servico'] = Os::currencyToDecimal($request->valor_servico) : null;
 
@@ -180,8 +185,6 @@ class OsController extends Controller
         $valor_servico = $request->old('valor_servico');
         $laudo_tecnico = $request->old('laudo_tecnico');
 
-        $os = new Os;
-        $os = $os->findOrFail($request->id);
 
         try {
             $os->update($request->all());

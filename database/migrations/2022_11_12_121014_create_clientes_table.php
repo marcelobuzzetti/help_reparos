@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('telefone');
-            $table->string('rg');
-            $table->string('cpf')->unique();
+            $table->string('rg')->nullable();
+            $table->string('cpf')->unique()->nullable();
             $table->string('email');
             $table->string('endereco');
             $table->timestamps();

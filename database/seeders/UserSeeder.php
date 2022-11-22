@@ -21,11 +21,13 @@ class UserSeeder extends Seeder
                 'name' => 'Marcelo',
                 'email' => 'marcelobuzzetti@gmail.com',
                 'password' => Hash::make('12345678'),
+                'is_admin' => true
             ],
             [
                 'name' => 'Ala',
                 'email' => 'ala@ala.com',
                 'password' => Hash::make('12345678'),
+                'is_admin' => true
             ]
         ]);
     }

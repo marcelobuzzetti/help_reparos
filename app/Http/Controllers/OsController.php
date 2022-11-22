@@ -264,7 +264,7 @@ class OsController extends Controller
 
     public function orcamentoStore(Request $request)
     {
-        $request['valor_servico'] = floatval(preg_replace('/[^\d\.]/', '', $request->valor_servico));
+        /* $request['valor_servico'] = floatval(preg_replace('/[^\d\.]/', '', $request->valor_servico)); */
 
         $request->validate([
             'id' => 'required|exists:ordens,id',

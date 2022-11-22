@@ -128,7 +128,14 @@
                         extend: 'colvis',
                         text: 'Colunas Visíveis',
 
-                    }
+                    },
+                    {
+                        className: 'btn-export border-0 btn-outline-export',
+                        text: "<a class='btn btn-primary' href='/marcas/create'>Criar Marca</a>",
+                        action: function ( e, dt, button, config ) {
+                            window.location = `<?php echo env('APP_URL'); ?>/marcas/create`;
+                        }
+                    },
                 ],
                 /* buttons: [
                     'copy', 'excel', 'pdf', 'print'

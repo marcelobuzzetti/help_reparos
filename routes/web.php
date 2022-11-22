@@ -27,6 +27,12 @@ Auth::routes([
     'verify' => false,
 ]);
 
+Route::group(['middleware' => ['web', 'auth', 'isadmin']], function() {
+
+    Route::resource('usuarios', UserController::class);
+
+});
+
 Route::group(['middleware' => 'auth'], function() {
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -36,8 +42,6 @@ Route::resource('clientes', ClienteController::class);
 Route::resource('marcas', MarcaController::class);
 
 Route::resource('ordens', OsController::class);
-
-Route::resource('usuarios', UserController::class);
 
 Route::resource('empresas', EmpresaController::class)->except([
     'index','create', 'destroy', 'store'

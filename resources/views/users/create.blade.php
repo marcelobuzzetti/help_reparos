@@ -52,6 +52,15 @@
                         @enderror
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+                    <div class="form-group">
+                        <strong>Adminstrador?</strong>
+                        <input class="form-check-input @error('is_admin') is-invalid @enderror" type="checkbox" name="is_admin">
+                        @error('is_admin')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 my-2 text-center d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary d-flex-inline"><i class="icofont-save"></i>
                         Cadastrar</button>

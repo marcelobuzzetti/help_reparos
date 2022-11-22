@@ -8,6 +8,7 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Administrador</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -18,6 +19,7 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->is_admin ? "Sim" : "Não" }}</td>
                         <td>
                             <div class="d-flex flex-wrap justify-content-around">
                                 <div class="p-2">
@@ -45,6 +47,7 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Administrador</th>
                     <th>Ações</th>
                 </tr>
             </tfoot>

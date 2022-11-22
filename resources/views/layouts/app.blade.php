@@ -106,18 +106,22 @@
                                             href="/marcas/create">Criar</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/usuarios') active @endif @if (Request::url() === env('APP_URL') . '/usuarios/create') active @endif"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Usuários
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/usuarios') active @endif"
-                                            href="/usuarios">Lista</a></li>
-                                    <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/usuarios/create') active @endif"
-                                            href="/usuarios/create">Criar</a></li>
-                                </ul>
-                            </li>
+                            @if (Auth::user()->is_admin)
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/usuarios') active @endif @if (Request::url() === env('APP_URL') . '/usuarios/create') active @endif"
+                                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Usuários
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/usuarios') active @endif"
+                                                href="/usuarios">Lista</a></li>
+                                        <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/usuarios/create') active @endif"
+                                                href="/usuarios/create">Criar</a></li>
+                                    </ul>
+                                </li>
+
+                            @endif
                         </ul>
                     </div>
 

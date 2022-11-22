@@ -38,6 +38,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->is_admin ? $request['is_admin'] = TRUE : $request['is_admin'] = FALSE;
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -96,6 +98,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->is_admin ? $request['is_admin'] = TRUE : $request['is_admin'] = FALSE;
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,

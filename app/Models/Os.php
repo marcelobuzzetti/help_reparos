@@ -64,4 +64,9 @@ class Os extends Model
     {
         return str_replace(",",".",str_replace(".","",$currency));
     }
+
+    public static function decimalToCurrency($currency)
+    {
+        return str_replace(".",",",$currency);
+    }
 }

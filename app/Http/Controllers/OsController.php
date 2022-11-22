@@ -132,6 +132,8 @@ class OsController extends Controller
     {
         $ordem = new Os;
         $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($os);
+        $ordem->valor_servico ? $ordem->valor_servico = Os::decimalToCurrency($ordem->valor_servico) : null;
+
         $clientes = Cliente::all();
         $marcas = Marca::all();
         $status = Status::all();
@@ -254,6 +256,7 @@ class OsController extends Controller
     {
         $ordem = new Os;
         $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($os);
+
         return view('ordem.orcamento',[
             'ordem' => $ordem,
         ]);

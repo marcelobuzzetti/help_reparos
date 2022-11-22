@@ -160,7 +160,6 @@
             </div>
     </div>
     <script type="text/javascript">
-        $("#valor_servico").inputmask({removeMaskOnSubmit: true});
         var path = "{{ route('autocompletecliente') }}";
         $( "#clienteAutoComplete" ).autocomplete({
             source: function( request, response ) {

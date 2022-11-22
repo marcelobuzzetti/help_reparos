@@ -63,6 +63,8 @@ class OsController extends Controller
     {
         $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
 
+        $request->valor_servico ? $request['valor_servico'] = floatval(preg_replace('/[^\d\.]/', '', $request->valor_servico)) : null;
+
         $request->validate([
             'clienteNome' => 'required|exists:clientes,nome',
             'marcaDescricao' => 'required|exists:marcas,descricao',
@@ -150,6 +152,8 @@ class OsController extends Controller
     public function update(Request $request, Os $ordem)
     {
         $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
+
+        $request['valor_servico'] = floatval(preg_replace('/[^\d\.]/', '', $request->valor_servico));
 
         $request->validate([
             'clienteNome' => 'required|exists:clientes,nome',

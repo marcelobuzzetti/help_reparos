@@ -13,7 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('ordens', function (Blueprint $table) {
+            $table->decimal('valor_servico', 10, 2)->change();
+        });
     }
 
     /**

@@ -59,4 +59,9 @@ class Os extends Model
             'valor_servico' => $request['valor_servico']
         ]);
     }
+
+    public static function currencyToDecimal($currency)
+    {
+        return str_replace(",",".",str_replace(".","",$currency));
+    }
 }

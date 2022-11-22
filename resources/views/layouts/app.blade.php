@@ -199,7 +199,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <script>
         $("#valor_servico").maskMoney({
-            "prefix": "R$"
+            /* "prefix": "R$", */
+            "decimal": ",",
+            "thousands": "."
         });
         $(document).ready(function() {
             toastr.options = {

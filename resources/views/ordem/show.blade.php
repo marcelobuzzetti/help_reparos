@@ -81,7 +81,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Valor do Serviço:</strong>
-                    {{ $ordem->valor_servico ? $ordem->valor_servico : 'Não orçado' }}
+                    {{ $ordem->valor_servico ? "R$ " . number_format($ordem->valor_servico,2,',','.') : 'Não orçado' }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

@@ -64,7 +64,7 @@ class OsController extends Controller
     {
         $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
 
-        $request->valor_servico ? $request['valor_servico'] = floatval(preg_replace('/[^\d\.]/', '', $request->valor_servico)) : null;
+        $request->valor_servico ? $request['valor_servico'] = Os::currencyToDecimal($request->valor_servico) : null;
 
         $request->validate([
             'clienteNome' => 'required|exists:clientes,nome',
@@ -154,7 +154,7 @@ class OsController extends Controller
     {
         $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
 
-        $request['valor_servico'] = floatval(preg_replace('/[^\d\.]/', '', $request->valor_servico));
+        $request->valor_servico ? $request['valor_servico'] = Os::currencyToDecimal($request->valor_servico) : null;
 
         $request->validate([
             'clienteNome' => 'required|exists:clientes,nome',

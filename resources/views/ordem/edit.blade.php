@@ -94,7 +94,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
                         <div class="form-group">
                             <strong>Valor do Serviço:</strong>
-                            R$ {{ $ordem->valor_servico }}
+                            R$ {{ number_format($ordem->valor_servico,2,',','.') }}
                             <a class="btn btn-danger ms-2" href="{{ route('orcamento', $ordem->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
                         </div>
                     </div>

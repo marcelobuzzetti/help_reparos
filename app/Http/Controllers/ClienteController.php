@@ -52,7 +52,6 @@ class ClienteController extends Controller
             'nome' => 'required|max:255|min:3',
             'telefone' => 'required|numeric',
             'rg' => 'required|numeric',
-            'cpf' => 'required|cpf|unique:clientes',
             'email' => 'required|email|unique:clientes',
             'endereco' => 'required|min:10',
         ]);
@@ -116,7 +115,6 @@ class ClienteController extends Controller
             'nome' => 'required|max:255|min:3',
             'telefone' => 'required|numeric',
             'rg' => 'required|numeric',
-            'cpf' => "required|cpf|unique:clientes,cpf,$cliente->id,id",
             'email' => "required|unique:clientes,email,$cliente->id,id",
             'endereco' => 'required|min:10',
         ]);

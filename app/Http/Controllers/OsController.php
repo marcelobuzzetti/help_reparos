@@ -75,7 +75,7 @@ class OsController extends Controller
             'status_id' => 'required|exists:status,id',
             'modelo' => 'required',
             'estado_aparelho' => 'required',
-            'defeito_alegado' => 'required|min:10',
+            'defeito_alegado' => 'required',
             /* 'observacao' => 'required', */
         ]);
 

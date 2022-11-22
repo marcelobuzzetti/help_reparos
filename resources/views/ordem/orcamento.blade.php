@@ -85,7 +85,7 @@
                             <input type="text" name="valor_servico" id="valor_servico"
                                 class="form-control @error('valor_servico') is-invalid @enderror"
                                 placeholder="Valor Servico"
-                                value="{{ old('valor_servico') ? old('valor_servico') : $ordem->valor_servico }}">
+                                value="{{ old('valor_servico') ? old('valor_servico') : $ordem->valor_servico }}" autofocus>
                             @error('valor_servico')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -99,7 +99,7 @@
 
                     <div class="col-md-6">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            name="email" value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">

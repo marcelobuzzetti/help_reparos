@@ -146,6 +146,11 @@ td.dt-center {
         border: none;
     }
 
+    body{
+        background: none;
+        background-image: none;
+    }
+
     body,.container-fluid,.row,.py-4 {
         font-size: 1rem;
         margin: 0;

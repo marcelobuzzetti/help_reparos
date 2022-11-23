@@ -51,8 +51,6 @@ class ClienteController extends Controller
         $request->validate([
             'nome' => 'required|max:255|min:3',
             'telefone' => 'required|numeric',
-            'rg' => 'required|numeric',
-            'email' => 'required|email|unique:clientes',
             'endereco' => 'required|min:10',
         ]);
 
@@ -114,8 +112,6 @@ class ClienteController extends Controller
         $request->validate([
             'nome' => 'required|max:255|min:3',
             'telefone' => 'required|numeric',
-            'rg' => 'required|numeric',
-            'email' => "required|unique:clientes,email,$cliente->id,id",
             'endereco' => 'required|min:10',
         ]);
 

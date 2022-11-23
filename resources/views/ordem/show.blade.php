@@ -4,14 +4,14 @@
     <div class="content-title mb-4" style="display: none">
         <img class="img-print"
             src="/assets/img/logo.png">
-        <div>
+{{--         <div>
             <div>{{ $empresa->nome_empresa }}</div>
             <div><i class="icofont-phone"></i> {{ $empresa->telefone }}</div>
             <div><i class="icofont-google-map"></i> {{ $empresa->endereco}}</div>
             <div><i class="icofont-email"></i> {{ $empresa->email}}</div>
             <div><i class="icofont-facebook"></i> {{ $empresa->facebook}}</div>
             <div><i class="icofont-brand-whatsapp"></i> {{ $empresa->whatsapp}}</div>
-        </div>
+        </div> --}}
     </div>
     <div class="card-glass">
         <div class="row">

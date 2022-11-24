@@ -46,11 +46,15 @@ class OsController extends Controller
      */
     public function create()
     {
+        $os = new Os;
+        $os = $os->latest()->first();
+        $observacao = $os->observacao;
 
         return view('ordem.create', [
             'marcas' => Marca::all(),
             'clientes' => Cliente::all(),
-            'status' => Status::all()
+            'status' => Status::all(),
+            'observacao' => $observacao
         ]);
     }
 

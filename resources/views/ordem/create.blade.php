@@ -127,7 +127,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
                     <div class="form-group">
                         <strong>Observação</strong>
-                        <textarea name="observacao" class="form-control @error('observacao') is-invalid @enderror">Após 30 dias de aprovado e pronto, o aparelho poderá ser vendido para cobrir despesas.</textarea>
+                        <textarea name="observacao" class="form-control @error('observacao') is-invalid @enderror">{{ $observacao }}</textarea>
                         @error('observacao')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

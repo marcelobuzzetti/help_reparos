@@ -67,7 +67,7 @@
                                     href="/ordens/create">Nova OS?</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="{{ url('/') }}">
+                                <a class="nav-link @if (Request::url() === env('APP_URL')) active @endif" href="{{ url('/') }}">
                                     Buscar OS?
                                 </a>
                             </li>

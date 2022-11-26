@@ -73,7 +73,7 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle @if (Request::url() === config('app.url') . '/clientes') active @endif @if (Request::url() === config('app.url') . '/clientes/create') active @endif"
+                                <a class="nav-link dropdown-toggle {{ request()->is('clientes/*') || request()->is('clientes') ? 'active' : '' }}"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Clientes
                                 </a>

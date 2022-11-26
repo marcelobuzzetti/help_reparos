@@ -67,7 +67,8 @@
                                     href="/ordens/create">Nova OS?</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link @if (Request::url() === config('app.url')) active @endif" href="{{ url('/') }}">
+                                {{-- Other way to get current url --}}
+                                <a class="nav-link {{ request()->is('/') ? 'active' : '' }} " href="{{ url('/') }}">
                                     Buscar OS?
                                 </a>
                             </li>

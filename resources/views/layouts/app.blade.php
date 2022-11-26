@@ -63,61 +63,61 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link @if (Request::url() === env('APP_URL') . '/ordens/create') active @endif"
+                                <a class="nav-link @if (Request::url() === config('app.url') . '/ordens/create') active @endif"
                                     href="/ordens/create">Nova OS?</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link @if (Request::url() === env('APP_URL')) active @endif" href="{{ url('/') }}">
+                                <a class="nav-link @if (Request::url() === config('app.url')) active @endif" href="{{ url('/') }}">
                                     Buscar OS?
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/clientes') active @endif @if (Request::url() === env('APP_URL') . '/clientes/create') active @endif"
+                                <a class="nav-link dropdown-toggle @if (Request::url() === config('app.url') . '/clientes') active @endif @if (Request::url() === config('app.url') . '/clientes/create') active @endif"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Clientes
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/clientes') active @endif"
+                                    <li><a class="dropdown-item @if (Request::url() === config('app.url') . '/clientes') active @endif"
                                             href="/clientes">Lista</a></li>
-                                    <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/clientes/create') active @endif"
+                                    <li><a class="dropdown-item @if (Request::url() === config('app.url') . '/clientes/create') active @endif"
                                             href="/clientes/create">Criar</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/ordens') active @endif @if (Request::url() === env('APP_URL') . '/ordens/create') active @endif"
+                                <a class="nav-link dropdown-toggle @if (Request::url() === config('app.url') . '/ordens') active @endif @if (Request::url() === config('app.url') . '/ordens/create') active @endif"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     OS
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/ordens') active @endif"
+                                    <li><a class="dropdown-item @if (Request::url() === config('app.url') . '/ordens') active @endif"
                                             href="/ordens">Lista</a></li>
-                                    <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/ordens/create') active @endif"
+                                    <li><a class="dropdown-item @if (Request::url() === config('app.url') . '/ordens/create') active @endif"
                                             href="/ordens/create">Criar</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/marcas') active @endif @if (Request::url() === env('APP_URL') . '/marcas/create') active @endif"
+                                <a class="nav-link dropdown-toggle @if (Request::url() === config('app.url') . '/marcas') active @endif @if (Request::url() === config('app.url') . '/marcas/create') active @endif"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Marcas
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/marcas') active @endif"
+                                    <li><a class="dropdown-item @if (Request::url() === config('app.url') . '/marcas') active @endif"
                                             href="/marcas">Lista</a></li>
-                                    <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/marcas/create') active @endif"
+                                    <li><a class="dropdown-item @if (Request::url() === config('app.url') . '/marcas/create') active @endif"
                                             href="/marcas/create">Criar</a></li>
                                 </ul>
                             </li>
                             @if (Auth::user()->is_admin)
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle @if (Request::url() === env('APP_URL') . '/usuarios') active @endif @if (Request::url() === env('APP_URL') . '/usuarios/create') active @endif"
+                                    <a class="nav-link dropdown-toggle @if (Request::url() === config('app.url') . '/usuarios') active @endif @if (Request::url() === config('app.url') . '/usuarios/create') active @endif"
                                         href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Usuários
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/usuarios') active @endif"
+                                        <li><a class="dropdown-item @if (Request::url() === config('app.url') . '/usuarios') active @endif"
                                                 href="/usuarios">Lista</a></li>
-                                        <li><a class="dropdown-item @if (Request::url() === env('APP_URL') . '/usuarios/create') active @endif"
+                                        <li><a class="dropdown-item @if (Request::url() === config('app.url') . '/usuarios/create') active @endif"
                                                 href="/usuarios/create">Criar</a></li>
                                     </ul>
                                 </li>

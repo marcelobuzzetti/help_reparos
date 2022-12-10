@@ -148,7 +148,7 @@ class MarcaController extends Controller
             if(stripos($e->getMessage(), 'FOREIGN KEY')) {
                 $message = [
                     "type" => "error",
-                    "message" => "Não é possível excluir marca usada em Ordens de Serviço!!!"
+                    "message" => "Não é possível excluir marca usada em Ordem de Serviço!!!"
                 ];
             } else {
                 $message = [

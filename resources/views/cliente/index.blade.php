@@ -138,7 +138,14 @@
                         extend: 'colvis',
                         text: 'Colunas Visíveis',
 
-                    }
+                    },
+                    {
+                        className: 'btn-export border-0 btn-outline-export',
+                        text: "<a class='btn btn-primary' href='/clientes/create'>Criar Cliente</a>",
+                        action: function ( e, dt, button, config ) {
+                            window.location = `<?php echo env('APP_URL'); ?>/clientes/create`;
+                        }
+                    },
                 ],
                 /* buttons: [
                     'copy', 'excel', 'pdf', 'print'

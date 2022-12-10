@@ -68,7 +68,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Acessórios:</strong>
-                    <div style="white-space: pre-wrap;">{{ $ordem->acessorios ?  $ordem->acessorios : 'Não há'}}</div>
+                    <div style="white-space: pre-wrap;">{{ $ordem->acessorios ?  $ordem->acessorios : 'Nenhum'}}</div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -218,7 +218,7 @@
             <div class="">
                 <div class="form-group">
                     <strong>Acessórios:</strong>
-                    <div style="white-space: pre-wrap;">{{ $ordem->acessorios }}</div>
+                    <div style="white-space: pre-wrap;">{{ $ordem->acessorios ?  $ordem->acessorios : 'Nenhum'}}</div>
                 </div>
             </div>
         </div>
@@ -316,7 +316,7 @@
                 <div class="">
                     <div class="form-group">
                         <strong>Acessórios:</strong>
-                        <div style="white-space: pre-wrap;">{{ $ordem->acessorios }}</div>
+                        <div style="white-space: pre-wrap;">{{ $ordem->acessorios ?  $ordem->acessorios : 'Nenhum'}}</div>
                     </div>
                 </div>
             </div>

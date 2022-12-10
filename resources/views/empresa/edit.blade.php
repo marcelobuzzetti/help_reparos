@@ -84,6 +84,15 @@
                         @enderror
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                    <div class="form-group">
+                        <strong>Observação</strong>
+                        <textarea name="observacao" class="form-control @error('observacao') is-invalid @enderror">{{ old('observacao') ? old('observacao') : $empresa->observacao }}</textarea>
+                        @error('observacao')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-2 text-center d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary d-flex-inline"><i class="icofont-save"></i> Atualizar</button>
                 </div>

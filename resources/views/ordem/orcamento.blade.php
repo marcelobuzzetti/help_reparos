@@ -62,8 +62,8 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Observação:</strong>
-                    <div style="white-space: pre-wrap;">{{ $ordem->observacao }}</div>
+                    <strong>Acessórios:</strong>
+                    <div style="white-space: pre-wrap;">{{ $ordem->acessorios }}</div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

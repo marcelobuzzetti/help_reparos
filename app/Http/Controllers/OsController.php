@@ -47,14 +47,11 @@ class OsController extends Controller
     public function create()
     {
         $os = new Os;
-        $os = $os->latest()->first();
-        $observacao = $os->observacao;
 
         return view('ordem.create', [
             'marcas' => Marca::all(),
             'clientes' => Cliente::all(),
-            'status' => Status::all(),
-            'observacao' => $observacao
+            'status' => Status::all()
         ]);
     }
 
@@ -80,7 +77,6 @@ class OsController extends Controller
             'modelo' => 'required',
             'estado_aparelho' => 'required',
             'defeito_alegado' => 'required',
-            /* 'observacao' => 'required', */
         ]);
 
         $clienteNome = $request->old('clienteNome');
@@ -92,7 +88,7 @@ class OsController extends Controller
         $modelo = $request->old('modelo');
         $estado_aparelho = $request->old('estado_aparelho');
         $defeito_alegado = $request->old('defeito_alegado');
-        $observacao = $request->old('observacao');
+        $acessorios = $request->old('acessorios');
         $laudo_tecnico = $request->old('laudo_tecnico');
 
         try {
@@ -187,7 +183,7 @@ class OsController extends Controller
         $modelo = $request->old('modelo');
         $estado_aparelho = $request->old('estado_aparelho');
         $defeito_alegado = $request->old('defeito_alegado');
-        $observacao = $request->old('observacao');
+        $acessorios = $request->old('acessorios');
         $valor_servico = $request->old('valor_servico');
         $laudo_tecnico = $request->old('laudo_tecnico');
 

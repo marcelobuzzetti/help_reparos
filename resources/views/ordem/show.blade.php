@@ -68,6 +68,12 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Acessórios:</strong>
+                    <div style="white-space: pre-wrap;">{{ $ordem->acessorios }}</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Laudo Técnico:</strong>
                     <div style="white-space: pre-wrap;">{{ $ordem->laudo_tecnico }}</div>
                 </div>
@@ -75,7 +81,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Observação:</strong>
-                    <div style="white-space: pre-wrap;">{{ $ordem->observacao }}</div>
+                    <div style="white-space: pre-wrap;">{{ $empresa->observacao }}</div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

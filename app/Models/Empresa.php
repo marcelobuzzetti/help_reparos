@@ -17,6 +17,7 @@ class Empresa extends Model
         'email',
         'facebook',
         'whatsapp',
+        'observacao',
     ];
 
     protected $table = 'empresas';

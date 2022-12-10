@@ -38,8 +38,20 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Endereço:</strong>
+                    <strong>Whataspp:</strong>
                     {{ $empresa->whatsapp }}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Endereço:</strong>
+                    {{ $empresa->endereco }}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Observação:</strong>
+                    <div style="white-space: pre-wrap;">{{ $empresa->observacao }}</div>
                 </div>
             </div>
             <div class="row mt-2">

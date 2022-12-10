@@ -71,6 +71,15 @@
                         @enderror
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                    <div class="form-group">
+                        <strong>Acessórios</strong>
+                        <textarea name="acessorios" class="form-control @error('acessorios') is-invalid @enderror">{{ old('acessorios') ? old('acessorios') : $ordem->acessorios }}</textarea>
+                        @error('acessorios')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
                 {{-- <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
                     <div class="form-group">
                         <strong>Defeito Alegado</strong>
@@ -134,15 +143,6 @@
                         <strong>Laudo Técnico</strong>
                         <textarea name="laudo_tecnico" class="form-control @error('laudo_tecnico') is-invalid @enderror">{{ old('laudo_tecnico') ? old('laudo_tecnico') : $ordem->laudo_tecnico }}</textarea>
                         @error('laudo_tecnico')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
-                    <div class="form-group">
-                        <strong>Observação</strong>
-                        <textarea name="observacao" class="form-control @error('observacao') is-invalid @enderror">{{ old('observacao') ? old('observacao') : $ordem->observacao }}</textarea>
-                        @error('observacao')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

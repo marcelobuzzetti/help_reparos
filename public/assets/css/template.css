@@ -131,6 +131,10 @@ td.dt-center {
     width: 1px;
 }
 
+.print{
+    display: none;
+}
+
 @media print {
     .btn,
     .navbar,
@@ -154,11 +158,6 @@ td.dt-center {
 
     body,.container-fluid,.row,.py-4 {
         font-size: 1rem;
-        margin: 0;
-        padding: 0;
-    }
-
-    main {
         margin: 0;
         padding: 0;
     }

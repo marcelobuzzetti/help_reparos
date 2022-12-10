@@ -127,29 +127,29 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="apagarCliente" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <div class="mb-3">
-                                <p>Tem certeza que deseja apagar a OS nº <strong class="fs-3"><span
-                                            id="nomeClienteModal"></span></strong>?</p>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i
-                                class="icofont-close"></i> Fechar</button>
-                        <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i>
-                            Apagar</button>
-                        </form>
-                    </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="apagarCliente" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="mb-3">
+                            <p>Tem certeza que deseja apagar a OS nº <strong class="fs-3"><span
+                                        id="nomeClienteModal"></span></strong>?</p>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i
+                            class="icofont-close"></i> Fechar</button>
+                    <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i>
+                        Apagar</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -248,102 +248,101 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="dotted">
-        <div class="row mt-1">
-            <div class="pull-left d-flex justify-content-center">
-                <h2>OS Nº {{ $ordem->id }}</h2>
+        <div class="dotted">
+            <div class="row mt-1">
+                <div class="pull-left d-flex justify-content-center">
+                    <h2>OS Nº {{ $ordem->id }}</h2>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="">
+                    <div class="form-group">
+                        <strong>Status:</strong>
+                        {{ $ordem->status->first()->descricao }}
+                    </div>
+                </div>
+                <div class="">
+                    <div class="form-group">
+                        <strong>Entrada:</strong>
+                        {{ date('d/m/Y', strtotime($ordem->entrada)) }}
+                    </div>
+                </div>
+                <div class="">
+                    <div class="form-group">
+                        <strong>Cliente:</strong>
+                        {{ $ordem->cliente->first()->nome }}
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="">
+                    <div class="form-group">
+                        <strong>Marca:</strong>
+                        {{ $ordem->marca->first()->descricao }}
+                    </div>
+                </div>
+                <div class="">
+                    <div class="form-group">
+                        <strong>Modelo:</strong>
+                        {{ $ordem->modelo }}
+                    </div>
+                </div>
+                <div class="">
+                    <div class="form-group">
+                        <strong>Tipo do Aparelho:</strong>
+                        {{ $ordem->tipo_aparelho }}
+                    </div>
+                </div>
+                <div class="">
+                    <div class="form-group">
+                        <strong>Estado do Aparelho:</strong>
+                        {{ $ordem->estado_aparelho }}
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="">
+                    <div class="form-group">
+                        <strong>Defeito Alegado:</strong>
+                        <div style="white-space: pre-wrap;">{{ $ordem->defeito_alegado }}</div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="form-group">
+                        <strong>Acessórios:</strong>
+                        <div style="white-space: pre-wrap;">{{ $ordem->acessorios }}</div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="form-group">
+                        <strong>Laudo Técnico:</strong>
+                        <div style="white-space: pre-wrap;">{{ $ordem->laudo_tecnico }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="">
+                    <div class="form-group">
+                        <strong>Valor do Serviço:</strong>
+                        {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <strong>Entregue para:</strong>
+                        {{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . ' em ' . date('d/m/Y', strtotime($ordem->retirada)) : 'Não entregue' }}
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="">
+                    <div class="form-group">
+                        <strong>Observação:</strong>
+                        <div style="white-space: pre-wrap;">{{ $empresa->observacao }}</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="d-flex justify-content-between">
-            <div class="">
-                <div class="form-group">
-                    <strong>Status:</strong>
-                    {{ $ordem->status->first()->descricao }}
-                </div>
-            </div>
-            <div class="">
-                <div class="form-group">
-                    <strong>Entrada:</strong>
-                    {{ date('d/m/Y', strtotime($ordem->entrada)) }}
-                </div>
-            </div>
-            <div class="">
-                <div class="form-group">
-                    <strong>Cliente:</strong>
-                    {{ $ordem->cliente->first()->nome }}
-                </div>
-            </div>
-        </div>
-        <div class="d-flex justify-content-between">
-            <div class="">
-                <div class="form-group">
-                    <strong>Marca:</strong>
-                    {{ $ordem->marca->first()->descricao }}
-                </div>
-            </div>
-            <div class="">
-                <div class="form-group">
-                    <strong>Modelo:</strong>
-                    {{ $ordem->modelo }}
-                </div>
-            </div>
-            <div class="">
-                <div class="form-group">
-                    <strong>Tipo do Aparelho:</strong>
-                    {{ $ordem->tipo_aparelho }}
-                </div>
-            </div>
-            <div class="">
-                <div class="form-group">
-                    <strong>Estado do Aparelho:</strong>
-                    {{ $ordem->estado_aparelho }}
-                </div>
-            </div>
-        </div>
-        <div class="d-flex justify-content-between">
-            <div class="">
-                <div class="form-group">
-                    <strong>Defeito Alegado:</strong>
-                    <div style="white-space: pre-wrap;">{{ $ordem->defeito_alegado }}</div>
-                </div>
-            </div>
-            <div class="">
-                <div class="form-group">
-                    <strong>Acessórios:</strong>
-                    <div style="white-space: pre-wrap;">{{ $ordem->acessorios }}</div>
-                </div>
-            </div>
-            <div class="">
-                <div class="form-group">
-                    <strong>Laudo Técnico:</strong>
-                    <div style="white-space: pre-wrap;">{{ $ordem->laudo_tecnico }}</div>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex justify-content-between">
-            <div class="">
-                <div class="form-group">
-                    <strong>Valor do Serviço:</strong>
-                    {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6">
-                <div class="form-group">
-                    <strong>Entregue para:</strong>
-                    {{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . ' em ' . date('d/m/Y', strtotime($ordem->retirada)) : 'Não entregue' }}
-                </div>
-            </div>
-        </div>
-        <div class="d-flex justify-content-between">
-            <div class="">
-                <div class="form-group">
-                    <strong>Observação:</strong>
-                    <div style="white-space: pre-wrap;">{{ $empresa->observacao }}</div>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
     @if (isset($print))
         <script type="text/javascript">

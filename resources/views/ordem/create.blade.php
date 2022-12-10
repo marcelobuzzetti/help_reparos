@@ -59,20 +59,20 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
-                    <div class="form-group">
-                        <strong>Acessórios</strong>
-                        <textarea name="acessorios" class="form-control @error('acessorios') is-invalid @enderror">{{ $acessorios }}</textarea>
-                        @error('acessorios')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                     <div class="form-group">
                         <strong>Estado do Aparelho</strong>
                         <input type="text" name="estado_aparelho" class="form-control @error('estado_aparelho') is-invalid @enderror" placeholder="Estado do Aparelho" value="{{ old('estado_aparelho') }}">
                         @error('estado_aparelho')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                    <div class="form-group">
+                        <strong>Acessórios</strong>
+                        <textarea name="acessorios" class="form-control @error('acessorios') is-invalid @enderror">{{ old('acessorios') }}</textarea>
+                        @error('acessorios')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

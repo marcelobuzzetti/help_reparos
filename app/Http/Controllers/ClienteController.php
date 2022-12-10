@@ -162,7 +162,7 @@ class ClienteController extends Controller
             if (stripos($e->getMessage(), 'FOREIGN KEY')) {
                 $message = [
                     "type" => "error",
-                    "message" => "Não é possível excluir cliente usado em Ordens de Serviço!!!"
+                    "message" => "Não é possível excluir cliente com Ordem de Serviço cadastrada!!!"
                 ];
             } else {
                 $message = [

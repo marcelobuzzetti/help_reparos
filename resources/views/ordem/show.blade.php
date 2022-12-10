@@ -160,72 +160,74 @@
                 <h2>OS Nº {{ $ordem->id }}</h2>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Status:</strong>
                     {{ $ordem->status->first()->descricao }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Entrada:</strong>
                     {{ date('d/m/Y', strtotime($ordem->entrada)) }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Cliente:</strong>
                     {{ $ordem->cliente->first()->nome }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Marca:</strong>
                     {{ $ordem->marca->first()->descricao }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Modelo:</strong>
                     {{ $ordem->modelo }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Tipo do Aparelho:</strong>
                     {{ $ordem->tipo_aparelho }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Estado do Aparelho:</strong>
                     {{ $ordem->estado_aparelho }}
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Defeito Alegado:</strong>
                     <div style="white-space: pre-wrap;">{{ $ordem->defeito_alegado }}</div>
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Acessórios:</strong>
                     <div style="white-space: pre-wrap;">{{ $ordem->acessorios }}</div>
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Laudo Técnico:</strong>
                     <div style="white-space: pre-wrap;">{{ $ordem->laudo_tecnico }}</div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Valor do Serviço:</strong>
                     {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
@@ -238,8 +240,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Observação:</strong>
                     <div style="white-space: pre-wrap;">{{ $empresa->observacao }}</div>
@@ -247,78 +249,80 @@
             </div>
         </div>
     </div>
-    <div class="dotted mt-1">
-        <div class="row">
+    <div class="dotted">
+        <div class="row mt-1">
             <div class="pull-left d-flex justify-content-center">
                 <h2>OS Nº {{ $ordem->id }}</h2>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Status:</strong>
                     {{ $ordem->status->first()->descricao }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Entrada:</strong>
                     {{ date('d/m/Y', strtotime($ordem->entrada)) }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Cliente:</strong>
                     {{ $ordem->cliente->first()->nome }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Marca:</strong>
                     {{ $ordem->marca->first()->descricao }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Modelo:</strong>
                     {{ $ordem->modelo }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Tipo do Aparelho:</strong>
                     {{ $ordem->tipo_aparelho }}
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Estado do Aparelho:</strong>
                     {{ $ordem->estado_aparelho }}
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Defeito Alegado:</strong>
                     <div style="white-space: pre-wrap;">{{ $ordem->defeito_alegado }}</div>
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Acessórios:</strong>
                     <div style="white-space: pre-wrap;">{{ $ordem->acessorios }}</div>
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="">
                 <div class="form-group">
                     <strong>Laudo Técnico:</strong>
                     <div style="white-space: pre-wrap;">{{ $ordem->laudo_tecnico }}</div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Valor do Serviço:</strong>
                     {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
@@ -331,8 +335,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="d-flex justify-content-between">
+            <div class="">
                 <div class="form-group">
                     <strong>Observação:</strong>
                     <div style="white-space: pre-wrap;">{{ $empresa->observacao }}</div>

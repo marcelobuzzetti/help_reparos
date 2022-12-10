@@ -140,6 +140,7 @@ td.dt-center {
 
     .content-title {
         display: flex !important;
+        font-size: 0.8rem;
     }
 
     .card-glass {
@@ -168,11 +169,19 @@ td.dt-center {
 
     .print{
         display: block;
-        font-size: 0.6rem;
+        font-size: 0.8rem;
+        margin: 0 10px;
     }
 
     .dotted{
         border-top-style: dotted;
+        font-size: 0.8rem;
+        margin: 0 10px;
+    }
+
+    .img-print{
+        height: 100px;
+        width: 100px;
     }
 }
 

@@ -59,6 +59,8 @@ Route::post('buscarOs', [OsController::class, 'buscarOs'])->name('buscarOs');
 
 Route::get('imprimirOs', [OsController::class, 'imprimirOs'])->name('imprimirOs');
 
+Route::get('retornoEmGarantia', [OsController::class, 'retornoEmGarantia'])->name('retornoEmGarantia');
+
 });
 
 Route::get('/orcamento/{id}', [OsController::class, 'orcamento'])->name('orcamento');

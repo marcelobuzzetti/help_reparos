@@ -413,4 +413,29 @@ class OsController extends Controller
         $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($request->id);
         return view('ordem.show',compact('ordem'))->with('print', TRUE);
     }
+
+    public function retornoEmGarantia(Request $request)
+    {
+        $os = new Os;
+        $os = $os->findOrFail($request->id);
+        $os->status_id = 6;
+        $os->retirada = null;
+        $os->entregue_para = null;
+
+        try {
+            $os->update($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "OS Nº $request->id retornou com sucesso!!!"
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return redirect()->route('ordens.index')
+                        ->with('message',$message);
+    }
 }

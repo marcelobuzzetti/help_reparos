@@ -79,6 +79,12 @@ class OsController extends Controller
             'defeito_alegado' => 'required',
         ]);
 
+        if($request->garantia){
+            $request->validate([
+                'garantia' => 'numeric',
+            ]);
+        }
+
         $clienteNome = $request->old('clienteNome');
         $marcaDescricao = $request->old('marcaDescricao');
         $cliente_id = $request->old('cliente_id');
@@ -90,6 +96,7 @@ class OsController extends Controller
         $defeito_alegado = $request->old('defeito_alegado');
         $acessorios = $request->old('acessorios');
         $laudo_tecnico = $request->old('laudo_tecnico');
+        $garantia = $request->old('garantia');
 
         try {
             $os = Os::create($request->all());

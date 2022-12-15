@@ -89,6 +89,14 @@
                     {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
                 </div>
             </div>
+            @if ($ordem->status_id == 4 || $ordem->status_id == 5)
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Garantia:</strong>
+                    {{ $ordem->garantia ? $ordem->garantia . " dias" : "Não lançado"}}
+                </div>
+            </div>
+            @endif
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Entregue para:</strong>
@@ -237,7 +245,15 @@
                     {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6">
+            @if ($ordem->status_id == 4 || $ordem->status_id == 5)
+            <div class="">
+                <div class="form-group">
+                    <strong>Garantia:</strong>
+                    {{ $ordem->garantia ? $ordem->garantia . " dias" : "Não lançado"}}
+                </div>
+            </div>
+            @endif
+            <div class="">
                 <div class="form-group">
                     <strong>Entregue para:</strong>
                     {{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . ' em ' . date('d/m/Y', strtotime($ordem->retirada)) : 'Não entregue' }}
@@ -335,7 +351,15 @@
                         {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
+                @if ($ordem->status_id == 4 || $ordem->status_id == 5)
+                <div class="">
+                    <div class="form-group">
+                        <strong>Garantia:</strong>
+                        {{ $ordem->garantia ? $ordem->garantia . " dias" : "Não lançado"}}
+                    </div>
+                </div>
+                @endif
+                <div class="">
                     <div class="form-group">
                         <strong>Entregue para:</strong>
                         {{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . ' em ' . date('d/m/Y', strtotime($ordem->retirada)) : 'Não entregue' }}

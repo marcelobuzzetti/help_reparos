@@ -68,6 +68,12 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Garantia:</strong>
+                    {{ $ordem->garantia }}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Status:</strong>
                     {{ $ordem->status->first()->descricao }}
                 </div>

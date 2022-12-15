@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
+                    <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                         <div class="form-group">
                             <strong>Valor do Serviço</strong>
                             <input type="text" id="valor_servico" name="valor_servico" class="form-control @error('valor_servico') is-invalid @enderror" placeholder="Valor Servico" value="{{ old('valor_servico') ? old('valor_servico') : $ordem->valor_servico }}">
@@ -118,7 +118,16 @@
                         </div>
                     </div>
                 @endif
-                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
+                    <div class="form-group">
+                        <strong>Garantia</strong>
+                        <input type="number" id="garantia" name="garantia" class="form-control @error('garantia') is-invalid @enderror" placeholder="Garantia" value="{{ old('garantia') ? old('garantia') : $ordem->garantia }}">
+                        @error('garantia')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                     <div class="form-group">
                         <strong>Status</strong>
                         <select name="status_id" class="form-control @error('status_id') is-invalid @enderror">

@@ -62,6 +62,12 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Garantia:</strong>
+                    {{ $ordem->garantia . " dias"}}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <form action="{{ route('ordens.entrega', $ordem->id) }}" method="POST">
                     @csrf
                     @method('PUT')

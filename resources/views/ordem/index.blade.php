@@ -40,7 +40,7 @@
                                 <div class="d-flex flex-wrap justify-content-evenly">
                                     <div class="p-2 w-50">
                                         <a class="btn btn-info flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.show', $ordem->id) }}"><i class="icofont-search-1"></i> Motrar</a>
+                                            href="{{ route('ordens.show', $ordem->id) }}"><i class="icofont-search-1"></i> Mostrar</a>
                                     </div>
 {{--                                     <div class="p-2 w-100">
                                         <a class="btn btn-success flex-inline flex-grow-1 w-100"

@@ -93,7 +93,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Garantia:</strong>
-                    {{ $ordem->garantia ? $ordem->garantia . " dias" : "Não lançado"}}
+                    {{ $empresa->garantia ? $empresa->garantia . " Dias" : "Não lançado"}}
                 </div>
             </div>
             @endif
@@ -249,7 +249,7 @@
             <div class="">
                 <div class="form-group">
                     <strong>Garantia:</strong>
-                    {{ $ordem->garantia ? $ordem->garantia . " dias" : "Não lançado"}}
+                    {{ $empresa->garantia ? $empresa->garantia . " Dias" : "Não lançado"}}
                 </div>
             </div>
             @endif
@@ -355,7 +355,7 @@
                 <div class="">
                     <div class="form-group">
                         <strong>Garantia:</strong>
-                        {{ $ordem->garantia ? $ordem->garantia . " dias" : "Não lançado"}}
+                        {{ $empresa->garantia ? $empresa->garantia . " Dias" : "Não lançado"}}
                     </div>
                 </div>
                 @endif

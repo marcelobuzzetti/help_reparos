@@ -18,7 +18,6 @@ class Os extends Model
         'estado_aparelho',
         'defeito_alegado',
         'acessorios',
-        'garantia',
         'laudo_tecnico',
         'valor_servico',
         'entregue_para',

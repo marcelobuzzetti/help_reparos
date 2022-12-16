@@ -18,6 +18,7 @@ class Empresa extends Model
         'facebook',
         'whatsapp',
         'observacao',
+        'garantia',
     ];
 
     protected $table = 'empresas';

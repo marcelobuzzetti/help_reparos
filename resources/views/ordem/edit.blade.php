@@ -120,15 +120,6 @@
                 @endif
                 <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
                     <div class="form-group">
-                        <strong>Garantia</strong>
-                        <input type="number" id="garantia" name="garantia" class="form-control @error('garantia') is-invalid @enderror" placeholder="Garantia" value="{{ old('garantia') ? old('garantia') : $ordem->garantia }}">
-                        @error('garantia')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
-                    <div class="form-group">
                         <strong>Status</strong>
                         <select name="status_id" class="form-control @error('status_id') is-invalid @enderror">
                             <option selected disabled>Selecione a status</option>

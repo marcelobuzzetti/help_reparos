@@ -14,7 +14,7 @@
             @csrf
             @method('PUT')
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Nome</strong>
                         <input type="text" name="nome_empresa" class="form-control @error('nome_empresa') is-invalid @enderror"
@@ -24,7 +24,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Nome Abreviado</strong>
                         <input type="text" name="nome" class="form-control @error('nome') is-invalid @enderror"
@@ -34,7 +34,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Endereço</strong>
                         <input type="text" name="endereco" class="form-control @error('endereco') is-invalid @enderror"
@@ -44,7 +44,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Telefone</strong>
                         <input type="text" name="telefone" class="form-control @error('telefone') is-invalid @enderror"
@@ -54,7 +54,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Email</strong>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
@@ -64,7 +64,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Facebook</strong>
                         <input type="text" name="facebook" class="form-control @error('facebook') is-invalid @enderror"
@@ -74,12 +74,22 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>WhatsApp</strong>
                         <input type="text" name="whatsapp" class="form-control @error('whatsapp') is-invalid @enderror"
                             placeholder="Digite o WhatsApp da Empresa" value="{{ old('whatsapp') ? old('whatsapp') : $empresa->whatsapp }}">
                         @error('whatsapp')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
+                    <div class="form-group">
+                        <strong>Garantia</strong>
+                        <input type="text" name="garantia" class="form-control @error('garantia') is-invalid @enderror"
+                            placeholder="Digite a garantia da Empresa em Dias" value="{{ old('garantia') ? old('garantia') : $empresa->garantia }}">
+                        @error('garantia')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

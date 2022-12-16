@@ -78,6 +78,7 @@ class EmpresaController extends Controller
             'endereco' => 'required|min:10',
             'facebook' => 'required|min:10',
             'whatsapp' => 'required',
+            'garantia' => 'required',
         ]);
 
         $nome_empresa = $request->old('nome_empresa');
@@ -87,6 +88,7 @@ class EmpresaController extends Controller
         $endereco = $request->old('endereco');
         $facebook = $request->old('facebook');
         $whatsapp = $request->old('whatsapp');
+        $garantia = $request->old('garantia');
 
         try {
             $empresa->update($request->all());

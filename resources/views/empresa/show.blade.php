@@ -51,7 +51,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Garantia:</strong>
-                    {{ $empresa->garantia }} Dias
+                    {{ $empresa->garantia ? $empresa->garantia . " Dias" : "Não lançado" }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

@@ -366,14 +366,14 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-between">
+            {{-- <div class="d-flex justify-content-between">
                 <div class="">
                     <div class="form-group">
                         <strong>Observação:</strong>
                         <div style="white-space: pre-wrap;">{{ $empresa->observacao }}</div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     @if (isset($print))

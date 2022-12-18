@@ -238,7 +238,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between flex-wrap">
             <div class="">
                 <div class="form-group">
                     <strong>Valor do Serviço:</strong>
@@ -344,7 +344,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between flex-wrap">
                 <div class="">
                     <div class="form-group">
                         <strong>Valor do Serviço:</strong>

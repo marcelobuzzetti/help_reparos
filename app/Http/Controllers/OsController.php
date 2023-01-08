@@ -123,7 +123,7 @@ class OsController extends Controller
         if($ordem->is_arquivado) {
             $message = [
                 "type" => "error",
-                "message" => "OS nº $ordem->id está arquivada!!!"
+                "message" => "OS nº $ordem->id está arquivada!!!<br></div><strong>Desarquive a OS clicando <br><div><a class='btn btn-dark' href=". url("/desarquivarOS?id=$ordem->id") .">AQUI</a>!!!</strong>"
             ];
             return redirect()->route('home')
                         ->with('message',$message);

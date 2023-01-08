@@ -49,7 +49,11 @@ Route::resource('empresas', EmpresaController::class)->except([
 
 Route::get('/ordens/{id}/entrega', [OsController::class, 'entregaShow'])->name('ordens.orcamento');
 
+Route::get('/ordens/{id}/recusou', [OsController::class, 'recusouShow'])->name('ordens.recusou');
+
 Route::put('/entrega/{id}', [OsController::class, 'entrega'])->name('ordens.entrega');
+
+Route::put('/recusou/{id}', [OsController::class, 'recusou'])->name('ordens.recusouOrcamento');
 
 Route::get('autocompletecliente', [ClienteController::class, 'autocomplete'])->name('autocompletecliente');
 

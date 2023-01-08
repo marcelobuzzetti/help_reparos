@@ -262,6 +262,19 @@ class OsController extends Controller
         ]);
     }
 
+    public function recusouShow($id)
+    {
+        $ordem = new Os;
+        $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($id);
+        $clientes = Cliente::all();
+        $marcas = Marca::all();
+        $status = Status::all();
+        return view('ordem.recusou',[
+            'ordem' => $ordem,
+            'status' => $status
+        ]);
+    }
+
     public function orcamento($os)
     {
         $ordem = new Os;
@@ -353,6 +366,49 @@ class OsController extends Controller
             /* 'status_id' => $data['status_id'], */
             'retirada' => $date,
             'status_id' => 5
+        ]   );
+            $message = [
+                "type" => "success",
+                "message" => "Ordem de Serviço nº $request->id entregue para $request->entregue_para!!!."
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return redirect()->route('ordens.index')
+                        ->with('message', $message);
+    }
+
+    public function recusou(Request $request)
+    {
+
+
+        $request->validate([
+            'id' => 'required|exists:ordens,id',
+            'entregue_para' => 'required',
+     /*        'status_id' => 'required|exists:status,id', */
+        ]);
+
+        $entregue_para = $request->old('entregue_para');
+        $status_id = $request->old('status_id');
+        $data = $request->all();
+        /* $ordem = new Os;
+        $ordem = $ordem->findOrFail($request->id); */
+
+        $date = date('Y-m-d');
+
+        /* $ordem->update($data); */
+
+        try {
+            DB::table('ordens')
+              ->where('id', $data['id'])
+              ->update(['entregue_para' => $data['entregue_para'],
+            /* 'status_id' => $data['status_id'], */
+            'retirada' => $date,
+            'status_id' => 7
         ]   );
             $message = [
                 "type" => "success",

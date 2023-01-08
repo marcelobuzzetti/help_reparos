@@ -64,16 +64,21 @@
                                             href="{{ route('retornoEmGarantia', ['id' =>$ordem->id]) }}"><i class="icofont-exit icofont-rotate-180"></i> Retorno em Garantia</a>
                                     </div>
                                     @endif
-                                    @if ($ordem->status_id != 5)
+                                    @if ($ordem->status_id != 5 && $ordem->status_id != 7)
                                     <div class="p-2 w-50">
                                         <a class="btn btn-success flex-inline flex-grow-1 w-100"
                                             href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-exit"></i> Retirada</a>
+                                    </div>
+                                    <div class="p-2 w-50">
+                                        <a class="btn btn-outline-danger flex-inline flex-grow-1 w-100"
+                                            href="{{ route('ordens.recusou', $ordem->id) }}"><i class="icofont-exit"></i> Recusou Orçamento</a>
                                     </div>
                                     <div class="p-2 w-50">
                                         <button class="btn btn-danger flex-inline flex-grow-1 w-100" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
                                             data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
                                     </div>
+                                    @endif
                                     @if ($ordem->is_arquivado)
                                     <div class="p-2 w-50">
                                         <a class="btn btn-dark flex-inline flex-grow-1 w-100"
@@ -84,7 +89,6 @@
                                         <a class="btn btn-dark flex-inline flex-grow-1 w-100"
                                             href="{{ route('arquivarOS', ['id' =>$ordem->id]) }}"><i class="icofont-archive"></i> Arquivar</a>
                                     </div>
-                                    @endif
                                     @endif
                                 </div>
                             </td>

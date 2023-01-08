@@ -63,6 +63,10 @@ Route::get('retornoEmGarantia', [OsController::class, 'retornoEmGarantia'])->nam
 
 Route::get('arquivarOS', [OsController::class, 'arquivarOS'])->name('arquivarOS');
 
+Route::get('desarquivarOS', [OsController::class, 'desarquivarOS'])->name('desarquivarOS');
+
+Route::get('arquivadas', [OsController::class, 'arquivadas'])->name('arquivadas');
+
 });
 
 Route::get('/orcamento/{id}', [OsController::class, 'orcamento'])->name('orcamento');

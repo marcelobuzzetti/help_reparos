@@ -74,10 +74,17 @@
                                             data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
                                             data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
                                     </div>
+                                    @if ($ordem->is_arquivado)
+                                    <div class="p-2 w-50">
+                                        <a class="btn btn-dark flex-inline flex-grow-1 w-100"
+                                            href="{{ route('desarquivarOS', ['id' =>$ordem->id]) }}"><i class="icofont-history"></i> Desarquivar</a>
+                                    </div>
+                                    @else
                                     <div class="p-2 w-50">
                                         <a class="btn btn-dark flex-inline flex-grow-1 w-100"
                                             href="{{ route('arquivarOS', ['id' =>$ordem->id]) }}"><i class="icofont-archive"></i> Arquivar</a>
                                     </div>
+                                    @endif
                                     @endif
                                 </div>
                             </td>

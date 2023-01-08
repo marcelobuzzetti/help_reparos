@@ -24,7 +24,7 @@ class OsController extends Controller
     {
         /* $ordens = Os::osMarcaCliente(); */
         $ordem = new Os;
-        $ordens = $ordem->with(['Cliente','Marca','Status'])->WhereNull('is_arquivado')->get();
+        $ordens = $ordem->with(['Cliente','Marca','Status'])->WhereNull('is_arquivado')->orWhere('is_arquivado', '=', false)->get();
 
         return view('ordem.index', [
             'ordens' => $ordens
@@ -463,6 +463,53 @@ class OsController extends Controller
 
         return redirect()->route('ordens.index')
                         ->with('message',$message);
+    }
+
+    public function desarquivarOS(Request $request)
+    {
+        $os = new Os;
+        $os = $os->findOrFail($request->id);
+        $os->is_arquivado = false;
+
+        try {
+            $os->update($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "OS Nº $request->id desarquivada com sucesso!!!"
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return redirect()->route('ordens.index')
+                        ->with('message',$message);
+    }
+
+                /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function arquivadas()
+    {
+        /* $ordens = Os::osMarcaCliente(); */
+        $ordem = new Os;
+        $ordens = $ordem->with(['Cliente','Marca','Status'])->where('is_arquivado', '=', 1)->get();
+
+        return view('ordem.index', [
+            'ordens' => $ordens
+        ]);
+
+        /*
+        Com paginação
+
+        $clientes = Cliente::latest()->paginate(5);
+
+        return view('cliente.index',compact('clientes'))
+            ->with('i', (request()->input('page', 1) - 1) * 5); */
     }
 
 }

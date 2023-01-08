@@ -73,6 +73,12 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
+                                {{-- Other way to get current url --}}
+                                <a class="nav-link {{ request()->is('/arquivadas') ? 'active' : '' }} " href="{{ url('/arquivadas') }}">
+                                    OS Arquivadas
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle {{ request()->is('clientes/*') || request()->is('clientes') ? 'active' : '' }}"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Clientes

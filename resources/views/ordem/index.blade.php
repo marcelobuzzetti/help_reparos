@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ $ordem->id }}</td>
                             <td>{{ $ordem->status->first()->descricao }}</td>
-                            <td>{{ date( 'd/m/Y' , strtotime($ordem->entrada)) }}</td>
+                            <td>{{ date('d/m/Y', strtotime($ordem->entrada)) }}</td>
                             <td>{{ $ordem->cliente->first()->nome }}</td>
                             <td>{{ $ordem->marca->first()->descricao }}</td>
                             {{-- <td>{{ $ordem->modelo }}</td>
@@ -34,15 +34,18 @@
                             <td>{{ $ordem->estado_aparelho }}</td>
                             <td>{{ $ordem->defeito_alegado }}</td>
                             <td>{{ $ordem->observacao }}</td> --}}
-                            <td>{{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : "Ainda não orçado" }}</td>
-                            <td>{{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . " em " . date( 'd/m/Y' , strtotime($ordem->retirada)) : "Não entregue" }}</td>
+                            <td>{{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Ainda não orçado' }}
+                            </td>
+                            <td>{{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . ' em ' . date('d/m/Y', strtotime($ordem->retirada)) : 'Não entregue' }}
+                            </td>
                             <td>
                                 <div class="d-flex flex-wrap justify-content-evenly">
                                     <div class="p-2 w-50">
                                         <a class="btn btn-info flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.show', $ordem->id) }}"><i class="icofont-search-1"></i> Mostrar</a>
+                                            href="{{ route('ordens.show', $ordem->id) }}"><i class="icofont-search-1"></i>
+                                            Mostrar</a>
                                     </div>
-{{--                                     <div class="p-2 w-100">
+                                    {{--                                     <div class="p-2 w-100">
                                         <a class="btn btn-success flex-inline flex-grow-1 w-100"
                                             href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-money-bag"></i> Lançar Orçamento</a>
                                     </div>
@@ -52,43 +55,53 @@
                                     </div> --}}
                                     <div class="p-2 w-50">
                                         <a class="btn btn-primary flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i> Editar</a>
+                                            href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i>
+                                            Editar</a>
                                     </div>
                                     <div class="p-2 w-50">
                                         <a class="btn btn-secondary flex-inline w-100"
-                                            href="{{ route('imprimirOs', ['id' =>$ordem->id]) }}"><i class="icofont-printer"></i> Imprimir</a>
+                                            href="{{ route('imprimirOs', ['id' => $ordem->id]) }}"><i
+                                                class="icofont-printer"></i> Imprimir</a>
                                     </div>
                                     @if ($ordem->status_id == 5)
-                                    <div class="p-2 w-50">
-                                        <a class="btn btn-warning flex-inline w-100"
-                                            href="{{ route('retornoEmGarantia', ['id' =>$ordem->id]) }}"><i class="icofont-exit icofont-rotate-180"></i> Retorno em Garantia</a>
-                                    </div>
+                                        <div class="p-2 w-50">
+                                            <a class="btn btn-warning flex-inline w-100"
+                                                href="{{ route('retornoEmGarantia', ['id' => $ordem->id]) }}"><i
+                                                    class="icofont-exit icofont-rotate-180"></i> Retorno em Garantia</a>
+                                        </div>
                                     @endif
                                     @if ($ordem->status_id != 5 && $ordem->status_id != 7)
-                                    <div class="p-2 w-50">
-                                        <a class="btn btn-success flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-exit"></i> Retirada</a>
-                                    </div>
-                                    <div class="p-2 w-50">
-                                        <a class="btn btn-outline-danger flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.recusou', $ordem->id) }}"><i class="icofont-exit"></i> Recusou Orçamento</a>
-                                    </div>
-                                    <div class="p-2 w-50">
-                                        <button class="btn btn-danger flex-inline flex-grow-1 w-100" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
-                                            data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i> Apagar</button>
-                                    </div>
+                                        @if ($ordem->status_id != 6)
+                                            <div class="p-2 w-50">
+                                                <a class="btn btn-outline-danger flex-inline flex-grow-1 w-100"
+                                                    href="{{ route('ordens.recusou', $ordem->id) }}"><i
+                                                        class="icofont-exit"></i> Recusou Orçamento</a>
+                                            </div>
+                                        @endif
+                                        <div class="p-2 w-50">
+                                            <a class="btn btn-success flex-inline flex-grow-1 w-100"
+                                                href="{{ route('ordens.orcamento', $ordem->id) }}"><i
+                                                    class="icofont-exit"></i> Retirada</a>
+                                        </div>
+                                        <div class="p-2 w-50">
+                                            <button class="btn btn-danger flex-inline flex-grow-1 w-100"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                data-bs-nome="{{ $ordem->id }}" data-bs-id="{{ $ordem->id }}"><i
+                                                    class="icofont-ui-delete"></i> Apagar</button>
+                                        </div>
                                     @endif
                                     @if ($ordem->is_arquivado)
-                                    <div class="p-2 w-50">
-                                        <a class="btn btn-dark flex-inline flex-grow-1 w-100"
-                                            href="{{ route('desarquivarOS', ['id' =>$ordem->id]) }}"><i class="icofont-history"></i> Desarquivar</a>
-                                    </div>
+                                        <div class="p-2 w-50">
+                                            <a class="btn btn-dark flex-inline flex-grow-1 w-100"
+                                                href="{{ route('desarquivarOS', ['id' => $ordem->id]) }}"><i
+                                                    class="icofont-history"></i> Desarquivar</a>
+                                        </div>
                                     @else
-                                    <div class="p-2 w-50">
-                                        <a class="btn btn-dark flex-inline flex-grow-1 w-100"
-                                            href="{{ route('arquivarOS', ['id' =>$ordem->id]) }}"><i class="icofont-archive"></i> Arquivar</a>
-                                    </div>
+                                        <div class="p-2 w-50">
+                                            <a class="btn btn-dark flex-inline flex-grow-1 w-100"
+                                                href="{{ route('arquivarOS', ['id' => $ordem->id]) }}"><i
+                                                    class="icofont-archive"></i> Arquivar</a>
+                                        </div>
                                     @endif
                                 </div>
                             </td>
@@ -133,8 +146,10 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i class="icofont-close"></i> Fechar</button>
-                    <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i> Apagar</button>
+                    <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i
+                            class="icofont-close"></i> Fechar</button>
+                    <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i>
+                        Apagar</button>
                     </form>
                 </div>
             </div>
@@ -145,14 +160,19 @@
         $(document).ready(function() {
             $('#example').DataTable({
                 responsive: true,
-                columnDefs: [
-                    { type: 'date-euro', targets: 2 },
-                    {"className": "align-middle", "targets": "_all"}
+                columnDefs: [{
+                        type: 'date-euro',
+                        targets: 2
+                    },
+                    {
+                        "className": "align-middle",
+                        "targets": "_all"
+                    }
                 ],
                 fixedHeader: {
                     headerOffset: 60
                 },
-                "order": [ 0, 'desc' ],
+                "order": [0, 'desc'],
                 dom: 'Bfrtip',
                 lengthMenu: [
                     [10, 25, 50, -1],
@@ -168,39 +188,39 @@
                 },
                 buttons: [
                     "pageLength",
-/*                     {
-                        extend: 'copyHtml5',
-                        text: 'Cópia',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-                        }
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Excel',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-                        }
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'PDF',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        text: 'Imprimir',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-                        }
-                    },
-                    {
-                        extend: 'colvis',
-                        text: 'Colunas Visíveis',
+                    /*                     {
+                                            extend: 'copyHtml5',
+                                            text: 'Cópia',
+                                            exportOptions: {
+                                                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                                            }
+                                        },
+                                        {
+                                            extend: 'excelHtml5',
+                                            text: 'Excel',
+                                            exportOptions: {
+                                                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                                            }
+                                        },
+                                        {
+                                            extend: 'pdfHtml5',
+                                            text: 'PDF',
+                                            exportOptions: {
+                                                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                                            }
+                                        },
+                                        {
+                                            extend: 'print',
+                                            text: 'Imprimir',
+                                            exportOptions: {
+                                                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                                            }
+                                        },
+                                        {
+                                            extend: 'colvis',
+                                            text: 'Colunas Visíveis',
 
-                    } */
+                                        } */
                 ],
                 /* buttons: [
                     'copy', 'excel', 'pdf', 'print'

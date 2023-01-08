@@ -201,8 +201,8 @@ class OsController extends Controller
             ];
         }
 
-        return redirect()->route('ordens.index')
-                        ->with('message',$message);
+        return redirect()->route('ordens.show', $os->id)
+                        ->with('message', $message);
     }
 
     /**

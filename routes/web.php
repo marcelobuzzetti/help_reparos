@@ -61,6 +61,8 @@ Route::get('imprimirOs', [OsController::class, 'imprimirOs'])->name('imprimirOs'
 
 Route::get('retornoEmGarantia', [OsController::class, 'retornoEmGarantia'])->name('retornoEmGarantia');
 
+Route::get('arquivarOS', [OsController::class, 'arquivarOS'])->name('arquivarOS');
+
 });
 
 Route::get('/orcamento/{id}', [OsController::class, 'orcamento'])->name('orcamento');

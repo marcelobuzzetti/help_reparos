@@ -24,7 +24,7 @@ class OsController extends Controller
     {
         /* $ordens = Os::osMarcaCliente(); */
         $ordem = new Os;
-        $ordens = $ordem->with(['Cliente','Marca','Status'])->get();
+        $ordens = $ordem->with(['Cliente','Marca','Status'])->WhereNull('is_arquivado')->get();
 
         return view('ordem.index', [
             'ordens' => $ordens
@@ -428,7 +428,31 @@ class OsController extends Controller
             ];
         }
 
+        return redirect()->route('ordens.show', $os->id)
+                        ->with('message',$message);
+    }
+
+    public function arquivarOS(Request $request)
+    {
+        $os = new Os;
+        $os = $os->findOrFail($request->id);
+        $os->is_arquivado = true;
+
+        try {
+            $os->update($request->all());
+            $message = [
+                "type" => "success",
+                "message" => "OS Nº $request->id arquivada com sucesso!!!"
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => $e->getMessage()
+            ];
+        }
+
         return redirect()->route('ordens.index')
                         ->with('message',$message);
     }
+
 }

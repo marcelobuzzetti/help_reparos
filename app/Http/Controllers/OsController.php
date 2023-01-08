@@ -119,7 +119,17 @@ class OsController extends Controller
     {
         $ordem = new Os;
         $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($os);
-        return view('ordem.show',compact('ordem'));
+
+        if($ordem->is_arquivado) {
+            $message = [
+                "type" => "error",
+                "message" => "OS nº $ordem->id está arquivada!!!"
+            ];
+            return redirect()->route('home')
+                        ->with('message',$message);
+        } else {
+            return view('ordem.show',compact('ordem'));
+        }
     }
 
     /**

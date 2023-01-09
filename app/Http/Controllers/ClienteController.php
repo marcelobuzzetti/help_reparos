@@ -74,7 +74,7 @@ class ClienteController extends Controller
             ];
         }
 
-        return redirect()->route('clientes.edit', $cliente->id)
+        return redirect()->route('clientes.show', $cliente->id)
             ->with('message', $message);
     }
 
@@ -138,7 +138,7 @@ class ClienteController extends Controller
             ];
         }
 
-        return redirect()->route('clientes.edit', $cliente->id)
+        return redirect()->route('clientes.show', $cliente->id)
             ->with('message', $message);
     }
 

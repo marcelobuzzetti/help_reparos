@@ -62,7 +62,7 @@ class ClienteController extends Controller
         $endereco = $request->old('endereco');
 
         try {
-            Cliente::create($request->all());
+            $cliente = Cliente::create($request->all());
             $message = [
                 "type" => "success",
                 "message" => "Cliente $nomePOST criado com sucesso!!!."
@@ -74,7 +74,7 @@ class ClienteController extends Controller
             ];
         }
 
-        return redirect()->route('clientes.index')
+        return redirect()->route('clientes.edit', $cliente->id)
             ->with('message', $message);
     }
 
@@ -138,7 +138,7 @@ class ClienteController extends Controller
             ];
         }
 
-        return redirect()->route('clientes.index')
+        return redirect()->route('clientes.edit', $cliente->id)
             ->with('message', $message);
     }
 

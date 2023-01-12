@@ -72,6 +72,19 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="id" value="{{ $ordem->id }}">
+                    <div class="col-xs-12 col-sm-12 col-md-4 mb-2">
+                        <div class="form-group">
+                            <strong>Tipo de Entrega</strong>
+                            <select name="status_id" class="form-control @error('status_id') is-invalid @enderror">
+                                <option selected disabled>Selecione a status</option>
+                                <option value="5" @if (old('status_id')  == 5) selected @endif>Saída</option>
+                                <option value="7" @if (old('status_id')  == 7) selected @endif >Orçamento Recusado</option>
+                              </select>
+                            @error('status_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="d-flex align-items-center">
                         <label class="me-2">
                             <strong>Entregue para</strong>

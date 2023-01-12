@@ -71,13 +71,13 @@
                                         </div>
                                     @endif
                                     @if ($ordem->status_id != 5 && $ordem->status_id != 7)
-                                        @if ($ordem->status_id != 6)
+                                        {{-- @if ($ordem->status_id != 6)
                                             <div class="p-2 w-50">
                                                 <a class="btn btn-outline-danger flex-inline flex-grow-1 w-100"
                                                     href="{{ route('ordens.recusou', $ordem->id) }}"><i
                                                         class="icofont-exit"></i> Recusou Orçamento</a>
                                             </div>
-                                        @endif
+                                        @endif --}}
                                         <div class="p-2 w-50">
                                             <a class="btn btn-success flex-inline flex-grow-1 w-100"
                                                 href="{{ route('ordens.orcamento', $ordem->id) }}"><i

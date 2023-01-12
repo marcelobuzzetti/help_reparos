@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class OsController extends Controller
 {
@@ -346,7 +347,7 @@ class OsController extends Controller
         $request->validate([
             'id' => 'required|exists:ordens,id',
             'entregue_para' => 'required',
-     /*        'status_id' => 'required|exists:status,id', */
+            'status_id' => 'required|',Rule::in([5, 7]),
         ]);
 
         $entregue_para = $request->old('entregue_para');
@@ -363,9 +364,9 @@ class OsController extends Controller
             DB::table('ordens')
               ->where('id', $data['id'])
               ->update(['entregue_para' => $data['entregue_para'],
-            /* 'status_id' => $data['status_id'], */
+            'status_id' => $data['status_id'],
             'retirada' => $date,
-            'status_id' => 5
+            /* 'status_id' => 5 */
         ]   );
             $message = [
                 "type" => "success",

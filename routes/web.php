@@ -6,6 +6,7 @@ use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\OsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\PecaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +43,8 @@ Route::resource('clientes', ClienteController::class);
 Route::resource('marcas', MarcaController::class);
 
 Route::resource('ordens', OsController::class);
+
+Route::resource('pecas', PecaController::class);
 
 Route::resource('empresas', EmpresaController::class)->except([
     'index','create', 'destroy', 'store'

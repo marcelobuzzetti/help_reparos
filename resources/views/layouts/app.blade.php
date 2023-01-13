@@ -74,7 +74,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 {{-- Other way to get current url --}}
-                                <a class="nav-link {{ request()->is('/arquivadas') ? 'active' : '' }} " href="{{ url('/arquivadas') }}">
+                                <a class="nav-link {{ request()->is('arquivadas') ? 'active' : '' }} " href="{{ url('/arquivadas') }}">
                                     OS Arquivadas
                                 </a>
                             </li>

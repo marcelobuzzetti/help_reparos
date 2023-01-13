@@ -13,13 +13,12 @@
 
         <form action="{{ route('pecas.store') }}" method="POST">
             @csrf
-            <input type="hidden" name="ordem_id" value="{{ $ordem_id }}">
+            <input type="hidden" id="ordem_id" name="ordem_id" value="{{ $ordem_id }}">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
                         <strong>Descricao</strong>
-                        <input class="form-control @error('descricao') is-invalid @enderror" name="descricao" type="text" value="{{ old('descricao') }}" placeholder="Digite o Nome da Peça">
-                        <input type="hidden" name="descricao" id="descricao" value="{{ old('descricao') }}">
+                        <input class="form-control @error('descricao') is-invalid @enderror" id="descricao" name="descricao" type="text" value="{{ old('descricao') }}" placeholder="Digite o Nome da Peça">
                         @error('descricao')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -48,13 +47,45 @@
         </div>
     </div>
 </div>
-{{--     <script>
-         $(document).ready(function() {
-            $("[name='cliente_id']").select2();
-            $("[name='marca_id']").select2();
-         });
-    </script> --}}
-    <script type="text/javascript">
+<script type="text/javascript">
 
-    </script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(".btn-submit").click(function(e){
+
+        e.preventDefault();
+
+        var descricao = $("#descricao").val();
+        var valor = $("#valor_peca").val();
+        var ordem_id = $("#ordem_id").val();
+
+        $.ajax({
+           type:'POST',
+           url:"{{ route('pecas.store') }}",
+           data:{descricao:descricao, valor:valor, ordem_id:ordem_id},
+           success:function(data){
+                if($.isEmptyObject(data.message)){
+                    alert(data.message);
+                    location.reload();
+                }else{
+                    alert(data.error);
+                }
+           }
+        });
+
+    });
+
+    function printErrorMsg (msg) {
+        $(".print-error-msg").find("ul").html('');
+        $(".print-error-msg").css('display','block');
+        $.each( msg, function( key, value ) {
+            $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+        });
+    }
+
+</script>
 @endsection

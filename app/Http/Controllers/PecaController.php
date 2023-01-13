@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class PecaController extends Controller
@@ -41,7 +42,33 @@ class PecaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'descricao' => 'required',
+            'valor' => 'required',
+            'ordem_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                        'error' => $validator->errors()->all()
+                    ]);
+        }
+
+        try {
+            $peca = Peca::create($request->all());
+            $pecaId = $peca->id;
+            $message = [
+                "type" => "success",
+                "message" => "Peça adicionada a Ordem de Serviço nº $peca->ordem_id!!!."
+            ];
+        } catch (Exception $e) {
+            $message = [
+                "type" => "error",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return response()->json(['message' => $message]);
     }
 
     /**

@@ -12,7 +12,13 @@ class Peca extends Model
     protected $fillable = [
         'descricao',
         'valor',
+        'ordem_id'
     ];
 
     protected $table = 'pecas';
+
+    public function ordem()
+    {
+        return $this->hasMany(Os::class, 'id', 'ordem_id');
+    }
 }

@@ -43,6 +43,11 @@ class Os extends Model
         return $this->hasMany(Status::class, 'id', 'status_id');
     }
 
+    public function pecas()
+    {
+        return $this->belongsTo(Peca::class, 'id', 'id');
+    }
+
     public static function osUpdate($request){
         DB::table('ordens')
         ->where('id', $request['id'])

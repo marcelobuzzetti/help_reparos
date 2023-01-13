@@ -49,9 +49,12 @@ class PecaController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                        'error' => $validator->errors()->all()
-                    ]);
+            $message = [
+                "type" => "error",
+                "message" => $validator->errors()->all()
+            ];
+
+            return response()->json(['message' => $message]);
         }
 
         try {
@@ -90,8 +93,11 @@ class PecaController extends Controller
      */
     public function edit($id)
     {
+        $pecas = new Peca();
+        $pecas = $pecas->where('ordem_id','=', $id)->get();
         return view('peca.create',[
             'ordem_id' => $id,
+            'pecas' => $pecas
         ]);
     }
 

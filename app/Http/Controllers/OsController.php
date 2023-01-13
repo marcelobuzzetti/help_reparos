@@ -119,7 +119,11 @@ class OsController extends Controller
     public function show($os)
     {
         $ordem = new Os;
-        $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($os);
+        $ordem = $ordem->with(['Cliente','Marca','Status', 'Pecas'])->findOrFail($os);
+        $total = 0;
+        foreach($ordem->pecas as $peca){
+            $total += $peca->valor;
+        }
 
         if($ordem->is_arquivado) {
             $message = [
@@ -129,7 +133,10 @@ class OsController extends Controller
             return redirect()->route('home')
                         ->with('message',$message);
         } else {
-            return view('ordem.show',compact('ordem'));
+            return view('ordem.show',[
+                'ordem' => $ordem,
+                'total' => $total
+            ]);
         }
     }
 

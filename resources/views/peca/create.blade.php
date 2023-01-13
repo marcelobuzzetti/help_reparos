@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <form action="{{ route('pecas.store') }}" method="POST">
+        <form action="{{ route('pecas.store') }}" method="POST" id="form_pecas">
             @csrf
             <input type="hidden" id="ordem_id" name="ordem_id" value="{{ $ordem_id }}">
             <div class="row">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-2 text-center d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary d-flex-inline"><i class="icofont-save"></i> Cadastrar</button>
+                    <button type="submit" class="btn btn-primary d-flex-inline btn-submit"><i class="icofont-save"></i> Cadastrar</button>
                 </div>
             </div>
         </form>
@@ -46,6 +46,10 @@
             </div>
         </div>
     </div>
+    @foreach ($pecas as $peca)
+        {{ $peca->descricao }}
+        {{ $peca->valor }}
+    @endforeach
 </div>
 <script type="text/javascript">
 
@@ -68,24 +72,18 @@
            url:"{{ route('pecas.store') }}",
            data:{descricao:descricao, valor:valor, ordem_id:ordem_id},
            success:function(data){
-                if($.isEmptyObject(data.message)){
-                    alert(data.message);
-                    location.reload();
-                }else{
-                    alert(data.error);
-                }
-           }
+            if(data.message.type == 'success') {
+                toastr.success(data.message.message);
+                $("#form_pecas").trigger('reset')
+            } else {
+                toastr.error(data.message.message);
+            }
+           },
+           error: function (data) {
+            console.log(data)
+            }
         });
 
     });
-
-    function printErrorMsg (msg) {
-        $(".print-error-msg").find("ul").html('');
-        $(".print-error-msg").css('display','block');
-        $.each( msg, function( key, value ) {
-            $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-        });
-    }
-
 </script>
 @endsection

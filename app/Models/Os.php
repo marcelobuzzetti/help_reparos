@@ -45,7 +45,7 @@ class Os extends Model
 
     public function pecas()
     {
-        return $this->belongsTo(Peca::class, 'id', 'id');
+        return $this->hasMany(Peca::class, 'ordem_id', 'id');
     }
 
     public static function osUpdate($request){

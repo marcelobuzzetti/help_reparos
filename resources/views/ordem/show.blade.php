@@ -89,6 +89,21 @@
                     {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
                 </div>
             </div>
+            @if (count($ordem->pecas) > 0)
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Peças:</strong>
+                        @foreach ($ordem->pecas as $pecas)
+                        <div class="form-group">
+                            Descricação: {{ $pecas->descricao }} - Valor: R${{ $pecas->valor }}
+                        </div>
+                        @endforeach
+                        <div class="form-group">
+                            Total: R${{ $total }}
+                        </div>
+                    </div>
+                </div>
+            @endif
             @if ($ordem->status_id == 4 || $ordem->status_id == 5)
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

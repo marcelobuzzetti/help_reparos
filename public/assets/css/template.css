@@ -243,3 +243,13 @@ td.dt-center {
 .custom-tooltip-dark {
     --bs-tooltip-bg: var(--bs-dark);
 }
+
+.btn-blue {
+    background-color: #008080;
+    color: white;
+}
+
+.btn-blue:hover {
+    background-color: #00e6e6;
+    color: white;
+}

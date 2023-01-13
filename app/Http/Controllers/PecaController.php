@@ -63,7 +63,9 @@ class PecaController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('peca.create',[
+            'ordem_id' => $id,
+        ]);
     }
 
     /**

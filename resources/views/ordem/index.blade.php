@@ -51,6 +51,11 @@
                                         data-bs-custom-class="custom-tooltip-primary" data-toggle="tooltip"
                                         title="Editar"><i class="icofont-ui-edit"></i></a>
 
+                                        <a class="btn btn-blue flex-inline"
+                                        href="{{ route('pecas.edit', $ordem->id) }}"
+                                        data-bs-custom-class="custom-tooltip-blue" data-toggle="tooltip"
+                                        title="Peças"><i class="icofont-plugin"></i></a>
+
                                     <a class="btn btn-secondary flex-inline"
                                         href="{{ route('imprimirOs', ['id' => $ordem->id]) }}"
                                         data-bs-custom-class="custom-tooltip-secondary" data-toggle="tooltip"

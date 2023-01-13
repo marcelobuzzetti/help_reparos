@@ -210,6 +210,12 @@
             /* "decimal": ",", */
             "thousands": ""
         });
+
+        $("#valor_peca").maskMoney({
+            /* "prefix": "R$", */
+            /* "decimal": ",", */
+            "thousands": ""
+        });
         $(document).ready(function() {
             toastr.options = {
                 "closeButton": false,

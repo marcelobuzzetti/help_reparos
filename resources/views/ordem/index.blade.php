@@ -40,68 +40,57 @@
                             </td>
                             <td>
                                 <div class="d-flex flex-wrap justify-content-evenly">
-                                    <div class="p-2 w-50">
-                                        <a class="btn btn-info flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.show', $ordem->id) }}"><i class="icofont-search-1"></i>
-                                            Mostrar</a>
-                                    </div>
-                                    {{--                                     <div class="p-2 w-100">
-                                        <a class="btn btn-success flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-money-bag"></i> Lançar Orçamento</a>
-                                    </div>
-                                    <div class="p-2 w-100">
-                                        <a class="btn btn-warning flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.status', $ordem->id) }}"><i class="icofont-chart-histogram"></i> Alterar Status</a>
-                                    </div> --}}
-                                    <div class="p-2 w-50">
-                                        <a class="btn btn-primary flex-inline flex-grow-1 w-100"
-                                            href="{{ route('ordens.edit', $ordem->id) }}"><i class="icofont-ui-edit"></i>
-                                            Editar</a>
-                                    </div>
-                                    <div class="p-2 w-50">
-                                        <a class="btn btn-secondary flex-inline w-100"
-                                            href="{{ route('imprimirOs', ['id' => $ordem->id]) }}"><i
-                                                class="icofont-printer"></i> Imprimir</a>
-                                    </div>
+
+                                    <a class="btn btn-info flex-inline"
+                                        href="{{ route('ordens.show', $ordem->id) }}"
+                                        data-bs-custom-class="custom-tooltip-info" data-toggle="tooltip" title="Mostrar"><i
+                                            class="icofont-search-1"></i></a>
+
+                                    <a class="btn btn-primary flex-inline"
+                                        href="{{ route('ordens.edit', $ordem->id) }}"
+                                        data-bs-custom-class="custom-tooltip-primary" data-toggle="tooltip"
+                                        title="Editar"><i class="icofont-ui-edit"></i></a>
+
+                                    <a class="btn btn-secondary flex-inline"
+                                        href="{{ route('imprimirOs', ['id' => $ordem->id]) }}"
+                                        data-bs-custom-class="custom-tooltip-secondary" data-toggle="tooltip"
+                                        title="Imprimir"><i class="icofont-printer"></i></a>
+
                                     @if ($ordem->status_id == 5)
-                                        <div class="p-2 w-50">
-                                            <a class="btn btn-warning flex-inline w-100"
-                                                href="{{ route('retornoEmGarantia', ['id' => $ordem->id]) }}"><i
-                                                    class="icofont-exit icofont-rotate-180"></i> Retorno em Garantia</a>
-                                        </div>
+                                        <a class="btn btn-warning flex-inline"
+                                            href="{{ route('retornoEmGarantia', ['id' => $ordem->id]) }}" data-bs-custom-class="custom-tooltip-warning" data-toggle="tooltip"
+                                            title="Retorno em Garantia"><i
+                                                class="icofont-exit icofont-rotate-180"></i></a>
                                     @endif
                                     @if ($ordem->status_id != 5 && $ordem->status_id != 7)
                                         {{-- @if ($ordem->status_id != 6)
-                                            <div class="p-2 w-50">
-                                                <a class="btn btn-outline-danger flex-inline flex-grow-1 w-100"
+
+                                                <a class="btn btn-outline-danger flex-inline"
                                                     href="{{ route('ordens.recusou', $ordem->id) }}"><i
                                                         class="icofont-exit"></i> Recusou Orçamento</a>
                                             </div>
                                         @endif --}}
-                                        <div class="p-2 w-50">
-                                            <a class="btn btn-success flex-inline flex-grow-1 w-100"
-                                                href="{{ route('ordens.orcamento', $ordem->id) }}"><i
-                                                    class="icofont-exit"></i> Retirada</a>
-                                        </div>
-                                        <div class="p-2 w-50">
-                                            <button class="btn btn-danger flex-inline flex-grow-1 w-100"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                data-bs-nome="{{ $ordem->id }}" data-bs-id="{{ $ordem->id }}"><i
-                                                    class="icofont-ui-delete"></i> Apagar</button>
-                                        </div>
+
+                                        <a class="btn btn-success flex-inline"
+                                            href="{{ route('ordens.orcamento', $ordem->id) }}"
+                                            data-bs-custom-class="custom-tooltip-success" data-toggle="tooltip"
+                                            title="Retirada"><i class="icofont-exit"></i></a>
+
+                                        <button class="btn btn-danger flex-inline" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
+                                            data-bs-id="{{ $ordem->id }}" data-bs-custom-class="custom-tooltip-danger"
+                                            data-toggle="tooltip" title="Apagar"><i class="icofont-ui-delete"></i></button>
                                     @endif
                                     @if ($ordem->is_arquivado)
-                                        <div class="p-2 w-50">
-                                            <a class="btn btn-dark flex-inline flex-grow-1 w-100"
-                                                href="{{ route('desarquivarOS', ['id' => $ordem->id]) }}"><i
-                                                    class="icofont-history"></i> Desarquivar</a>
-                                        </div>
+                                        <a class="btn btn-dark flex-inline"
+                                            href="{{ route('desarquivarOS', ['id' => $ordem->id]) }}"
+                                            data-bs-custom-class="custom-tooltip-dark" data-toggle="tooltip"
+                                            title="Desarquivar"><i class="icofont-history"></i></a>
                                     @else
-                                        <div class="p-2 w-50">
-                                            <a class="btn btn-dark flex-inline flex-grow-1 w-100"
-                                                href="{{ route('arquivarOS', ['id' => $ordem->id]) }}"><i
-                                                    class="icofont-archive"></i> Arquivar</a>
-                                        </div>
+                                        <a class="btn btn-dark flex-inline"
+                                            href="{{ route('arquivarOS', ['id' => $ordem->id]) }}"
+                                            data-bs-custom-class="custom-tooltip-dark" data-toggle="tooltip"
+                                            title="Arquivar"><i class="icofont-archive"></i></a>
                                     @endif
                                 </div>
                             </td>
@@ -158,6 +147,7 @@
 
     <script>
         $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
             $('#example').DataTable({
                 responsive: true,
                 columnDefs: [{

@@ -215,3 +215,31 @@ td.dt-center {
     font-weight: 300;
     margin: 0;
 }
+
+.custom-tooltip-primary {
+    --bs-tooltip-bg: var(--bs-primary);
+}
+
+.custom-tooltip-info {
+    --bs-tooltip-bg: var(--bs-info);
+}
+
+.custom-tooltip-secondary {
+    --bs-tooltip-bg: var(--bs-secondary);
+}
+
+.custom-tooltip-warning {
+    --bs-tooltip-bg: var(--bs-warning);
+}
+
+.custom-tooltip-success {
+    --bs-tooltip-bg: var(--bs-success);
+}
+
+.custom-tooltip-danger {
+    --bs-tooltip-bg: var(--bs-danger);
+}
+
+.custom-tooltip-dark {
+    --bs-tooltip-bg: var(--bs-dark);
+}

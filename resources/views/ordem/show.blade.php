@@ -93,13 +93,15 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Peças:</strong>
+                        <br>
+                        Descricação/Valor
                         @foreach ($ordem->pecas as $pecas)
                         <div class="form-group">
-                            Descricação: {{ $pecas->descricao }} - Valor: R${{ $pecas->valor }}
+                             {{ $pecas->descricao }} / R${{ $pecas->valor }}
                         </div>
                         @endforeach
                         <div class="form-group">
-                            Total: R${{ $total }}
+                            Total das Peças: R${{ $total }}
                         </div>
                     </div>
                 </div>
@@ -127,6 +129,12 @@
                 <div class="p-2">
                     <a class="btn btn-secondary flex-inline" {{-- href="{{ route('imprimirOs', ['id' => $ordem->id]) }}" --}} onclick="imprimir()"><i
                             class="icofont-printer"></i> Imprimir</a>
+                </div>
+                <div class="p-2">
+                <a class="btn btn-blue flex-inline"
+                                        href="{{ route('pecas.edit', $ordem->id) }}"
+                                        data-bs-custom-class="custom-tooltip-blue" data-toggle="tooltip"
+                                        title="Peças"><i class="icofont-plugin"></i>Peças</a>
                 </div>
                 @if ($ordem->status_id != 5)
                     <div class="p-2">

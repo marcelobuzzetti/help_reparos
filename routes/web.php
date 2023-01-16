@@ -46,6 +46,8 @@ Route::resource('ordens', OsController::class);
 
 Route::resource('pecas', PecaController::class);
 
+Route::get('/pecas/showos', [PecaController::class, 'showPecasOs'])->name('pecas.showos');
+
 Route::resource('empresas', EmpresaController::class)->except([
     'index','create', 'destroy', 'store'
 ]);

@@ -211,7 +211,7 @@
             "thousands": ""
         });
 
-        $("#valor_peca").maskMoney({
+        $("#valor").maskMoney({
             /* "prefix": "R$", */
             /* "decimal": ",", */
             "thousands": ""

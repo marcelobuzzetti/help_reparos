@@ -42,24 +42,18 @@ class PecaController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'descricao' => 'required',
             'valor' => 'required',
             'ordem_id' => 'required',
         ]);
 
-        if ($validator->fails()) {
-            $message = [
-                "type" => "error",
-                "message" => $validator->errors()->all()
-            ];
-
-            return response()->json(['message' => $message]);
-        }
+        $descricao = $request->old('descricao');
+        $valor = $request->old('valor');
+        $ordem_id = $request->old('ordem_id');
 
         try {
             $peca = Peca::create($request->all());
-            $pecaId = $peca->id;
             $message = [
                 "type" => "success",
                 "message" => "Peça adicionada a Ordem de Serviço nº $peca->ordem_id!!!."
@@ -71,7 +65,8 @@ class PecaController extends Controller
             ];
         }
 
-        return response()->json(['message' => $message]);
+        return redirect()->route('pecas.edit', $peca->ordem_id)
+            ->with('message', $message);
     }
 
     /**
@@ -121,6 +116,93 @@ class PecaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $peca = Peca::findOrFail($id);
+            Peca::where('id', $id)->delete();
+            $message = [
+                "type" => "success",
+                "message" => "Peça Nº $id foi apagada com sucesso!!!"
+            ];
+         } catch (Exception $e) {
+            if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+                $message = [
+                    "type" => "error",
+                    "message" => "Não é possível excluir a Peça!!!"
+                ];
+            } else {
+                $message = [
+                    "type" => "error",
+                    "message" => $e->getMessage()
+                ];
+            }
+        }
+
+        return redirect()->route('pecas.edit', $peca->ordem_id)
+        ->with('message', $message);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showPecasOs(Request $request)
+    {
+        /* $pecas = new Peca();
+        $pecas = $pecas->where('ordem_id','=', $id)->get();
+        return response()->json($pecas); */
+
+        $draw = $request->get('draw');
+        $start = $request->get("start");
+        $rowperpage = $request->get("length"); // Rows display per page
+
+        $columnIndex_arr = $request->get('order');
+        $columnName_arr = $request->get('columns');
+        $order_arr = $request->get('order');
+        $search_arr = $request->get('search');
+
+        $columnIndex = $columnIndex_arr[0]['column']; // Column index
+        $columnName = $columnName_arr[$columnIndex]['data']; // Column name
+        $columnSortOrder = $order_arr[0]['dir']; // asc or desc
+        $searchValue = $search_arr['value']; // Search value
+
+        // Total records
+        $totalRecords = Peca::select('count(*) as allcount')->count();
+        $totalRecordswithFilter = Peca::select('count(*) as allcount')->where('descricao', 'like', '%' .$searchValue . '%')->count();
+
+        // Fetch records
+        $records = Peca::orderBy($columnName,$columnSortOrder)
+          ->where('pecas.descricao', 'like', '%' .$searchValue . '%')
+          ->select('pecas.*')
+          ->skip($start)
+          ->take($rowperpage)
+          ->get();
+
+        $data_arr = array();
+
+        foreach($records as $record){
+           $id = $record->id;
+           $descricao = $record->descricao;
+           $valor = $record->valor;
+
+           $data_arr[] = array(
+             "id" => $id,
+             "descricao" => $descricao,
+             "valor" => $valor,
+           );
+        }
+
+        $response = array(
+           "draw" => intval($draw),
+           "iTotalRecords" => $totalRecords,
+           "iTotalDisplayRecords" => $totalRecordswithFilter,
+           "aaData" => $data_arr
+        );
+
+        dd($response);
+        exit;
+
+        echo json_encode($response);
+      }
 }

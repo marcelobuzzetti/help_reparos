@@ -39,7 +39,7 @@
                             <td>{{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . ' em ' . date('d/m/Y', strtotime($ordem->retirada)) : 'Não entregue' }}
                             </td>
                             <td>
-                                <div class="d-flex flex-wrap justify-content-evenly">
+                                <div class="d-flex flex-wrap justify-content-between">
 
                                     <a class="btn btn-info flex-inline"
                                         href="{{ route('ordens.show', $ordem->id) }}"

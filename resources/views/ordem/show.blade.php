@@ -367,6 +367,23 @@
                     </div>
                 </div>
             </div>
+            @if (count($ordem->pecas) > 0)
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Peças:</strong>
+                        <br>
+                        Descricação/Valor
+                        @foreach ($ordem->pecas as $pecas)
+                        <div class="form-group">
+                             {{ $pecas->descricao }} / R${{ $pecas->valor }}
+                        </div>
+                        @endforeach
+                        <div class="form-group">
+                            Total das Peças: R${{ $total }}
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div class="d-flex justify-content-between flex-wrap">
                 <div class="">
                     <div class="form-group">

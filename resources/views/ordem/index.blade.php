@@ -164,9 +164,9 @@
                         "targets": "_all"
                     }
                 ],
-                fixedHeader: {
+                /* fixedHeader: {
                     headerOffset: 60
-                },
+                }, */
                 "order": [0, 'desc'],
                 dom: 'Bfrtip',
                 lengthMenu: [

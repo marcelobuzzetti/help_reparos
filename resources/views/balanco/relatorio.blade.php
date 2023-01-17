@@ -3,7 +3,11 @@
 @section('content')
     <div class="card-glass">
         <div class="text-center">
-            <h2>Balanço do período de {{ $dataInicio }} a {{ $dataFim }}</h2>
+            @if (isset($dataInicio))
+                <h2>Balanço do período de {{ $dataInicio }} a {{ $dataFim }}</h2>
+            @else
+                <h2>Balanço de todo o Período</h2>
+            @endif
             <h4 class="text-success">Recebido R${{ sprintf('%0.2f', $totalOrcamentosGerado) }} <i class="icofont-arrow-up"></i></h4>
             <h4 class="text-danger">Despesas R${{ sprintf('%0.2f', $totalPecasGerado) }} <i class="icofont-arrow-down"></i></h4>
             <h4 class="text-success">Total</h4>

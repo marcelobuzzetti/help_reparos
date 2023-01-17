@@ -110,6 +110,28 @@ class BalancoController extends Controller
 
     public function relatorio(Request $request)
     {
+        if(!$request->start_date && !$request->end_date){
+            $totalOrcamentosGerado = Os::where('status_id', '=', 5)->sum('valor_servico');
+            $pecas = Os::with(['Pecas'])->where('status_id', '=', 5)->get();
+            $totalPecasGerado = 0;
+
+        foreach ($pecas as $peca)
+        {
+            foreach($peca->pecas as $peca){
+                $totalPecasGerado += $peca->valor;
+            }
+        }
+
+        $balancoGerado = $totalOrcamentosGerado - $totalPecasGerado;
+
+        return view('balanco.relatorio', [
+                'balancoGerado' => $balancoGerado,
+                'totalOrcamentosGerado' => $totalOrcamentosGerado,
+                'totalPecasGerado' => $totalPecasGerado
+            ]);
+
+        }
+
         $request->validate([
             'start_date' => 'required|date',
         ]);

@@ -7,6 +7,7 @@ use App\Http\Controllers\OsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\PecaController;
+use App\Http\Controllers\BalancoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,6 +76,10 @@ Route::get('arquivarOS', [OsController::class, 'arquivarOS'])->name('arquivarOS'
 Route::get('desarquivarOS', [OsController::class, 'desarquivarOS'])->name('desarquivarOS');
 
 Route::get('arquivadas', [OsController::class, 'arquivadas'])->name('arquivadas');
+
+Route::post('relatorio', [BalancoController::class, 'relatorio'])->name('relatorio');
+
+Route::resource('balanco', BalancoController::class);
 
 });
 

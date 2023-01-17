@@ -21,6 +21,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-text">Formato da data dd/mm/aaaa, ex. 01/01/2023</div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
@@ -30,6 +31,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-text">Formato da data dd/mm/aaaa, ex. 01/01/2023</div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mb-2 text-center d-flex justify-content-center">

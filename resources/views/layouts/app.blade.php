@@ -114,11 +114,11 @@
                                             href="/marcas/create">Criar</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
+                            {{-- <li class="nav-item dropdown">
                                 <a class="nav-link {{ request()->is('balanco') || request()->is('relatorio') ? 'active' : '' }} " href="/balanco">
                                     Relatório
                                 </a>
-                            </li>
+                            </li> --}}
                             @if (Auth::user()->is_admin)
 
                                 <li class="nav-item dropdown">

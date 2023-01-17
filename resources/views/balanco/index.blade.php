@@ -36,13 +36,5 @@
                 <button type="submit" class="btn btn-primary d-flex-inline"><i class="icofont-ui-calendar"></i> Gerar</button>
             </div>
         </form>
-        @if (isset($balancoGerado))
-        <div class="text-center">
-            <h2>Balanço do período de {{ $dataInicio }} a {{ $dataFim }}</h2>
-            <h3 class="text-success"><i class="icofont-bank"></i> R${{ sprintf('%0.2f', $balancoGerado) }} <i class="icofont-bank"></i></h3>
-            <h4 class="text-success">Total Recebido R${{ sprintf('%0.2f', $totalOrcamentosGerado) }} <i class="icofont-arrow-up"></i></h4>
-            <h4 class="text-danger">Total Despesas R${{ sprintf('%0.2f', $totalPecasGerado) }} <i class="icofont-arrow-down"></i></h4>
-        </div>
-        @endif
     </div>
 @endsection

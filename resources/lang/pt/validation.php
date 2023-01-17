@@ -20,7 +20,7 @@ return [
     'alpha_dash'           => ':attribute somente pode conter letras, números, e hífens.',
     'alpha_num'            => ':attribute somente pode conter letras e números.',
     'array'                => ':attribute deve ser um array.',
-    'before'               => ':attribute presa ser uma data antes de :date.',
+    'before'               => ':attribute precisa ser uma data antes de :date.',
     'between'              => [
         'numeric' => ':attribute deve ser entre :min e :max.',
         'file'    => ':attribute deve ser entre :min e :max kilobytes.',

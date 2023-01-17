@@ -133,7 +133,7 @@ class BalancoController extends Controller
         }
 
         $request->validate([
-            'start_date' => 'required|date',
+            'start_date' => 'required|date|before:tomorrow',
         ]);
 
         if($request->end_date){

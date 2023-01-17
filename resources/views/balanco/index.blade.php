@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 mb-2">
                     <div class="form-group">
-                        <strong>Data de Início</strong>
+                        <strong>Data Fim</strong>
                         <input type="date" id="end_date" name="end_date" class="form-control @error('end_date') is-invalid @enderror" value="{{ old('end_date') }}">
                         @error('end_date')
                             <div class="invalid-feedback">{{ $message }}</div>

@@ -80,7 +80,7 @@ Route::get('arquivadas', [OsController::class, 'arquivadas'])->name('arquivadas'
 Route::post('relatorio', [BalancoController::class, 'relatorio'])->name('relatorio');
 
 Route::resource('balanco', BalancoController::class)->except([
-    'create', 'destroy', 'store', 'edit'
+    'create', 'destroy', 'store', 'edit', 'show', 'update'
 ]);
 
 });

@@ -114,6 +114,12 @@
                                             href="/marcas/create">Criar</a></li>
                                 </ul>
                             </li>
+                            <li class="nav-item dropdown">
+                                {{-- Other way to get current url --}}
+                                <a class="nav-link {{ request()->is('balanco') || request()->is('relatorio') ? 'active' : '' }} " href="{{ url('/balanco') }}">
+                                    Relatório
+                                </a>
+                            </li>
                             @if (Auth::user()->is_admin)
 
                                 <li class="nav-item dropdown">

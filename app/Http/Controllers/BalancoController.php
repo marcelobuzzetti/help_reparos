@@ -112,14 +112,30 @@ class BalancoController extends Controller
     {
         $request->validate([
             'start_date' => 'required|date',
-            'end_date'   => 'required|date|after:start_date',
         ]);
+
+        if($request->end_date){
+            $request->validate([
+                'end_date'   => 'required|date|after:start_date',
+            ]);
+            $totalOrcamentosGerado = Os::whereBetween('retirada',[$request->start_date, $request->end_date])->where('status_id', '=', 5)->sum('valor_servico');
+            $pecas = Os::with(['Pecas'])->whereBetween('retirada',[$request->start_date, $request->end_date])->where('status_id', '=', 5)->get();
+            $fim = new IntlDateFormatter(null, null, null, null, null, 'dd/MM/yyyy');
+            $dataFim = $fim->format(new DateTime($request->end_date));
+        } else {
+            $totalOrcamentosGerado = Os::where('retirada', '>=', $request->start_date)->where('status_id', '=', 5)->sum('valor_servico');
+            $pecas = Os::with(['Pecas'])->where('retirada', '>=', $request->start_date)->where('status_id', '=', 5)->get();
+        }
 
         $start_date = $request->old('start_date');
         $end_date = $request->old('end_date');
 
-        $totalOrcamentosGerado = Os::whereBetween('retirada',[$request->start_date, $request->end_date])->where('status_id', '=', 5)->sum('valor_servico');
-        $pecas = Os::with(['Pecas'])->whereBetween('retirada',[$request->start_date, $request->end_date])->where('status_id', '=', 5)->get();
+        $inicio = new IntlDateFormatter(null, null, null, null, null, 'dd/MM/yyyy');
+        $dataInicio = $inicio->format(new DateTime($request->start_date));
+
+        $atual = new IntlDateFormatter(null, null, null, null, null, 'dd/MM/yyyy');
+        $dataAtual = $atual->format(new DateTime());
+
         $totalPecasGerado = 0;
 
         foreach ($pecas as $peca)
@@ -131,17 +147,12 @@ class BalancoController extends Controller
 
         $balancoGerado = $totalOrcamentosGerado - $totalPecasGerado;
 
-        $inicio = new IntlDateFormatter(null, null, null, null, null, 'dd/MM/yyyy');
-        $dataInicio = $inicio->format(new DateTime($request->start_date));
-        $fim = new IntlDateFormatter(null, null, null, null, null, 'dd/MM/yyyy');
-        $dataFim = $fim->format(new DateTime($request->end_date));
-
         return view('balanco.relatorio', [
                 'balancoGerado' => $balancoGerado,
                 'totalOrcamentosGerado' => $totalOrcamentosGerado,
                 'totalPecasGerado' => $totalPecasGerado,
                 'dataInicio' => $dataInicio,
-                'dataFim' => $dataFim,
+                'dataFim' => isset($dataFim) ? $dataFim : $dataAtual,
             ]);
 
     }

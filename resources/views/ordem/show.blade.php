@@ -141,12 +141,14 @@
                         <a class="btn btn-success flex-inline flex-grow-1"
                             href="{{ route('ordens.orcamento', $ordem->id) }}"><i class="icofont-exit"></i> Retirada</a>
                     </div>
-                    <div class="p-2">
-                        <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
-                            data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i>
-                            Apagar</button>
-                    </div>
+                    @if (Auth::user()->is_admin)
+                        <div class="p-2">
+                            <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
+                                data-bs-id="{{ $ordem->id }}"><i class="icofont-ui-delete"></i>
+                                Apagar</button>
+                        </div>
+                    @endif
                 @endif
             </div>
             <div class="row mt-2">

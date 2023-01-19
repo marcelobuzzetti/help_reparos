@@ -80,11 +80,12 @@
                                             href="{{ route('ordens.orcamento', $ordem->id) }}"
                                             data-bs-custom-class="custom-tooltip-success" data-toggle="tooltip"
                                             title="Retirada"><i class="icofont-exit"></i></a>
-
-                                        <button class="btn btn-danger flex-inline" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
-                                            data-bs-id="{{ $ordem->id }}" data-bs-custom-class="custom-tooltip-danger"
-                                            data-toggle="tooltip" title="Apagar"><i class="icofont-ui-delete"></i></button>
+                                        @if (Auth::user()->is_admin)
+                                            <button class="btn btn-danger flex-inline" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal" data-bs-nome="{{ $ordem->id }}"
+                                                data-bs-id="{{ $ordem->id }}" data-bs-custom-class="custom-tooltip-danger"
+                                                data-toggle="tooltip" title="Apagar"><i class="icofont-ui-delete"></i></button>
+                                        @endif
                                     @endif
                                     @if ($ordem->is_arquivado)
                                         <a class="btn btn-dark flex-inline"

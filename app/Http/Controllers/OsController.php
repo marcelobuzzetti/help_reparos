@@ -231,30 +231,39 @@ class OsController extends Controller
      */
     public function destroy($id)
     {
-        $ordem = new Os;
+        if (Auth::user()->is_admin){
+            $ordem = new Os;
 
-        try{
-            $ordem::where('id', $id)->delete();
-            $message = [
-                "type" => "success",
-                "message" => "Ordem Nº $id foi apagada com sucesso!!!"
-            ];
-         } catch (Exception $e) {
-            if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+            try{
+                $ordem::where('id', $id)->delete();
                 $message = [
-                    "type" => "error",
-                    "message" => "Não é possível excluir a Ordem de Serviço!!!"
+                    "type" => "success",
+                    "message" => "Ordem Nº $id foi apagada com sucesso!!!"
                 ];
-            } else {
-                $message = [
-                    "type" => "error",
-                    "message" => $e->getMessage()
-                ];
+            } catch (Exception $e) {
+                if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+                    $message = [
+                        "type" => "error",
+                        "message" => "Não é possível excluir a Ordem de Serviço!!!"
+                    ];
+                } else {
+                    $message = [
+                        "type" => "error",
+                        "message" => $e->getMessage()
+                    ];
+                }
             }
-        }
 
-        return redirect()->route('ordens.index')
-                        ->with('message', $message);
+            return redirect()->route('ordens.index')
+                            ->with('message', $message);
+        } else {
+            $message = [
+                "type" => "error",
+                "message" => "Você não pode apagar Ordens de Serviço!!!"
+            ];
+            return redirect()->route('ordens.index')
+                                ->with('message', $message);
+        }
     }
 
     public function entregaShow($id)

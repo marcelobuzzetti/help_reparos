@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Marca;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MarcaController extends Controller
 {
@@ -136,30 +137,39 @@ class MarcaController extends Controller
      */
     public function destroy(Marca $marca)
     {
-        $descricao = $marca->descricao;
+        if (Auth::user()->is_admin){
+            $descricao = $marca->descricao;
 
-        try{
-            $marca->delete();
-            $message = [
-                "type" => "success",
-                "message" => "Marca $descricao apagada com sucesso!!!"
-            ];
-         } catch (Exception $e) {
-            if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+            try{
+                $marca->delete();
                 $message = [
-                    "type" => "error",
-                    "message" => "Não é possível excluir marca usada em Ordem de Serviço!!!"
+                    "type" => "success",
+                    "message" => "Marca $descricao apagada com sucesso!!!"
                 ];
-            } else {
-                $message = [
-                    "type" => "error",
-                    "message" => $e->getMessage()
-                ];
+            } catch (Exception $e) {
+                if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+                    $message = [
+                        "type" => "error",
+                        "message" => "Não é possível excluir marca usada em Ordem de Serviço!!!"
+                    ];
+                } else {
+                    $message = [
+                        "type" => "error",
+                        "message" => $e->getMessage()
+                    ];
+                }
             }
-        }
 
-        return redirect()->route('marcas.index')
-                        ->with('message', $message);
+            return redirect()->route('marcas.index')
+                            ->with('message', $message);
+        } else {
+            $message = [
+                "type" => "error",
+                "message" => "Você não pode apagar marcas!!!"
+            ];
+            return redirect()->route('marcas.index')
+                            ->with('message', $message);
+        }
     }
 
     public function autocomplete(Request $request)

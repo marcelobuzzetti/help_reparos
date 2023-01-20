@@ -116,29 +116,38 @@ class PecaController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            $peca = Peca::findOrFail($id);
-            Peca::where('id', $id)->delete();
-            $message = [
-                "type" => "success",
-                "message" => "Peça Nº $id foi apagada com sucesso!!!"
-            ];
-         } catch (Exception $e) {
-            if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+        if (Auth::user()->is_admin){
+            try{
+                $peca = Peca::findOrFail($id);
+                Peca::where('id', $id)->delete();
                 $message = [
-                    "type" => "error",
-                    "message" => "Não é possível excluir a Peça!!!"
+                    "type" => "success",
+                    "message" => "Peça Nº $id foi apagada com sucesso!!!"
                 ];
-            } else {
-                $message = [
-                    "type" => "error",
-                    "message" => $e->getMessage()
-                ];
+            } catch (Exception $e) {
+                if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+                    $message = [
+                        "type" => "error",
+                        "message" => "Não é possível excluir a Peça!!!"
+                    ];
+                } else {
+                    $message = [
+                        "type" => "error",
+                        "message" => $e->getMessage()
+                    ];
+                }
             }
-        }
 
-        return redirect()->route('pecas.edit', $peca->ordem_id)
-        ->with('message', $message);
+            return redirect()->route('pecas.edit', $peca->ordem_id)
+            ->with('message', $message);
+        } else {
+            $message = [
+                "type" => "error",
+                "message" => "Você não pode apagar peças!!!"
+            ];
+            return redirect()->route('ordens.index')
+                            ->with('message', $message);
+        }
     }
 
     /**

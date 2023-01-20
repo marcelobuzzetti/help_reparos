@@ -26,12 +26,14 @@
                                             href="{{ route('marcas.edit', $marca->id) }}"><i class="icofont-ui-edit"></i>
                                             Editar</a>
                                     </div>
-                                    <div class="p-2">
-                                        <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" data-bs-nome="{{ $marca->descricao }}"
-                                            data-bs-id="{{ $marca->id }}"><i class="icofont-ui-delete"></i>
-                                            Apagar</button>
-                                    </div>
+                                    @if (Auth::user()->is_admin)
+                                        <div class="p-2">
+                                            <button class="btn btn-danger flex-inline flex-grow-1" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal" data-bs-nome="{{ $marca->descricao }}"
+                                                data-bs-id="{{ $marca->id }}"><i class="icofont-ui-delete"></i>
+                                                Apagar</button>
+                                        </div>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

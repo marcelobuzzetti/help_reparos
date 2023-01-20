@@ -49,7 +49,9 @@
                         <td>Id</td>
                         <td>Descrição</td>
                         <td>Valor</td>
-                        <td>Ações</td>
+                        @if (Auth::user()->is_admin)
+                            <td>Ações</td>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -58,24 +60,16 @@
                             <td>{{ $peca->id }}</td>
                             <td>{{ $peca->descricao }}</td>
                             <td>{{ $peca->valor }}</td>
-                            <td>
-                                <div class="d-flex flex-wrap justify-content-evenly">
-
-                                    {{-- <a class="btn btn-info flex-inline" href="{{ route('pecas.show', $peca->id) }}"
-                                        data-bs-custom-class="custom-tooltip-info" data-toggle="tooltip" title="Mostrar"><i
-                                            class="icofont-search-1"></i></a>
-
-                                    <a class="btn btn-primary flex-inline" href="{{ route('ordens.edit', $peca->id) }}"
-                                        data-bs-custom-class="custom-tooltip-primary" data-toggle="tooltip"
-                                        title="Editar"><i class="icofont-ui-edit"></i></a> --}}
-
-
-                                    <button class="btn btn-danger flex-inline" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal" data-bs-nome="{{ $peca->id }}"
-                                        data-bs-id="{{ $peca->id }}" data-bs-custom-class="custom-tooltip-danger"
-                                        data-toggle="tooltip" title="Apagar"><i class="icofont-ui-delete"></i></button>
-                                </div>
-                            </td>
+                            @if (Auth::user()->is_admin)
+                                <td>
+                                    <div class="d-flex flex-wrap justify-content-evenly">
+                                            <button class="btn btn-danger flex-inline" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal" data-bs-nome="{{ $peca->id }}"
+                                                data-bs-id="{{ $peca->id }}" data-bs-custom-class="custom-tooltip-danger"
+                                                data-toggle="tooltip" title="Apagar"><i class="icofont-ui-delete"></i></button>
+                                            </div>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
@@ -84,7 +78,9 @@
                         <td>Id</td>
                         <td>Descrição</td>
                         <td>Valor</td>
-                        <td>Ações</td>
+                        @if (Auth::user()->is_admin)
+                            <td>Ações</td>
+                        @endif
                     </tr>
                 </tfoot>
             </table>

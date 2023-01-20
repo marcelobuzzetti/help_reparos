@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
@@ -150,30 +151,39 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        $nome = $cliente->nome;
-        $message = [];
-        try {
-            $cliente->delete();
-            $message = [
-                "type" => "success",
-                "message" => "Cliente $nome apagado com sucesso!!!"
-            ];
-        } catch (Exception $e) {
-            if (stripos($e->getMessage(), 'FOREIGN KEY')) {
+        if (Auth::user()->is_admin){
+            $nome = $cliente->nome;
+            $message = [];
+            try {
+                $cliente->delete();
                 $message = [
-                    "type" => "error",
-                    "message" => "Não é possível excluir cliente com Ordem de Serviço cadastrada!!!"
+                    "type" => "success",
+                    "message" => "Cliente $nome apagado com sucesso!!!"
                 ];
-            } else {
-                $message = [
-                    "type" => "error",
-                    "message" => $e->getMessage()
-                ];
+            } catch (Exception $e) {
+                if (stripos($e->getMessage(), 'FOREIGN KEY')) {
+                    $message = [
+                        "type" => "error",
+                        "message" => "Não é possível excluir cliente com Ordem de Serviço cadastrada!!!"
+                    ];
+                } else {
+                    $message = [
+                        "type" => "error",
+                        "message" => $e->getMessage()
+                    ];
+                }
             }
-        }
 
-        return redirect()->route('clientes.index')
+            return redirect()->route('clientes.index')
+                ->with('message', $message);
+        } else {
+            $message = [
+                "type" => "error",
+                "message" => "Você não pode excluir Clientes!!!"
+            ];
+            return redirect()->route('clientes.index')
             ->with('message', $message);
+        }
     }
 
     public function autocomplete(Request $request)

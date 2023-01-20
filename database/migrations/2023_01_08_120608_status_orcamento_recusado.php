@@ -16,6 +16,7 @@ return new class extends Migration
     {
         DB::table('status')->insert(
             [
+            'id' => 7,
             'descricao' => 'Orçamento Recusado',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')

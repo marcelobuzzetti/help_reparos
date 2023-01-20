@@ -18,26 +18,31 @@ class StatusTableSeeder extends Seeder
 
         DB::table('status')->insert([
             [
+            'id' => 1,
             'descricao' => 'Entrada',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
             ],
             [
+            'id' => 2,
             'descricao' => 'Orçado',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
             ],
             [
+            'id' => 3,
             'descricao' => 'Aprovado pelo Cliente',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
             ],
             [
+            'id' => 4,
             'descricao' => 'Pronto',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')
             ],
             [
+            'id' => 5,
             'descricao' => 'Saída',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s')

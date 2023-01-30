@@ -264,12 +264,12 @@
             </div>
         </div>
         <div class="d-flex justify-content-between flex-wrap">
-            {{-- <div class="">
+            <div class="">
                 <div class="form-group">
                     <strong>Valor do Serviço:</strong>
                     {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
                 </div>
-            </div> --}}
+            </div>
             @if ($ordem->status_id == 4 || $ordem->status_id == 5)
             <div class="">
                 <div class="form-group">
@@ -370,12 +370,12 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between flex-wrap">
-                {{-- <div class="">
+                <div class="">
                     <div class="form-group">
                         <strong>Valor do Serviço:</strong>
                         {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
                     </div>
-                </div> --}}
+                </div>
                 @if ($ordem->status_id == 4 || $ordem->status_id == 5)
                 <div class="">
                     <div class="form-group">

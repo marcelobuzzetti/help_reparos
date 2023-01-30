@@ -486,8 +486,17 @@ class OsController extends Controller
     public function imprimirOs(Request $request)
     {
         $ordem = new Os;
-        $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($request->id);
-        return view('ordem.show',compact('ordem'))->with('print', TRUE);
+        $ordem = $ordem->with(['Cliente','Marca','Status', 'Pecas'])->findOrFail($request->id);
+        $total = 0;
+        foreach($ordem->pecas as $peca){
+            $total += $peca->valor;
+        }
+        return view('ordem.show',[
+            'ordem' => $ordem,
+            'total' => $total,
+            'print' => TRUE
+        ]);
+        /* return view('ordem.show',compact('ordem'))->with('print', TRUE); */
     }
 
     public function retornoEmGarantia(Request $request)

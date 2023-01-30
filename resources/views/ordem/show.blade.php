@@ -264,12 +264,12 @@
             </div>
         </div>
         <div class="d-flex justify-content-between flex-wrap">
-            <div class="">
+            {{-- <div class="">
                 <div class="form-group">
                     <strong>Valor do Serviço:</strong>
                     {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
                 </div>
-            </div>
+            </div> --}}
             @if ($ordem->status_id == 4 || $ordem->status_id == 5)
             <div class="">
                 <div class="form-group">
@@ -369,30 +369,13 @@
                     </div>
                 </div>
             </div>
-            @if (count($ordem->pecas) > 0)
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Peças:</strong>
-                        <br>
-                        Descricação/Valor
-                        @foreach ($ordem->pecas as $pecas)
-                        <div class="form-group">
-                             {{ $pecas->descricao }} / R${{ $pecas->valor }}
-                        </div>
-                        @endforeach
-                        <div class="form-group">
-                            Total das Peças: R${{ $total }}
-                        </div>
-                    </div>
-                </div>
-            @endif
             <div class="d-flex justify-content-between flex-wrap">
-                <div class="">
+                {{-- <div class="">
                     <div class="form-group">
                         <strong>Valor do Serviço:</strong>
                         {{ $ordem->valor_servico ? "R$ " . $ordem->valor_servico /* number_format($ordem->valor_servico,2,',','.') */ : 'Não orçado' }}
                     </div>
-                </div>
+                </div> --}}
                 @if ($ordem->status_id == 4 || $ordem->status_id == 5)
                 <div class="">
                     <div class="form-group">

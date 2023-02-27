@@ -21,8 +21,8 @@ class BalancoController extends Controller
         $f = new IntlDateFormatter(null, null, null, null, null, 'MMMM');
         $data = $f->format(new DateTime(date('Y-m-d')));
 
-        $totalOrcamentos = Os::whereMonth('retirada','=',$date)->where('status_id', '=', 5)->sum('valor_servico');
-        $pecas = Os::with(['Pecas'])->whereMonth('retirada','=',$date)->where('status_id', '=', 5)->get();
+        $totalOrcamentos = Os::whereMonth('retirada','=',$date)->where('status_id', '=', 5)->where('is_arquivado', '=', '1')->sum('valor_servico');
+        $pecas = Os::with(['Pecas'])->whereMonth('retirada','=',$date)->where('status_id', '=', 5)->where('is_arquivado', '=', '1')->get();
         $totalPecas = 0;
 
         foreach ($pecas as $peca)
@@ -111,8 +111,8 @@ class BalancoController extends Controller
     public function relatorio(Request $request)
     {
         if(!$request->start_date && !$request->end_date){
-            $totalOrcamentosGerado = Os::where('status_id', '=', 5)->sum('valor_servico');
-            $pecas = Os::with(['Pecas'])->where('status_id', '=', 5)->get();
+            $totalOrcamentosGerado = Os::where('status_id', '=', 5)->where('is_arquivado', '=', '1')->sum('valor_servico');
+            $pecas = Os::with(['Pecas'])->where('status_id', '=', 5)->where('is_arquivado', '=', '1')->get();
             $totalPecasGerado = 0;
 
         foreach ($pecas as $peca)
@@ -140,13 +140,13 @@ class BalancoController extends Controller
             $request->validate([
                 'end_date'   => 'required|date|after:start_date',
             ]);
-            $totalOrcamentosGerado = Os::whereBetween('retirada',[$request->start_date, $request->end_date])->where('status_id', '=', 5)->sum('valor_servico');
-            $pecas = Os::with(['Pecas'])->whereBetween('retirada',[$request->start_date, $request->end_date])->where('status_id', '=', 5)->get();
+            $totalOrcamentosGerado = Os::whereBetween('retirada',[$request->start_date, $request->end_date])->where('status_id', '=', 5)->where('is_arquivado', '=', '1')->sum('valor_servico');
+            $pecas = Os::with(['Pecas'])->whereBetween('retirada',[$request->start_date, $request->end_date])->where('status_id', '=', 5)->where('is_arquivado', '=', '1')->get();
             $fim = new IntlDateFormatter(null, null, null, null, null, 'dd/MM/yyyy');
             $dataFim = $fim->format(new DateTime($request->end_date));
         } else {
-            $totalOrcamentosGerado = Os::where('retirada', '>=', $request->start_date)->where('status_id', '=', 5)->sum('valor_servico');
-            $pecas = Os::with(['Pecas'])->where('retirada', '>=', $request->start_date)->where('status_id', '=', 5)->get();
+            $totalOrcamentosGerado = Os::where('retirada', '>=', $request->start_date)->where('status_id', '=', 5)->where('is_arquivado', '=', '1')->sum('valor_servico');
+            $pecas = Os::with(['Pecas'])->where('retirada', '>=', $request->start_date)->where('status_id', '=', 5)->where('is_arquivado', '=', '1')->get();
         }
 
         $start_date = $request->old('start_date');

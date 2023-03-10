@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrdemServico;
 use App\Models\Os;
 use App\Models\Cliente;
 use App\Models\Marca;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class OsController extends Controller
@@ -106,6 +108,10 @@ class OsController extends Controller
             ];
         }
 
+        $ordem = Os::whereId($osId)->with('cliente','marca','status')->first();
+
+        Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Cadastro na Help Reparos', $ordem));
+
         return redirect()->route('ordens.show', $osId)
                         ->with('message', $message);
     }
@@ -170,7 +176,7 @@ class OsController extends Controller
      * @param  \App\Models\Os  $ordem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Os $ordem)
+    public function update(Request $request)
     {
         $os = new Os;
         $os = $os->findOrFail($request->id);
@@ -218,6 +224,10 @@ class OsController extends Controller
                 "message" => $e->getMessage()
             ];
         }
+
+        $ordem = Os::whereId($os->id)->with('cliente','marca','status')->first();
+
+        Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
 
         return redirect()->route('ordens.show', $os->id)
                         ->with('message', $message);
@@ -371,6 +381,10 @@ class OsController extends Controller
         $data = $request->all();
         /* $ordem = new Os;
         $ordem = $ordem->findOrFail($request->id); */
+
+        $ordem = Os::whereId($request->id)->with('cliente','marca','status')->first();
+
+        Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
 
         $date = date('Y-m-d');
 

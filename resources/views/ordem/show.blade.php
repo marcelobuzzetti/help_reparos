@@ -391,14 +391,14 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="d-flex justify-content-between">
+             <div class="d-flex justify-content-between">
                 <div class="">
                     <div class="form-group">
                         <strong>Observação:</strong>
-                        <div style="white-space: pre-wrap;">{{ $empresa->observacao }}</div>
+                        <p class="fs-2 text">Eu ___________________ declaro estar retirando o aparelho nas condições acima citadas nesta data: ____/____/____.</p>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
     @if (isset($print))

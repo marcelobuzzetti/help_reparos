@@ -120,7 +120,6 @@
                     {{ $ordem->entregue_para && $ordem->retirada ? $ordem->entregue_para . ' em ' . date('d/m/Y', strtotime($ordem->retirada)) : 'Não entregue' }}
                 </div>
             </div>
-            </>
             <div class="d-flex flex-wrap justify-content-center">
                 <div class="p-2">
                     <a class="btn btn-primary flex-inline flex-grow-1" href="{{ route('ordens.edit', $ordem->id) }}"><i
@@ -168,22 +167,22 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form id="apagarCliente" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <div class="mb-3">
-                            <p>Tem certeza que deseja apagar a OS nº <strong class="fs-3"><span
-                                        id="nomeClienteModal"></span></strong>?</p>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i
-                            class="icofont-close"></i> Fechar</button>
-                    <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i>
-                        Apagar</button>
-                    </form>
-                </div>
+                <form id="apagarCliente" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                            <div class="mb-3">
+                                <p>Tem certeza que deseja apagar a OS nº <strong class="fs-3"><span
+                                            id="nomeClienteModal"></span></strong>?</p>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary d-flex-inline" data-bs-dismiss="modal"><i
+                                class="icofont-close"></i> Fechar</button>
+                        <button type="submit" class="btn btn-danger d-flex-inline"><i class="icofont-ui-delete"></i>
+                            Apagar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

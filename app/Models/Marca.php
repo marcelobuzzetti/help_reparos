@@ -17,6 +17,6 @@ class Marca extends Model
 
     public function os()
     {
-        return $this->belongsTo(Os::class,'marca_id', 'id');
+        return $this->hasMany(Os::class,'marca_id', 'id');
     }
 }

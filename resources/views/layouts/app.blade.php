@@ -204,6 +204,11 @@
                     </script>
                 @endif
             @endif
+            @if (Session::get('email'))
+                    <script>
+                        toastr.error("{!! Session::get('email') !!}");
+                    </script>
+            @endif
             @yield('content')
         </main>
     </div>

@@ -28,19 +28,21 @@ class Os extends Model
 
     protected $table = 'ordens';
 
+    protected $with = ['cliente', 'marca', 'status', 'pecas'];
+
     public function cliente()
     {
-        return $this->hasMany(Cliente::class, 'id', 'cliente_id');
+        return $this->belongsTo(Cliente::class);
     }
 
     public function marca()
     {
-        return $this->hasMany(Marca::class, 'id', 'marca_id');
+        return $this->belongsTo(Marca::class);
     }
 
     public function status()
     {
-        return $this->hasMany(Status::class, 'id', 'status_id');
+        return $this->belongsTo(Status::class);
     }
 
     public function pecas()

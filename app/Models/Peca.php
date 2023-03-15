@@ -19,6 +19,6 @@ class Peca extends Model
 
     public function ordem()
     {
-        return $this->hasMany(Os::class, 'id', 'ordem_id');
+        return $this->belongsTo(Os::class);
     }
 }

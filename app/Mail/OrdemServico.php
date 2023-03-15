@@ -34,6 +34,7 @@ class OrdemServico extends Mailable
     public function envelope()
     {
         return new Envelope(
+            /*from: new Address(config('MAIL_FROM_ADDRESS'), config('MAIL_FROM_NAME')),*/
             subject: $this->assunto,
         );
     }
@@ -43,12 +44,13 @@ class OrdemServico extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
-    /*public function content()
+    public function content()
     {
         return new Content(
             view: 'emails.ordemservico',
+            text: 'emails.ordemservico_text'
         );
-    }*/
+    }
 
     /**
      * Get the attachments for the message.
@@ -60,7 +62,7 @@ class OrdemServico extends Mailable
         return [];
     }
 
-    public function build()
+    /*public function build()
     {
         return $this->view('emails.ordemservico')
             ->text( 'emails.ordemservico_text' )
@@ -68,5 +70,5 @@ class OrdemServico extends Mailable
             ->with([
                 'ordem' => $this->ordem
             ]);
-    }
+    }*/
 }

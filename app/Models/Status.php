@@ -17,7 +17,7 @@ class Status extends Model
 
     public function os()
     {
-        return $this->belongsTo(Os::class, 'status_id', 'id');
+        return $this->hasMany(Os::class, 'status_id', 'id');
     }
 
 }

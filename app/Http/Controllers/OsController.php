@@ -27,7 +27,7 @@ class OsController extends Controller
     {
         /* $ordens = Os::osMarcaCliente(); */
         $ordem = new Os;
-        $ordens = $ordem->with(['Cliente','Marca','Status'])->WhereNull('is_arquivado')->orWhere('is_arquivado', '=', false)->get();
+        $ordens = $ordem->WhereNull('is_arquivado')->orWhere('is_arquivado', '=', false)->get();
 
         return view('ordem.index', [
             'ordens' => $ordens
@@ -108,12 +108,20 @@ class OsController extends Controller
             ];
         }
 
-        $ordem = Os::whereId($osId)->with('cliente','marca','status')->first();
+        $ordem = Os::whereId($osId)->first();
+        $email = false;
 
-        Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Cadastro na Help Reparos', $ordem));
+        try {
+            Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Cadastro na Help Reparos', $ordem));
+        } catch (\Throwable $e) {
+            $email = "Email não enviado, verifique suas configurações de Email";
+        }
 
         return redirect()->route('ordens.show', $osId)
-                        ->with('message', $message);
+                        ->with([
+                            'message' => $message,
+                            'email' => $email
+                        ]);
     }
 
     /**
@@ -125,7 +133,7 @@ class OsController extends Controller
     public function show($os)
     {
         $ordem = new Os;
-        $ordem = $ordem->with(['Cliente','Marca','Status', 'Pecas'])->findOrFail($os);
+        $ordem = $ordem->findOrFail($os);
         $total = 0;
         foreach($ordem->pecas as $peca){
             $total += $peca->valor;
@@ -155,7 +163,7 @@ class OsController extends Controller
     public function edit($os)
     {
         $ordem = new Os;
-        $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($os);
+        $ordem = $ordem->findOrFail($os);
         /* $ordem->valor_servico ? $ordem->valor_servico = Os::decimalToCurrency($ordem->valor_servico) : null; */
 
         $clientes = Cliente::all();
@@ -225,12 +233,20 @@ class OsController extends Controller
             ];
         }
 
-        $ordem = Os::whereId($os->id)->with('cliente','marca','status')->first();
+        $ordem = Os::whereId($os->id)->first();
+        $email = false;
 
-        Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
+        try {
+            Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
+        } catch (\Throwable $e) {
+            $email = "Email não enviado, verifique suas configurações de Email";
+        }
 
         return redirect()->route('ordens.show', $os->id)
-                        ->with('message', $message);
+            ->with([
+                'message' => $message,
+                'email' => $email
+            ]);
     }
 
     /**
@@ -279,7 +295,7 @@ class OsController extends Controller
     public function entregaShow($id)
     {
         $ordem = new Os;
-        $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($id);
+        $ordem = $ordem->findOrFail($id);
         $clientes = Cliente::all();
         $marcas = Marca::all();
         $status = Status::all();
@@ -292,7 +308,7 @@ class OsController extends Controller
     public function recusouShow($id)
     {
         $ordem = new Os;
-        $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($id);
+        $ordem = $ordem->findOrFail($id);
         $clientes = Cliente::all();
         $marcas = Marca::all();
         $status = Status::all();
@@ -305,7 +321,7 @@ class OsController extends Controller
     public function orcamento($os)
     {
         $ordem = new Os;
-        $ordem = $ordem->with(['Cliente','Marca','Status'])->findOrFail($os);
+        $ordem = $ordem->findOrFail($os);
 
         return view('ordem.orcamento',[
             'ordem' => $ordem,
@@ -382,7 +398,7 @@ class OsController extends Controller
         /* $ordem = new Os;
         $ordem = $ordem->findOrFail($request->id); */
 
-        $ordem = Os::whereId($request->id)->with('cliente','marca','status')->first();
+        $ordem = Os::whereId($request->id)->first();
 
         Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
 
@@ -500,7 +516,7 @@ class OsController extends Controller
     public function imprimirOs(Request $request)
     {
         $ordem = new Os;
-        $ordem = $ordem->with(['Cliente','Marca','Status', 'Pecas'])->findOrFail($request->id);
+        $ordem = $ordem->findOrFail($request->id);
         $total = 0;
         foreach($ordem->pecas as $peca){
             $total += $peca->valor;
@@ -593,7 +609,7 @@ class OsController extends Controller
     {
         /* $ordens = Os::osMarcaCliente(); */
         $ordem = new Os;
-        $ordens = $ordem->with(['Cliente','Marca','Status'])->where('is_arquivado', '=', 1)->get();
+        $ordens = $ordem->where('is_arquivado', '=', 1)->get();
 
         return view('ordem.index', [
             'ordens' => $ordens

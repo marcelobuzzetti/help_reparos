@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <div class="card-glass">
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
@@ -258,20 +257,6 @@
                 modalBodyNomeCliente.textContent = nome
                 modalBodyForm.action = `<?php echo env('APP_URL'); ?>/ordens/${id}`
             })
-        });
-
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('b6e2af44bf66b516bc6d', {
-            cluster: 'mt1'
-        });
-
-        var channel = pusher.subscribe('atualizacao-ordem');
-        channel.bind('alteracao-status', function(data) {
-            console.log(data);
-            alert(JSON.stringify(data));
-            /*app.messages.push(JSON.stringify(data));*/ //Data assignment
         });
     </script>
 @endsection

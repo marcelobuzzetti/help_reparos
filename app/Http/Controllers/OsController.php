@@ -102,7 +102,7 @@ class OsController extends Controller
                 "type" => "success",
                 "message" => "Ordem de Serviço nº $osId foi criada com sucesso!!!."
             ];
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $message = [
                 "type" => "error",
                 "message" => $e->getMessage()
@@ -227,7 +227,7 @@ class OsController extends Controller
                 "type" => "success",
                 "message" => "OS Nº $request->id atualizada com sucesso!!!"
             ];
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $message = [
                 "type" => "error",
                 "message" => $e->getMessage()
@@ -242,8 +242,7 @@ class OsController extends Controller
         } catch (\Throwable $e) {
             $email = "Email não enviado, verifique suas configurações de Email";
         }
-
-        event(new AtualizacaoOrdem($ordem));
+        if($message["type"] == "success") event(new AtualizacaoOrdem($ordem));
 
         return redirect()->route('ordens.show', $os->id)
             ->with([
@@ -269,7 +268,7 @@ class OsController extends Controller
                     "type" => "success",
                     "message" => "Ordem Nº $id foi apagada com sucesso!!!"
                 ];
-            } catch (Exception $e) {
+            } catch (\Throwable $e) {
                 if(stripos($e->getMessage(), 'FOREIGN KEY')) {
                     $message = [
                         "type" => "error",
@@ -363,7 +362,7 @@ class OsController extends Controller
                     "type" => "success",
                     "message" => "Ordem de Serviço nº $request->id foi Orçada!!!."
                 ];
-            } catch (Exception $e) {
+            } catch (\Throwable $e) {
                 $message = [
                     "type" => "error",
                     "message" => $e->getMessage()
@@ -421,7 +420,7 @@ class OsController extends Controller
                 "type" => "success",
                 "message" => "Ordem de Serviço nº $request->id entregue para $request->entregue_para!!!."
             ];
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $message = [
                 "type" => "error",
                 "message" => $e->getMessage()
@@ -464,7 +463,7 @@ class OsController extends Controller
                 "type" => "success",
                 "message" => "Ordem de Serviço nº $request->id entregue para $request->entregue_para!!!."
             ];
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $message = [
                 "type" => "error",
                 "message" => $e->getMessage()
@@ -546,7 +545,7 @@ class OsController extends Controller
                 "type" => "success",
                 "message" => "OS Nº $request->id retornou com sucesso!!!"
             ];
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $message = [
                 "type" => "error",
                 "message" => $e->getMessage()
@@ -569,7 +568,7 @@ class OsController extends Controller
                 "type" => "success",
                 "message" => "OS Nº $request->id arquivada com sucesso!!!"
             ];
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $message = [
                 "type" => "error",
                 "message" => $e->getMessage()
@@ -592,7 +591,7 @@ class OsController extends Controller
                 "type" => "success",
                 "message" => "OS Nº $request->id desarquivada com sucesso!!!"
             ];
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             $message = [
                 "type" => "error",
                 "message" => $e->getMessage()

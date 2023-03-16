@@ -45,6 +45,9 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('assets/css/template.css') }}" />
+
+    {{-- Pusher --}}
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 </head>
 
 <body>
@@ -244,6 +247,34 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
+        });
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = false;
+
+        var pusher = new Pusher('b6e2af44bf66b516bc6d', {
+            cluster: 'mt1'
+        });
+
+        var channel = pusher.subscribe('atualizacao-ordem');
+        channel.bind('alteracao-status', function(data) {
+            var text = `A Ordem nº ${data.ordem.id} foi atualizada`
+            toastr.options = {
+                "closeButton": true,
+                "extendedTimeOut": "0",
+                "timeOut": "0",
+                "tapToDismiss": false,
+                "positionClass": "toast-bottom-right",
+                "newestOnTop": true,
+                "preventDuplicates": true,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+            }
+            @unless(Session::get('message'))
+                toastr.success(text)
+            @endunless
         });
     </script>
 </body>

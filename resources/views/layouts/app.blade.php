@@ -258,7 +258,8 @@
 
         var channel = pusher.subscribe('atualizacao-ordem');
         channel.bind('alteracao-status', function(data) {
-            var text = `A Ordem nº ${data.ordem.id} foi atualizada`
+            var url = `/ordens/${data.ordem.id}`
+            var text = `A Ordem nº ${data.ordem.id} foi atualizada <br></div><strong>Veja a OS clicando<a class='btn btn-dark' href=${url}>AQUI</a>!!!</strong>`
             toastr.options = {
                 "closeButton": true,
                 "extendedTimeOut": "0",

@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Os;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,11 +15,11 @@ class AtualizacaoOrdem implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public array $status;
+    public Os $ordem;
 
-    public function __construct(array $status)
+    public function __construct(Os $ordem)
     {
-        $this->status = $status;
+        $this->ordem = $ordem;
     }
 
     public function broadcastOn()

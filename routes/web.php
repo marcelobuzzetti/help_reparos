@@ -98,10 +98,10 @@ Route::get('/ordemservico/{id}/edit', [OsController::class, 'editTeste']);
 
 Route::delete('/ordemservico/{id}/delete', [OsController::class, 'destroyTeste']); */
 
-Route::get('/event', function () {
+/*Route::get('/event', function () {
     $array = ['name' => 'Ekpono Ambrose']; //data we want to pass
     event(new AtualizacaoOrdem($array));
 
     return 'done';
-});
+});*/
 

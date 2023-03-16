@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AtualizacaoOrdem;
 use App\Mail\OrdemServico;
 use App\Models\Os;
 use App\Models\Cliente;
@@ -241,6 +242,8 @@ class OsController extends Controller
         } catch (\Throwable $e) {
             $email = "Email não enviado, verifique suas configurações de Email";
         }
+
+        event(new AtualizacaoOrdem($ordem));
 
         return redirect()->route('ordens.show', $os->id)
             ->with([

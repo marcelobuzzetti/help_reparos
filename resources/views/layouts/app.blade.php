@@ -168,7 +168,7 @@
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         <img class="avatar"
-                                            src="<?= 'http://www.gravatar.com/avatar.php?gravatar_id=' . md5(strtolower(trim(Auth::user()->email))) ?>"
+                                            src="<?= 'https://www.gravatar.com/avatar.php?gravatar_id=' . md5(strtolower(trim(Auth::user()->email))) ?>"
                                             alt="user">
                                         <span class="ml-3">{{ Auth::user()->name }}</span>
                                     </a>
@@ -250,7 +250,7 @@
         });
 
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = false;
+        Pusher.logToConsole = true;
 
         var pusher = new Pusher('b6e2af44bf66b516bc6d', {
             cluster: 'mt1'

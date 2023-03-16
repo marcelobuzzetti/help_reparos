@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\PecaController;
 use App\Http\Controllers\BalancoController;
+use App\Events\AtualizacaoOrdem;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,4 +98,10 @@ Route::get('/ordemservico/{id}/edit', [OsController::class, 'editTeste']);
 
 Route::delete('/ordemservico/{id}/delete', [OsController::class, 'destroyTeste']); */
 
+Route::get('/event', function () {
+    $array = ['name' => 'Ekpono Ambrose']; //data we want to pass
+    event(new AtualizacaoOrdem($array));
+
+    return 'done';
+});
 

@@ -250,7 +250,7 @@
         });
 
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+        Pusher.logToConsole = false;
 
         var pusher = new Pusher('b6e2af44bf66b516bc6d', {
             cluster: 'mt1'

@@ -50,7 +50,7 @@
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 
     {{-- Socket.IO --}}
-    <script type="text/javascript" src="{{ config('app.url) }}:3000/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="{{ config('app.url') }}:3000/socket.io/socket.io.js"></script>
 
 </head>
 

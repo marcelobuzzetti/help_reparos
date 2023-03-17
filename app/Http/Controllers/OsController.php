@@ -190,6 +190,8 @@ class OsController extends Controller
     {
         $os = new Os;
         $os = $os->findOrFail($request->id);
+        $email = false;
+        $socket = false;
 
         if(!$os->is_orcado){
             $request->valor_servico ? $request['is_orcado'] = TRUE : $request['is_orcado'] = FALSE;
@@ -236,7 +238,6 @@ class OsController extends Controller
         }
 
         $ordem = Os::whereId($os->id)->first();
-        $email = false;
 
         try {
             Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
@@ -245,10 +246,17 @@ class OsController extends Controller
         }
         if($message["type"] == "success") event(new AtualizacaoOrdem($ordem));
 
+        try{
+            Http::get(config('broadcasting.connections.socket-io.url')."/".$ordem->id);
+        } catch (\Throwable $e) {
+            $socket = $e;
+        }
+
         return redirect()->route('ordens.show', $os->id)
             ->with([
                 'message' => $message,
-                'email' => $email
+                'email' => $email,
+                '$socket' => $socket,
             ]);
     }
 

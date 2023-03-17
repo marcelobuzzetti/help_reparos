@@ -67,6 +67,10 @@ return [
             'driver' => 'null',
         ],
 
+        'socket-io' => [
+            'url' => env("SOCKET_URL")
+        ]
+
     ],
 
 ];

@@ -245,8 +245,6 @@ class OsController extends Controller
         }
         if($message["type"] == "success") event(new AtualizacaoOrdem($ordem));
 
-        Http::get('http://localhost:6677/'.$ordem->id);
-
         return redirect()->route('ordens.show', $os->id)
             ->with([
                 'message' => $message,

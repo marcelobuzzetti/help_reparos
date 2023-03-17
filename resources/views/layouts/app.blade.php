@@ -253,7 +253,7 @@
             }
 
             /*var socket = io.connect('http://localhost:6677',{'forceNew':true});*/
-            const socket = io("localhost:6677");
+            const socket = io("{{ config('app.url') }}:6677");
             socket.on('messages', function(data){
                 console.log(data);
                 toastr.options = {

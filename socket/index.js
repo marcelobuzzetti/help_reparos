@@ -1,7 +1,7 @@
 var express = require ('express');
 const {json} = require("express");
 var app = express();
-var server = require('http').Server(app);
+var server = require('https').Server(app);
 var io = require('socket.io')(server, {
     cors: "*"
 });
@@ -33,5 +33,5 @@ io.on('connection', function(socket){
 });
 
 server.listen(3000, function(){
-	console.log('Servidor está funcionando em http://localhost:6677');
+	console.log('Servidor está funcionando em https://localhost:3000');
 });

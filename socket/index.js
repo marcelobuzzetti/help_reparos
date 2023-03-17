@@ -32,6 +32,6 @@ io.on('connection', function(socket){
 	});*/
 });
 
-server.listen(6677, function(){
+server.listen(3000, function(){
 	console.log('Servidor está funcionando em http://localhost:6677');
 });

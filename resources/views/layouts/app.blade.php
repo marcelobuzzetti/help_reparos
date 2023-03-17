@@ -252,7 +252,7 @@
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = false;
 
-        var pusher = new Pusher('b6e2af44bf66b516bc6d', {
+        var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
             cluster: 'mt1'
         });
 

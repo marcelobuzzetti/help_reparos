@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
@@ -243,6 +244,8 @@ class OsController extends Controller
             $email = "Email não enviado, verifique suas configurações de Email";
         }
         if($message["type"] == "success") event(new AtualizacaoOrdem($ordem));
+
+        Http::get('http://localhost:6677/'.$ordem->id);
 
         return redirect()->route('ordens.show', $os->id)
             ->with([

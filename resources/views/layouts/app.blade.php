@@ -48,6 +48,10 @@
 
     {{-- Pusher --}}
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
+    {{-- Socket.IO --}}
+    <script type="text/javascript" src="http://localhost:6677/socket.io/socket.io.js"></script>
+
 </head>
 
 <body>
@@ -247,6 +251,28 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
+
+            /*var socket = io.connect('http://localhost:6677',{'forceNew':true});*/
+            const socket = io("localhost:6677");
+            socket.on('messages', function(data){
+                console.log(data);
+                toastr.options = {
+                    "closeButton": true,
+                    "extendedTimeOut": "0",
+                    "timeOut": "0",
+                    "tapToDismiss": false,
+                    "positionClass": "toast-bottom-right",
+                    "newestOnTop": true,
+                    "preventDuplicates": true,
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut",
+                }
+                var url = `/ordens/${data}`
+                var text = `A Ordem nº ${data} foi atualizada <br></div><strong>Veja a OS clicando<a class='btn btn-dark' href=${url}>AQUI</a>!!!</strong>`
+                toastr.success(text)
+            });
         });
 
         // Enable pusher logging - don't include this in production

@@ -212,6 +212,4 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
-    /* Pusher Id */
-    'pusher_id' => env('PUSHER_APP_KEY'),
 ];

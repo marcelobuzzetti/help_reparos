@@ -252,7 +252,7 @@
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = false;
 
-        var pusher = new Pusher('{{ config('app.pusher_id') }}', {
+        var pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', {
             cluster: 'mt1'
         });
 

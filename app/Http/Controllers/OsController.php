@@ -244,7 +244,7 @@ class OsController extends Controller
         } catch (\Throwable $e) {
             $email = "Email não enviado, verifique suas configurações de Email";
         }
-        if($message["type"] == "success") event(new AtualizacaoOrdem($ordem));
+        /*if($message["type"] == "success") event(new AtualizacaoOrdem($ordem));*/
 
         try{
             Http::get(config('broadcasting.connections.socket-io.url')."/".$ordem->id);

@@ -25,6 +25,9 @@
             <td>Entrada: {{ date('d/m/Y', strtotime($ordem->entrada)) }}</td>
         </tr>
         <tr>
+            <td>Cliente: {{ $ordem->cliente->nome }}</td>
+        </tr>
+        <tr>
             <td>Tipo de Aparelho: {{ $ordem->tipo_aparelho }} </td>
         </tr>
         <tr>

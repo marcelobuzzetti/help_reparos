@@ -1,6 +1,7 @@
 Dados da Ordem de Serviço -
 Dados Cadastrados: -
 Entrada: {{ date('d/m/Y', strtotime($ordem->entrada)) }} -
+Cliente: {{ $ordem->cliente->nome }} -
 Tipo de Aparelho: {{ $ordem->tipo_aparelho }}  -
 Marca: {{ $ordem->marca->descricao }}  -
 Modelo {{ $ordem->modelo }} -

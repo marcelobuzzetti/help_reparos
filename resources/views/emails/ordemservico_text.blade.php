@@ -8,6 +8,9 @@ Estado do Aparelho {{ $ordem->estado_aparelho }} -
 Defeito Alegado {{ $ordem->defeito_alegado }} -
 Acessórios: {{ $ordem->acessorios }} -
 Valor do Serviço: {{ $ordem->valor_servico ? $ordem->valor_servico : 'Ainda não Orçado'}} -
+@if($ordem->laudo_tecnico)
+    Laudo Técnico: {{ $ordem->laudo_tecnico }} -
+@endif
 Status {{ $ordem->status->descricao }} -
 @if($ordem->retirada)
     Retirada: {{ date('d/m/Y', strtotime($ordem->retirada)) }} -

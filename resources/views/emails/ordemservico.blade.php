@@ -45,6 +45,11 @@
         <tr>
             <td>Valor do Serviço: {{ $ordem->valor_servico ? $ordem->valor_servico : 'Ainda não Orçado'}}</td>
         </tr>
+        @if($ordem->laudo_tecnico)
+            <tr>
+                <td>Laudo Técnico: {{ $ordem->laudo_tecnico }} </td>
+            </tr>
+        @endif
         <tr>
             <td>Status {{ $ordem->status->descricao }}</td>
         </tr>

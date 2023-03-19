@@ -249,7 +249,7 @@ class OsController extends Controller
         try{
             Http::get(config('broadcasting.connections.socket-io.url')."/".$ordem->id);
         } catch (\Throwable $e) {
-            $socket = $e;
+            $socket = "Erro ao enviar para o Socket";
         }
 
         return redirect()->route('ordens.show', $os->id)

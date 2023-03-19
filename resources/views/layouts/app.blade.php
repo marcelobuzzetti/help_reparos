@@ -275,7 +275,7 @@
                     "hideMethod": "fadeOut",
                 }
                 var url = `/ordens/${data}`
-                var text = `(Socket.io Local) A Ordem nº ${data} foi atualizada <br></div><strong>Veja a OS clicando<a class='btn btn-dark' href=${url}>AQUI</a>!!!</strong>`
+                var text = `A Ordem nº ${data} foi atualizada <br></div><strong>Veja a OS clicando<a class='btn btn-dark' href=${url}>AQUI</a>!!!</strong>`
                 toastr.success(text)
             });
         });

@@ -25,10 +25,10 @@
                     @foreach ($ordens as $ordem)
                         <tr>
                             <td>{{ $ordem->id }}</td>
-                            <td>{{ $ordem->status->first()->descricao }}</td>
+                            <td>{{ $ordem->status->descricao }}</td>
                             <td>{{ date('d/m/Y', strtotime($ordem->entrada)) }}</td>
-                            <td>{{ $ordem->cliente->first()->nome }}</td>
-                            <td>{{ $ordem->marca->first()->descricao }}</td>
+                            <td>{{ $ordem->cliente->nome }}</td>
+                            <td>{{ $ordem->marca->descricao }}</td>
                             {{-- <td>{{ $ordem->modelo }}</td>
                             <td>{{ $ordem->tipo_aparelho }}</td>
                             <td>{{ $ordem->estado_aparelho }}</td>

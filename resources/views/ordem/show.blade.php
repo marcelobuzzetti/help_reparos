@@ -20,7 +20,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Status:</strong>
-                    {{ $ordem->status->first()->descricao }}
+                    {{ $ordem->status->descricao }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -32,13 +32,13 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Cliente:</strong>
-                    {{ $ordem->cliente->first()->nome }}
+                    {{ $ordem->cliente->nome }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Marca:</strong>
-                    {{ $ordem->marca->first()->descricao }}
+                    {{ $ordem->marca->descricao }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -196,7 +196,7 @@
             <div class="">
                 <div class="form-group">
                     <strong>Status:</strong>
-                    {{ $ordem->status->first()->descricao }}
+                    {{ $ordem->status->descricao }}
                 </div>
             </div>
             <div class="">
@@ -208,7 +208,7 @@
             <div class="">
                 <div class="form-group">
                     <strong>Cliente:</strong>
-                    {{ $ordem->cliente->first()->nome }}
+                    {{ $ordem->cliente->nome }}
                 </div>
             </div>
         </div>
@@ -216,7 +216,7 @@
             <div class="">
                 <div class="form-group">
                     <strong>Marca:</strong>
-                    {{ $ordem->marca->first()->descricao }}
+                    {{ $ordem->marca->descricao }}
                 </div>
             </div>
             <div class="">
@@ -302,7 +302,7 @@
                 <div class="">
                     <div class="form-group">
                         <strong>Status:</strong>
-                        {{ $ordem->status->first()->descricao }}
+                        {{ $ordem->status->descricao }}
                     </div>
                 </div>
                 <div class="">
@@ -314,7 +314,7 @@
                 <div class="">
                     <div class="form-group">
                         <strong>Cliente:</strong>
-                        {{ $ordem->cliente->first()->nome }}
+                        {{ $ordem->cliente->nome }}
                     </div>
                 </div>
             </div>
@@ -322,7 +322,7 @@
                 <div class="">
                     <div class="form-group">
                         <strong>Marca:</strong>
-                        {{ $ordem->marca->first()->descricao }}
+                        {{ $ordem->marca->descricao }}
                     </div>
                 </div>
                 <div class="">

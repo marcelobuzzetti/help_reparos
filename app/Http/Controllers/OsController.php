@@ -110,11 +110,11 @@ class OsController extends Controller
             ];
         }
 
-        $ordem = Os::whereId($osId)->first();
+        $ordem = Os::findOrFail($osId);
         $email = false;
 
         try {
-            Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Cadastro na Help Reparos', $ordem));
+            Mail::to($ordem->cliente->email, $ordem->cliente->nome)->send(new OrdemServico('Cadastro na Help Reparos', $ordem));
         } catch (\Throwable $e) {
             $email = "Email não enviado, verifique suas configurações de Email";
         }
@@ -237,10 +237,10 @@ class OsController extends Controller
             ];
         }
 
-        $ordem = Os::whereId($os->id)->first();
+        $ordem = Os::findOrFail($os->id);
 
         try {
-            Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
+            Mail::to($ordem->cliente->email, $ordem->cliente->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
         } catch (\Throwable $e) {
             $email = "Email não enviado, verifique suas configurações de Email";
         }
@@ -409,9 +409,9 @@ class OsController extends Controller
         /* $ordem = new Os;
         $ordem = $ordem->findOrFail($request->id); */
 
-        $ordem = Os::whereId($request->id)->first();
+        $ordem = Os::findOrFail($request->id);
 
-        Mail::to($ordem->cliente->first()->email, $ordem->cliente->first()->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
+        Mail::to($ordem->cliente->email, $ordem->cliente->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
 
         $date = date('Y-m-d');
 

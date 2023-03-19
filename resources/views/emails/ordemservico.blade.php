@@ -28,7 +28,7 @@
             <td>Tipo de Aparelho: {{ $ordem->tipo_aparelho }} </td>
         </tr>
         <tr>
-            <td>Marca: {{ $ordem->marca->first()->descricao }} </td>
+            <td>Marca: {{ $ordem->marca->descricao }} </td>
         </tr>
         <tr>
             <td>Modelo {{ $ordem->modelo }}</td>
@@ -46,7 +46,7 @@
             <td>Valor do Serviço: {{ $ordem->valor_servico ? $ordem->valor_servico : 'Ainda não Orçado'}}</td>
         </tr>
         <tr>
-            <td>Status {{ $ordem->status->first()->descricao }}</td>
+            <td>Status {{ $ordem->status->descricao }}</td>
         </tr>
         @if($ordem->retirada)
             <tr>

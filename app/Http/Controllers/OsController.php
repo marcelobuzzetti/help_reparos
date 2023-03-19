@@ -247,7 +247,9 @@ class OsController extends Controller
         /*if($message["type"] == "success") event(new AtualizacaoOrdem($ordem));*/
 
         try{
-            Http::get(config('broadcasting.connections.socket-io.url')."/".$ordem->id);
+            Http::get(config('broadcasting.connections.socket-io.url')."/", [
+                'id' => $ordem->id
+            ]);
         } catch (\Throwable $e) {
             $socket = "Erro ao enviar para o Socket";
         }

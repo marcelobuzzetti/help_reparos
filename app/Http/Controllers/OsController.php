@@ -443,7 +443,7 @@ class OsController extends Controller
 
         return redirect()->route('imprimirOs', ['id' => $ordem->id])
             ->with([
-                'message' => $message,
+                /*'message' => $message,*/
                 'print' => TRUE
                 /*                 'email' => $email*/
             ]);

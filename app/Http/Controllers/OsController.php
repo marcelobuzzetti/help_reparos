@@ -113,16 +113,16 @@ class OsController extends Controller
         $ordem = Os::findOrFail($osId);
         $email = false;
 
-        try {
+        /*try {
             Mail::to($ordem->cliente->email, $ordem->cliente->nome)->send(new OrdemServico('Cadastro na Help Reparos', $ordem));
         } catch (\Throwable $e) {
             $email = "Email não enviado, verifique suas configurações de Email";
-        }
+        }*/
 
         return redirect()->route('ordens.show', $osId)
                         ->with([
                             'message' => $message,
-                            'email' => $email
+           /*                 'email' => $email*/
                         ]);
     }
 
@@ -239,11 +239,11 @@ class OsController extends Controller
 
         $ordem = Os::findOrFail($os->id);
 
-        try {
+        /*try {
             Mail::to($ordem->cliente->email, $ordem->cliente->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
         } catch (\Throwable $e) {
             $email = "Email não enviado, verifique suas configurações de Email";
-        }
+        }*/
         /*if($message["type"] == "success") event(new AtualizacaoOrdem($ordem));*/
 
         try{
@@ -257,8 +257,8 @@ class OsController extends Controller
         return redirect()->route('ordens.show', $os->id)
             ->with([
                 'message' => $message,
-                'email' => $email,
-                '$socket' => $socket,
+           /*     'email' => $email,
+                '$socket' => $socket,*/
             ]);
     }
 
@@ -413,7 +413,7 @@ class OsController extends Controller
 
         $ordem = Os::findOrFail($request->id);
 
-        Mail::to($ordem->cliente->email, $ordem->cliente->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));
+        /*Mail::to($ordem->cliente->email, $ordem->cliente->nome)->send(new OrdemServico('Atualização na Ordem de Serviço', $ordem));*/
 
         $date = date('Y-m-d');
 
@@ -438,8 +438,15 @@ class OsController extends Controller
             ];
         }
 
-        return redirect()->route('ordens.index')
-                        ->with('message', $message);
+        /*return redirect()->route('ordens.index')
+                        ->with('message', $message);*/
+
+        return redirect()->route('imprimirOs', ['id' => $ordem->id])
+            ->with([
+                'message' => $message,
+                'print' => TRUE
+                /*                 'email' => $email*/
+            ]);
     }
 
     public function recusou(Request $request)

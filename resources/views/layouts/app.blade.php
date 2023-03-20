@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/template.css') }}" />
 
     {{-- Pusher --}}
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    {{--<script src="https://js.pusher.com/7.2/pusher.min.js"></script>--}}
 
     {{-- Socket.IO --}}
     <script type="text/javascript" src="{{config('broadcasting.connections.socket-io.url')}}/socket.io/socket.io.js"></script>
@@ -211,16 +211,6 @@
                     </script>
                 @endif
             @endif
-            @if (Session::get('email'))
-                    <script>
-                        toastr.error("{!! Session::get('email') !!}");
-                    </script>
-            @endif
-            @if (Session::get('socket'))
-                    <script>
-                        toastr.error("{!! Session::get('socket') !!}");
-                    </script>
-            @endif
             @yield('content')
         </main>
     </div>
@@ -281,7 +271,7 @@
         });
 
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = false;
+/*        Pusher.logToConsole = false;
 
         var pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', {
             cluster: 'mt1'
@@ -303,11 +293,11 @@
                 "hideEasing": "linear",
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut",
-            }
+            }*/
             @unless(Session::get('message'))
                 toastr.success(text)
             @endunless
-        });
+        /*});*/
     </script>
 </body>
 

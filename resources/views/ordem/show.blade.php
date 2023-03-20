@@ -393,7 +393,7 @@
              <div class="d-flex justify-content-between">
                 <div class="">
                     <div class="form-group">
-                        <p class="fs-2 text">Eu ___________________ declaro estar retirando o aparelho nas condições acima citadas nesta data: ____/____/____.</p>
+                        <p class="fs-2 text">Eu ______________________________________ declaro estar retirando o aparelho nas condições acima citadas nesta data: ____/____/____.</p>
                     </div>
                 </div>
             </div>

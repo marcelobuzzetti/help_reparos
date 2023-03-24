@@ -229,7 +229,7 @@
             "thousands": ""
         });
         $(document).ready(function() {
-            Echo.channel('atualizacao-ordem')
+        /*    Echo.channel('atualizacao-ordem')
                 .listen('.alteracao-status', (data) => {
                     var url = `/ordens/${data.ordem.id}`
                     var text = `A Ordem nº ${data.ordem.id} foi atualizada <br></div><strong>Veja a OS clicando<a class='btn btn-dark' href=${url}>AQUI</a>!!!</strong>`
@@ -249,7 +249,7 @@
                     @unless(Session::get('message'))
                     toastr.success(text)
                     @endunless
-                })
+                })*/
             toastr.options = {
                 "closeButton": false,
                 "debug": false,
@@ -269,7 +269,7 @@
             }
 
 
-            /*const socket = io("{{config('broadcasting.connections.socket-io.url')}}");
+            const socket = io("{{config('broadcasting.connections.socket-io.url')}}");
             socket.on('messages', function(data){
                 console.log(data);
                 toastr.options = {
@@ -288,7 +288,7 @@
                 var url = `/ordens/${data}`
                 var text = `A Ordem nº ${data} foi atualizada <br></div><strong>Veja a OS clicando<a class='btn btn-dark' href=${url}>AQUI</a>!!!</strong>`
                 toastr.success(text)
-            });*/
+            });
         });
 
         // Enable pusher logging - don't include this in production

@@ -50,7 +50,7 @@
     {{--<script src="https://js.pusher.com/7.2/pusher.min.js"></script>--}}
 
     {{-- Socket.IO --}}
-    <script type="text/javascript" src="{{config('broadcasting.connections.socket-io.url')}}/socket.io/socket.io.js"></script>
+    {{--<script type="text/javascript" src="{{config('broadcasting.connections.socket-io.url')}}/socket.io/socket.io.js"></script>--}}
 
 </head>
 
@@ -229,6 +229,27 @@
             "thousands": ""
         });
         $(document).ready(function() {
+            Echo.channel('atualizacao-ordem')
+                .listen('.alteracao-status', (data) => {
+                    var url = `/ordens/${data.ordem.id}`
+                    var text = `A Ordem nº ${data.ordem.id} foi atualizada <br></div><strong>Veja a OS clicando<a class='btn btn-dark' href=${url}>AQUI</a>!!!</strong>`
+                    toastr.options = {
+                        "closeButton": true,
+                        "extendedTimeOut": "0",
+                        "timeOut": "0",
+                        "tapToDismiss": false,
+                        "positionClass": "toast-bottom-right",
+                        "newestOnTop": true,
+                        "preventDuplicates": true,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut",
+                    }
+                    @unless(Session::get('message'))
+                    toastr.success(text)
+                    @endunless
+                })
             toastr.options = {
                 "closeButton": false,
                 "debug": false,
@@ -248,7 +269,7 @@
             }
 
 
-            const socket = io("{{config('broadcasting.connections.socket-io.url')}}");
+            /*const socket = io("{{config('broadcasting.connections.socket-io.url')}}");
             socket.on('messages', function(data){
                 console.log(data);
                 toastr.options = {
@@ -267,11 +288,11 @@
                 var url = `/ordens/${data}`
                 var text = `A Ordem nº ${data} foi atualizada <br></div><strong>Veja a OS clicando<a class='btn btn-dark' href=${url}>AQUI</a>!!!</strong>`
                 toastr.success(text)
-            });
+            });*/
         });
 
         // Enable pusher logging - don't include this in production
-/*        Pusher.logToConsole = false;
+        /*Pusher.logToConsole = false;
 
         var pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', {
             cluster: 'mt1'
@@ -293,11 +314,16 @@
                 "hideEasing": "linear",
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut",
-            }*/
+            }
             @unless(Session::get('message'))
                 toastr.success(text)
             @endunless
-        /*});*/
+        })*/
+    </script>
+    <script>
+        window.onload=function() {
+
+        }
     </script>
 </body>
 
